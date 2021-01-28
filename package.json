@@ -1,0 +1,7 @@
+{
+	"type": "module",
+	"dependencies": {
+		"console-clear": "^1.1.1",
+		"readline-sync": "^1.4.10"
+	}
+}
