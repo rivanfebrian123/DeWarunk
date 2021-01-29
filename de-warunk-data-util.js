@@ -76,6 +76,8 @@ export class Sesi {
             this.grupMember = false
         }
 
+        this.member = false
+        this.tag = ""
         this.valid = false
     }
 }

@@ -96,9 +96,7 @@ class DWTransaksi {
 
         let item = parseInt(input.question("Pilih item: "))
 
-        if (item == 0) {
-            clear()
-        } else if ((item > 0) && (item <= iAsli.length)) {
+        if ((item > 0) && (item <= iAsli.length)) {
             let dataItem = this.jualan[iAsli[item - 1]]
             let jumlah
 
@@ -108,12 +106,9 @@ class DWTransaksi {
                 jumlah = parseInt(input.question("Banyaknya yang dikurangi: "), 10)
             }
 
+            clear()
 
-            if (isNaN(jumlah)) {
-                clear()
-            } else {
-                clear()
-
+            if (!isNaN(jumlah)) {
                 if (opsi == "tambah") {
                     dataItem[2] += jumlah
                     console.log("==Item berhasil ditambah==")
@@ -128,7 +123,10 @@ class DWTransaksi {
             this.tambahKurangiItem(opsi)
         } else {
             clear()
-            this.tambahKurangiItem(opsi)
+
+            if (item != 0) {
+                this.tambahKurangiItem(opsi)
+            }
         }
     }
 
@@ -160,30 +158,24 @@ class DWMember {
         console.log("5. Lihat semua daftar member")
         console.log("0. Kembali")
 
-        switch (input.question("Pilih menu: ")) {
+        let menu = input.question("Pilih menu: ")
+        clear()
+
+        switch (menu) {
         case "1":
-            clear()
             this.tambahMember()
-            this.mulai()
             break
         case "2":
-            clear()
             this.sesi.nonaktifkan()
             this.editMember()
-            this.mulai()
             break
         case "3":
-            clear()
             this.cekPoinPromoMember()
+            break
+        }
+
+        if (menu != "0") {
             this.mulai()
-            break
-        case "0":
-            clear()
-            break
-        default:
-            clear()
-            this.mulai()
-            break
         }
     }
 
@@ -220,48 +212,44 @@ class DWMember {
             console.log(`4. Hapus member (${this.sesi.member.kode}. ${this.sesi.member.nama})`)
             console.log("0. Kembali")
 
-            switch (input.question("Pilih menu: ")) {
-            case "1":
-                console.log("===Ubah kode member===")
+            let notif = ""
+            let menu = input.question("Pilih menu: ")
 
+            switch (menu) {
+            case "1":
+                notif = "===Kode member berhasil diubah==="
                 let kodeLama = this.sesi.member.kode
 
+                console.log("===Ubah kode member===")
                 this.sesi.member.kode = input.question("Kode member baru: ")
                 this.sesi.grupMember[this.sesi.member.kode] = this.sesi.member
                 delete this.sesi.grupMember[kodeLama]
-
-                clear()
-                console.log("===Kode member berhasil diubah===")
-                this.editMember()
                 break
             case "2":
+                notif = "===Nama berhasil diubah==="
                 console.log("===Ubah nama===")
                 this.sesi.member.nama = input.question("Nama baru: ")
-                clear()
-                console.log("===Nama berhasil diubah===")
-                this.editMember()
                 break
             case "3":
+                notif = "===No. WA berhasil diubah==="
                 console.log("===Ubah no. WA===")
                 this.sesi.member.noWA = input.question("No. WA baru: ")
-                clear()
-                console.log("===No. WA berhasil diubah===")
-                this.editMember()
                 break
             case "4":
+                notif = `===Member "${this.sesi.member.nama}" berhasil dihapus===`
                 delete this.sesi.grupMember[this.sesi.member.kode]
-                clear()
-                console.log("===Member berhasil dihapus===")
                 this.sesi.nonaktifkan()
                 break
             case "0":
                 this.sesi.nonaktifkan()
-                clear()
                 break
-            default:
-                clear()
+            }
+
+            clear()
+
+            if (menu != "0") {
+                console.log(notif)
                 this.editMember()
-                break
             }
         }
     }
@@ -310,23 +298,20 @@ class DeWarunk {
         console.log("3. Jualan")
         console.log("0. Keluar")
 
-        switch (input.question("Pilih menu: ")) {
+        let menu = input.question("Pilih menu: ")
+        clear()
+
+        switch (menu) {
         case "1":
-            clear()
             this.dwTransaksi.mulai(this.sesi)
-            this.mulai()
             break
         case "2":
-            clear()
             this.dwMember.mulai()
+            break
+        }
+
+        if (menu != "0") {
             this.mulai()
-            break
-        case "0":
-            break
-        default:
-            clear()
-            this.mulai()
-            break
         }
     }
 }
