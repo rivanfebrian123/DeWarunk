@@ -208,15 +208,17 @@ export class Transaksi {
     waktu
     daftarItem = []
     jualan
+    sesi
     totalBelanja = 0
     poin
 
-    constructor(jualan) {
+    constructor(jualan, sesi) {
         this.waktu = new Date()
         this.jualan = jualan
+        this.sesi = sesi
     }
 
-    hitungTotalDiskonHarga(itemJualan, banyak, i=0) {
+    hitungTotalDiskonHarga(itemJualan, banyak, i = 0) {
         let totalDiskon = itemJualan.hargaJual * itemJualan.persenDiskon / 100
         let totalHarga = (itemJualan.hargaJual - totalDiskon) * banyak
         let notif = `${itemJualan.nama} - Rp.${itemJualan.hargaJual} (diskon Rp.${totalDiskon}) x ${banyak} = Rp.${totalHarga}`
@@ -364,8 +366,42 @@ export class Transaksi {
     }
 
     prosesCetak() {
-        console.log("==========================")
-        console.log("Proses dan cetak transaksi")
-        console.log("==========================")
+        let lanjut
+
+        do {
+            console.log("==========================")
+            console.log("Proses dan cetak transaksi")
+            console.log("==========================")
+            this.tampilkan(false)
+            lanjut = input.question("Lanjutkan (ya/batal): ")
+            clear()
+        } while ((lanjut != "ya") && (lanjut != "batal"))
+
+        if (lanjut == "ya") {
+            this.sesi.member.riwayatTransaksi.push(this)
+            this.sesi.nonaktifkan()
+            console.log("====Transaksi berhasil diproses====\n")
+        }
+    }
+
+    batalkan() {
+        let jadi = false
+        let lanjut
+
+        do {
+            console.log("==========================")
+            console.log("Batalkan transaksi")
+            console.log("==========================")
+            lanjut = input.question("Lanjutkan (ya/batal): ")
+            clear()
+        } while ((lanjut != "ya") && (lanjut != "batal"))
+
+        if (lanjut == "ya") {
+            jadi = true
+            this.sesi.nonaktifkan()
+            console.log("====Transaksi dibatalkan====\n")
+        }
+
+        return jadi
     }
 }

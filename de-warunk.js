@@ -26,12 +26,11 @@ class DWTransaksi {
             let status = this.sesi.aktifkan("==Kode member tidak ditemukan, coba lagi==", "jikaTiada")
 
             if (status == "ada") {
-                this.transaksi = new Transaksi(this.jualan)
+                this.transaksi = new Transaksi(this.jualan, this.sesi)
             }
         }
 
         if (this.sesi.valid) {
-
             console.log(`==Eh, si ${this.sesi.member.nama} balik lagi!==`)
             console.log("=====================")
             console.log("Transaksi baru")
@@ -43,6 +42,7 @@ class DWTransaksi {
             console.log("X. Batalkan transaksi")
 
             let menu = input.question("Pilih menu: ")
+            let jadiBatalkan = false
             clear()
 
             switch (menu) {
@@ -54,19 +54,17 @@ class DWTransaksi {
                 break
             case "3":
                 this.transaksi.prosesCetak()
-                this.sesi.member.riwayatTransaksi.push(this.transaksi)
-                delete this.transaksi
-                this.sesi.nonaktifkan()
                 break
             case "4":
+                //TODO this.transaksi.
+                console.log("====Fitur belum tersedia=====\n\n")
                 break
             case "X":
-                delete this.transaksi
-                this.sesi.nonaktifkan()
+                jadiBatalkan = this.transaksi.batalkan()
                 break
             }
 
-            if (menu != "X") {
+            if (!jadiBatalkan) {
                 this.mulai()
             }
         }
@@ -104,7 +102,14 @@ class DWMember {
             this.editMember()
             break
         case "3":
-            this.sesi.cekPoinPromoMember()
+            //this.sesi.cekPoinPromoMember()
+            console.log("====Fitur belum tersedia=====\n\n")
+            break
+        case "4":
+            console.log("====Fitur belum tersedia=====\n\n")
+            break
+        case "5":
+            console.log("====Fitur belum tersedia=====\n\n")
             break
         }
 
@@ -182,6 +187,10 @@ class DeWarunk {
             "SB", "Kopi Starbak", 70000, 2, 30000, 5)
         this.jualan.daftarJualan["WJ"] = new ItemJualan(
             "WJ", "Wedang Jahe", 30000, 2, 2000, 0)
+        this.jualan.daftarJualan["SJ"] = new ItemJualan(
+            "SJ", "Susu Jahe", 40000, 2, 5000, 0)
+        this.jualan.daftarJualan["WB"] = new ItemJualan(
+            "WB", "Wedang Bajigur", 35000, 3, 5000, 10)
         this.dwTransaksi = new DWTransaksi(this.sesi, this.jualan)
         this.dwMember = new DWMember(this.sesi)
     }
@@ -200,10 +209,13 @@ class DeWarunk {
 
         switch (menu) {
         case "1":
-            this.dwTransaksi.mulai(this.sesi)
+            this.dwTransaksi.mulai()
             break
         case "2":
             this.dwMember.mulai()
+            break
+        case "3":
+            console.log("====Fitur belum tersedia=====\n\n")
             break
         }
 
