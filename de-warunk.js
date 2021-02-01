@@ -2,13 +2,17 @@ import input from 'readline-sync'
 import clear from 'console-clear'
 import {
     Member,
-    Sesi
-} from './de-warunk-data-util.js'
+    Sesi,
+    Jualan,
+    ItemJualan,
+    Transaksi
+} from './de-warunk-data.js'
 
 
 class DWTransaksi {
     sesi
-    jualan = []
+    jualan
+    transaksi
 
     constructor(sesi, jualan) {
         this.sesi = sesi
@@ -16,12 +20,18 @@ class DWTransaksi {
     }
 
     mulai() {
+        //TODO
         if (!this.sesi.valid) {
             console.log("====Transaksi baru===")
-            this.sesi.aktifkan("==Kode member tidak ditemukan, coba lagi==", "jikaTiada")
+            let status = this.sesi.aktifkan("==Kode member tidak ditemukan, coba lagi==", "jikaTiada")
+
+            if (status == "ada") {
+                this.transaksi = new Transaksi(this.jualan)
+            }
         }
 
         if (this.sesi.valid) {
+
             console.log(`==Eh, si ${this.sesi.member.nama} balik lagi!==`)
             console.log("=====================")
             console.log("Transaksi baru")
@@ -37,18 +47,21 @@ class DWTransaksi {
 
             switch (menu) {
             case "1":
-                this.tambahKurangiItem("tambah")
+                this.transaksi.tambahItem()
                 break
             case "2":
-                this.tambahKurangiItem("kurangi")
+                this.transaksi.kurangiItem()
                 break
             case "3":
-                this.prosesCetak()
+                this.transaksi.prosesCetak()
+                this.sesi.member.riwayatTransaksi.push(this.transaksi)
+                delete this.transaksi
+                this.sesi.nonaktifkan()
                 break
             case "4":
-                this.cekPoinPromoMember()
                 break
             case "X":
+                delete this.transaksi
                 this.sesi.nonaktifkan()
                 break
             }
@@ -57,85 +70,6 @@ class DWTransaksi {
                 this.mulai()
             }
         }
-    }
-
-    tampilkanItem(penuhSebagian) {
-        let totalBelanja = 0
-        let i = 0
-        let iAsli = []
-
-        for (const [x, elemen] of this.jualan.entries()) {
-            if ((penuhSebagian == "penuh") || (elemen[2] != 0)) {
-                i++
-                iAsli.push(x)
-                console.log(`${i}. ${elemen[0]} - Rp.${elemen[1]} x ${elemen[2]} = Rp.${elemen[1]*elemen[2]}`)
-                totalBelanja += (elemen[1] * elemen[2])
-            }
-        }
-
-        console.log("0. Kembali")
-        console.log(`===Total belanja kamu: Rp.${totalBelanja}===`)
-        console.log(`===Poin belanja kamu: ${parseInt(totalBelanja/1000/2)}===`)
-
-        return iAsli
-    }
-
-    tambahKurangiItem(opsi) {
-        let iAsli
-
-        console.log("=====================")
-        if (opsi == "tambah") {
-            console.log("Tambah item")
-            console.log("=====================")
-            iAsli = this.tampilkanItem("penuh")
-        } else {
-            console.log("Kurangi item")
-            console.log("=====================")
-            iAsli = this.tampilkanItem("sebagian")
-        }
-
-        let item = parseInt(input.question("Pilih item: "))
-
-        if ((item > 0) && (item <= iAsli.length)) {
-            let dataItem = this.jualan[iAsli[item - 1]]
-            let jumlah
-
-            if (opsi == "tambah") {
-                jumlah = parseInt(input.question("Banyaknya yang ditambahkan: "), 10)
-            } else {
-                jumlah = parseInt(input.question("Banyaknya yang dikurangi: "), 10)
-            }
-
-            clear()
-
-            if (!isNaN(jumlah)) {
-                if (opsi == "tambah") {
-                    dataItem[2] += jumlah
-                    console.log("==Item berhasil ditambah==")
-                } else {
-                    dataItem[2] -= jumlah
-                    console.log("==Item berhasil dikurangi==")
-                }
-
-                console.log(`${dataItem[0]} - Rp.${dataItem[1]} x ${dataItem[2]} = Rp.${dataItem[1]*dataItem[2]}`)
-            }
-
-            this.tambahKurangiItem(opsi)
-        } else {
-            clear()
-
-            if (item != 0) {
-                this.tambahKurangiItem(opsi)
-            }
-        }
-    }
-
-    prosesCetak() {
-        console.log("==========================")
-        console.log("Proses dan cetak transaksi")
-        console.log("==========================")
-
-        this.tampilkanItem("sebagian")
     }
 }
 
@@ -163,14 +97,14 @@ class DWMember {
 
         switch (menu) {
         case "1":
-            this.tambahMember()
+            this.sesi.tambahMember()
             break
         case "2":
             this.sesi.nonaktifkan()
             this.editMember()
             break
         case "3":
-            this.cekPoinPromoMember()
+            this.sesi.cekPoinPromoMember()
             break
         }
 
@@ -179,32 +113,15 @@ class DWMember {
         }
     }
 
-
-    tambahMember() {
-        console.log("===Tambah member===")
-
-        let status = this.sesi.aktifkan("==Kode member sudah digunakan, silakan coba lagi==", "jikaAda")
-
-        if (status == "tiada") {
-            console.log("=================")
-            console.log("Tambah member")
-            console.log("=================")
-            this.sesi.grupMember[this.sesi.tag] = new Member(this.sesi.tag,
-                input.question("Nama: "), input.question("No. WA: "), 0)
-            clear()
-            console.log("==Member berhasil ditambah==")
-        }
-    }
-
     editMember() {
         if (!this.sesi.valid) {
-            console.log("===Edit member===")
+            console.log("===Edit / hapus member===")
             this.sesi.aktifkan("==Member tidak ditemukan, coba lagi==", "jikaTiada")
         }
 
         if (this.sesi.valid) {
             console.log("=====================")
-            console.log("Edit member")
+            console.log("Edit / hapus member")
             console.log("=====================")
             console.log(`1. Ubah kode member (${this.sesi.member.kode})`)
             console.log(`2. Ubah nama (${this.sesi.member.nama})`)
@@ -217,28 +134,16 @@ class DWMember {
 
             switch (menu) {
             case "1":
-                notif = "===Kode member berhasil diubah==="
-                let kodeLama = this.sesi.member.kode
-
-                console.log("===Ubah kode member===")
-                this.sesi.member.kode = input.question("Kode member baru: ")
-                this.sesi.grupMember[this.sesi.member.kode] = this.sesi.member
-                delete this.sesi.grupMember[kodeLama]
+                this.sesi.ubahKodeMember()
                 break
             case "2":
-                notif = "===Nama berhasil diubah==="
-                console.log("===Ubah nama===")
-                this.sesi.member.nama = input.question("Nama baru: ")
+                this.sesi.ubahNamaMember()
                 break
             case "3":
-                notif = "===No. WA berhasil diubah==="
-                console.log("===Ubah no. WA===")
-                this.sesi.member.noWA = input.question("No. WA baru: ")
+                this.sesi.ubahNoWAMember()
                 break
             case "4":
-                notif = `===Member "${this.sesi.member.nama}" berhasil dihapus===`
-                delete this.sesi.grupMember[this.sesi.member.kode]
-                this.sesi.nonaktifkan()
+                this.sesi.hapusMember()
                 break
             case "0":
                 this.sesi.nonaktifkan()
@@ -248,16 +153,9 @@ class DWMember {
             clear()
 
             if (menu != "0") {
-                console.log(notif)
                 this.editMember()
             }
         }
-    }
-
-    cekPoinPromoMember() {
-        console.log("=========================")
-        console.log("Cek poin dan promo member")
-        console.log("=========================")
     }
 }
 
@@ -266,25 +164,24 @@ class DeWarunk {
     dwTransaksi
     dwMember
 
-    grupMember = []
+    daftarMember = []
     jualan = []
     sesi
+    transaksi
 
     constructor() {
-        this.jualan = [
-            ["Kopi espreso", 5000, 0],
-            ["Susu jahe", 8000, 0],
-            ["Kopi lampung", 3000, 0],
-            ["Kopi energi", 6000, 0],
-            ["Susu kambing", 9000, 0],
-            ["Wedang jahe", 2000, 0],
-            ["Kopi starbak", 12000, 0],
-            ["Kopi gula aren", 4000, 0]
-        ]
-        this.grupMember["RV"] = new Member("RV", "Rivan", "087767777733", 30)
-        this.sesi = new Sesi(this.grupMember)
+        this.daftarMember["RV"] = new Member("RV", "Rivan", "087767777733", 30)
+
+        this.sesi = new Sesi(this.daftarMember)
         this.sesi.nonaktifkan()
 
+        this.jualan = new Jualan()
+        this.jualan.daftarJualan["KJ"] = new ItemJualan(
+            "KJ", "Kopi Jahe", 50000, 2, 4000, 10)
+        this.jualan.daftarJualan["SB"] = new ItemJualan(
+            "SB", "Kopi Starbak", 70000, 2, 30000, 5)
+        this.jualan.daftarJualan["WJ"] = new ItemJualan(
+            "WJ", "Wedang Jahe", 30000, 2, 2000, 0)
         this.dwTransaksi = new DWTransaksi(this.sesi, this.jualan)
         this.dwMember = new DWMember(this.sesi)
     }
