@@ -1,6 +1,29 @@
 import input from 'readline-sync'
 import clear from 'console-clear'
 
+//TODO input non case sansitive
+
+export function konfirmasi(judul = "") {
+    let lanjut
+    let jawaban = false
+
+    do {
+        if (judul != "") {
+            console.log("==========================")
+            console.log(judul)
+            console.log("==========================")
+        }
+
+        lanjut = input.question("Lanjutkan (YA/BATAL): ").toLowerCase()
+        console.log("")
+    } while ((lanjut != "ya") && (lanjut != "batal"))
+
+    if (lanjut == "ya") {
+        jawaban = true
+    }
+
+    return jawaban
+}
 
 export class Member {
     kode
@@ -30,37 +53,44 @@ export class Sesi {
         this.tag = ""
     }
 
-    aktifkan(pesan = "", kondisiUlangi = "tidak") {
+    aktifkanCek(kondisiUlangi = "tidak", pertanyaan = "Kode member: ", cekSaja = false) {
         let hasil
         let ulangi
 
         do {
             console.log("X. Batal")
-            console.log("--------------------------")
-            this.tag = input.question("Kode member: ")
+            console.log("------------------------------")
+            this.tag = input.question(pertanyaan)
 
-            if (this.tag == "X") {
+            if (this.tag.toLowerCase() == "x") {
                 hasil = "batal"
             } else if (typeof this.daftarMember[this.tag] == "undefined") {
                 hasil = "tiada"
-                this.valid = false
+
+                if (!cekSaja) {
+                    this.valid = false
+                }
             } else {
                 hasil = "ada"
-                this.valid = true
-                this.member = this.daftarMember[this.tag]
+
+                if (!cekSaja) {
+                    this.valid = true
+                    this.member = this.daftarMember[this.tag]
+                }
             }
 
-            if ((hasil == "ada" && kondisiUlangi == "jikaAda") || (hasil == "tiada" && kondisiUlangi == "jikaTiada")) {
+            if (hasil == "ada" && kondisiUlangi == "jikaAda") {
                 ulangi = true
-                console.log("\n")
-                console.log(pesan)
-                console.log("==========================")
+                console.log("\n==Kode member sudah digunakan, silakan coba lagi==\n")
+                console.log("==============================")
+            } else if (hasil == "tiada" && kondisiUlangi == "jikaTiada") {
+                ulangi = true
+                console.log("\n==Kode member tidak ditemukan, coba lagi==\n")
+                console.log("==============================")
             } else {
                 ulangi = false
             }
         } while (ulangi)
-
-        clear()
 
         return hasil
     }
@@ -77,71 +107,98 @@ export class Sesi {
 
     ubahKodeMember() {
         if (!this.valid) {
-            this.aktifkan()
+            this.aktifkanCek("jikaTiada")
         }
 
         if (this.valid) {
-            let kodeLama = this.member.kode
-
             console.log("===Ubah kode member===")
-            this.member.kode = input.question("Kode member baru: ")
-            this.daftarMember[this.member.kode] = this.member
-            delete this.daftarMember[kodeLama]
 
-            console.log("===Kode member berhasil diubah===")
+            let kodeLama = this.member.kode
+            let status = this.aktifkanCek("jikaAda", "Kode member baru: ", true)
+
+            if (status == "tiada") {
+                this.member.kode = this.tag
+                this.daftarMember[this.tag] = this.member
+                delete this.daftarMember[kodeLama]
+            }
+
+            clear()
+            console.log("===Kode member berhasil diubah===\n\n")
         }
     }
 
     ubahNamaMember() {
         if (!this.valid) {
-            this.aktifkan()
+            this.aktifkanCek("jikaTiada")
         }
 
         if (this.valid) {
             console.log("===Ubah nama===")
             this.member.nama = input.question("Nama baru: ")
-            console.log("===Nama berhasil diubah===")
+
+            clear()
+            console.log("===Nama berhasil diubah===\n\n")
         }
     }
 
     ubahNoWAMember() {
         if (!this.valid) {
-            this.aktifkan()
+            this.aktifkanCek("jikaTiada")
         }
 
         if (this.valid) {
             console.log("===Ubah no. WA===")
             this.member.noWA = input.question("No. WA baru: ")
-            console.log("===No. WA berhasil diubah===")
+
+            clear()
+            console.log("===No. WA berhasil diubah===\n\n")
         }
     }
 
     tambahMember() {
-        console.log("===Tambah member===")
+        console.log("=================")
+        console.log("Tambah member")
+        console.log("=================")
 
-        let status = this.aktifkan("==Kode member sudah digunakan, silakan coba lagi==", "jikaAda")
+        let status = this.aktifkanCek("jikaAda")
 
         if (status == "tiada") {
-            console.log("=================")
-            console.log("Tambah member")
-            console.log("=================")
-            this.daftarMember[this.tag] = new Member(this.tag,
-                input.question("Nama: "), input.question("No. WA: "), 0)
+            let nama = input.question("Nama: ")
+
+            if (nama.toLowerCase() != "x") {
+                let noWA = input.question("No. WA: ")
+
+                if (noWA.toLowerCase() != "x") {
+                    this.daftarMember[this.tag] = new Member(this.tag, nama, noWA, 0)
+                    clear()
+                    console.log("====Member berhasil ditambah====\n\n")
+                } else {
+                    clear()
+                }
+            } else {
+                clear()
+            }
+        } else {
             clear()
-            console.log("==Member berhasil ditambah==")
         }
     }
 
     hapusMember() {
         if (!this.valid) {
-            this.aktifkan()
+            this.aktifkanCek("jikaTiada")
         }
 
         if (this.valid) {
-            notif = `===Member "${this.member.nama}" berhasil dihapus===`
-            delete this.daftarMember[this.member.kode]
-            this.nonaktifkan()
-            console.log(notif)
+            if (konfirmasi("Hapus member")) {
+                let notif = `===Member "${this.member.nama}" (${this.member.kode}) berhasil dihapus===\n\n`
+                delete this.daftarMember[this.member.kode]
+                this.nonaktifkan()
+
+                clear()
+                console.log(notif)
+            } else {
+                clear()
+            }
         }
     }
 }
@@ -221,13 +278,22 @@ export class Transaksi {
     hitungTotalDiskonHarga(itemJualan, banyak, i = 0) {
         let totalDiskon = itemJualan.hargaJual * itemJualan.persenDiskon / 100
         let totalHarga = (itemJualan.hargaJual - totalDiskon) * banyak
-        let notif = `${itemJualan.nama} - Rp.${itemJualan.hargaJual} (diskon Rp.${totalDiskon}) x ${banyak} = Rp.${totalHarga}`
-
-        if (i >= 1) {
-            notif = `${i}. ` + notif
-        }
 
         if (i != -1) {
+            let notif = `${itemJualan.nama}`
+
+            if (i >= 1) {
+                notif = `${i}. ` + notif
+
+                if (notif.length < 8) {
+                    notif += "\t\t"
+                } else if (notif.length < 16) {
+                    notif += "\t"
+                }
+            }
+
+            notif += `\tRp.${itemJualan.hargaJual} (diskon Rp.${totalDiskon}) x ${banyak} = Rp.${totalHarga}`
+
             console.log(notif)
         }
 
@@ -269,7 +335,7 @@ export class Transaksi {
         console.log("0. Kembali")
         console.log("--------------------------------------")
         console.log(`===Total belanja kamu: Rp.${totalBelanja}===`)
-        console.log(`===Poin belanja kamu: ${parseInt(totalBelanja/1000/2)}===`)
+        console.log(`===Poin belanja kamu: ${parseInt(totalBelanja/1000/2)}===\n`)
 
         return iAsli
     }
@@ -355,7 +421,7 @@ export class Transaksi {
                 console.log("====Item berhasil dikurangi====\n\n")
             } else if (banyak >= item.banyak) {
                 delete this.daftarItem[kodeItem]
-                console.log(`====Item ${itemJualan.nama} (${itemJualan.kode}) berhasil dihapus====`)
+                console.log(`====Item ${itemJualan.nama} (${itemJualan.kode}) berhasil dihapus====\n\n`)
             }
 
             this.kurangiItem()
@@ -368,19 +434,19 @@ export class Transaksi {
     prosesCetak() {
         let lanjut
 
-        do {
-            console.log("==========================")
-            console.log("Proses dan cetak transaksi")
-            console.log("==========================")
-            this.tampilkan(false)
-            lanjut = input.question("Lanjutkan (ya/batal): ")
-            clear()
-        } while ((lanjut != "ya") && (lanjut != "batal"))
+        console.log("==========================")
+        console.log("Proses dan cetak transaksi")
+        console.log("==========================")
+        this.tampilkan(false)
 
-        if (lanjut == "ya") {
+        if (konfirmasi()) {
             this.sesi.member.riwayatTransaksi.push(this)
             this.sesi.nonaktifkan()
-            console.log("====Transaksi berhasil diproses====\n")
+
+            clear()
+            console.log("====Transaksi berhasil diproses====\n\n")
+        } else {
+            clear()
         }
     }
 
@@ -388,18 +454,14 @@ export class Transaksi {
         let jadi = false
         let lanjut
 
-        do {
-            console.log("==========================")
-            console.log("Batalkan transaksi")
-            console.log("==========================")
-            lanjut = input.question("Lanjutkan (ya/batal): ")
-            clear()
-        } while ((lanjut != "ya") && (lanjut != "batal"))
-
-        if (lanjut == "ya") {
+        if (konfirmasi("Batalkan transaksi")) {
             jadi = true
             this.sesi.nonaktifkan()
-            console.log("====Transaksi dibatalkan====\n")
+
+            clear()
+            console.log("====Transaksi dibatalkan====\n\n")
+        } else {
+            clear()
         }
 
         return jadi
