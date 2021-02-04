@@ -1,8 +1,6 @@
 import input from 'readline-sync'
 import clear from 'console-clear'
 
-//TODO input non case sansitive
-
 export function konfirmasi(judul = "") {
     let lanjut
     let jawaban = false
@@ -53,42 +51,65 @@ export class Sesi {
         this.tag = ""
     }
 
-    aktifkanCek(kondisiUlangi = "tidak", pertanyaan = "Kode member: ", cekSaja = false) {
+    aktifkanCek(kondisiUlangi = "tidak", judul="", opsi="", pertanyaan = "Kode member (besar kecil huruf berpengaruh): ") {
         let hasil
         let ulangi
 
         do {
+            ulangi = false
+            this.valid = false
+
+            if (judul != "") {
+                console.log("==========================")
+                console.log(judul)
+                console.log("==========================")
+            }
+
+            if (opsi == "izinkanTambahMember") {
+                console.log("Y. Tambah member")
+            }
+
             console.log("X. Batal")
             console.log("------------------------------")
             this.tag = input.question(pertanyaan)
 
             if (this.tag.toLowerCase() == "x") {
                 hasil = "batal"
+            } else if (this.tag.toLowerCase() == "y") {
+                if (opsi == "izinkanTambahMember") {
+                    console.log("\n")
+
+                    if (this.tambahMember(false)) {
+                        hasil = "ada"
+                        this.valid = true
+                        this.member = this.daftarMember[this.tag]
+                    } else {
+                        ulangi = true
+                        console.log("\n")
+                    }
+                } else {
+                    console.log("\n\n==Input tidak valid, silakan coba lagi==\n")
+                    ulangi = true
+                }
             } else if (typeof this.daftarMember[this.tag] == "undefined") {
                 hasil = "tiada"
 
-                if (!cekSaja) {
-                    this.valid = false
+                if (kondisiUlangi == "jikaTiada") {
+                    ulangi = true
+                    console.log("\n\n==Kode member tidak ditemukan, coba lagi==\n")
                 }
             } else {
                 hasil = "ada"
 
-                if (!cekSaja) {
+                if (opsi != "cekSaja") {
                     this.valid = true
                     this.member = this.daftarMember[this.tag]
                 }
-            }
 
-            if (hasil == "ada" && kondisiUlangi == "jikaAda") {
-                ulangi = true
-                console.log("\n==Kode member sudah digunakan, silakan coba lagi==\n")
-                console.log("==============================")
-            } else if (hasil == "tiada" && kondisiUlangi == "jikaTiada") {
-                ulangi = true
-                console.log("\n==Kode member tidak ditemukan, coba lagi==\n")
-                console.log("==============================")
-            } else {
-                ulangi = false
+                if (kondisiUlangi == "jikaAda") {
+                    ulangi = true
+                    console.log("\n\n==Kode member sudah digunakan, silakan coba lagi==\n")
+                }
             }
         } while (ulangi)
 
@@ -111,10 +132,8 @@ export class Sesi {
         }
 
         if (this.valid) {
-            console.log("===Ubah kode member===")
-
             let kodeLama = this.member.kode
-            let status = this.aktifkanCek("jikaAda", "Kode member baru: ", true)
+            let status = this.aktifkanCek("jikaAda", "Ubah kode member", "cekSaja", "Kode member baru (besar kecil huruf berpengaruh): ")
 
             if (status == "tiada") {
                 this.member.kode = this.tag
@@ -155,12 +174,9 @@ export class Sesi {
         }
     }
 
-    tambahMember() {
-        console.log("=================")
-        console.log("Tambah member")
-        console.log("=================")
-
-        let status = this.aktifkanCek("jikaAda")
+    tambahMember(bersihkanJikaBatal=true) {
+        let berhasil = false
+        let status = this.aktifkanCek("jikaAda", "Tambah member", "cekSaja")
 
         if (status == "tiada") {
             let nama = input.question("Nama: ")
@@ -170,17 +186,18 @@ export class Sesi {
 
                 if (noWA.toLowerCase() != "x") {
                     this.daftarMember[this.tag] = new Member(this.tag, nama, noWA, 0)
+                    berhasil = true
                     clear()
                     console.log("====Member berhasil ditambah====\n\n")
-                } else {
-                    clear()
                 }
-            } else {
-                clear()
             }
-        } else {
+        }
+
+        if (!berhasil && bersihkanJikaBatal) {
             clear()
         }
+
+        return berhasil
     }
 
     hapusMember() {
@@ -223,8 +240,18 @@ export class ItemJualan {
 }
 
 
+export class Promo {
+    poinDiharapkan
+    hadiah
+    mulai
+    sampai
+    syaratTambahan
+}
+
+
 export class Jualan {
     daftarJualan = []
+    daftarPromo = []
 
     tampilkan() {
         console.log("==========================")

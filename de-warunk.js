@@ -21,8 +21,7 @@ class DWTransaksi {
 
     mulai() {
         if (!this.sesi.valid) {
-            console.log("====Transaksi baru===")
-            let status = this.sesi.aktifkanCek("jikaTiada")
+            let status = this.sesi.aktifkanCek("jikaTiada", "Transaksi baru", "izinkanTambahMember")
 
             if (status == "ada") {
                 this.transaksi = new Transaksi(this.jualan, this.sesi)
@@ -32,7 +31,8 @@ class DWTransaksi {
         }
 
         if (this.sesi.valid) {
-            console.log(`==Eh, si ${this.sesi.member.nama} balik lagi!==`)
+            console.log(`==Kuy sapa si ${this.sesi.member.nama}!==`)
+            console.log(`==${this.transaksi.waktu.toLocaleString("id-ID")}==`)
             console.log("=====================")
             console.log("Transaksi baru")
             console.log("=====================")
@@ -121,8 +121,7 @@ class DWMember {
 
     editHapusMember() {
         if (!this.sesi.valid) {
-            console.log("===Edit / hapus member===")
-            this.sesi.aktifkanCek("jikaTiada")
+            this.sesi.aktifkanCek("jikaTiada", "Edit / hapus member")
             clear()
         }
 
@@ -192,6 +191,8 @@ class DeWarunk {
             "SJ", "Susu Jahe", 40000, 2, 5000, 0)
         this.jualan.daftarJualan["WB"] = new ItemJualan(
             "WB", "Wedang Bajigur", 35000, 3, 5000, 10)
+        this.jualan.daftarJualan["MS"] = new ItemJualan(
+            "MS", "Milkshake", 40000, 3, 10000, 10)
         this.dwTransaksi = new DWTransaksi(this.sesi, this.jualan)
         this.dwMember = new DWMember(this.sesi)
     }
