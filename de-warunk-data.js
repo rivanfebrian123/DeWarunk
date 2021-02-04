@@ -1,3 +1,23 @@
+/* de-warunk-data.js
+ *
+ * Copyright 2021 De Warunk Team <rivanfebrian123@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 import input from 'readline-sync'
 import clear from 'console-clear'
 
@@ -14,7 +34,7 @@ export function konfirmasi(judul = "") {
 
         lanjut = input.question("Lanjutkan (YA/BATAL): ").toLowerCase()
         console.log("")
-    } while ((lanjut != "ya") && (lanjut != "batal"))
+    } while (lanjut != "ya" && lanjut != "batal")
 
     if (lanjut == "ya") {
         jawaban = true
@@ -51,13 +71,11 @@ export class Sesi {
         this.tag = ""
     }
 
-    aktifkanCek(kondisiUlangi = "tidak", judul="", opsi="", pertanyaan = "Kode member (besar kecil huruf berpengaruh): ") {
-        let hasil
-        let ulangi
+    aktifkanCek(opsi = "lanjutJikaAda", judul = "", pertanyaan = "Kode member (besar kecil huruf berpengaruh): ") {
+        let jadi
 
         do {
-            ulangi = false
-            this.valid = false
+            jadi = false
 
             if (judul != "") {
                 console.log("==========================")
@@ -65,7 +83,7 @@ export class Sesi {
                 console.log("==========================")
             }
 
-            if (opsi == "izinkanTambahMember") {
+            if (opsi == "lanjutJikaAda+") {
                 console.log("Y. Tambah member")
             }
 
@@ -74,46 +92,39 @@ export class Sesi {
             this.tag = input.question(pertanyaan)
 
             if (this.tag.toLowerCase() == "x") {
-                hasil = "batal"
+                console.log("")
             } else if (this.tag.toLowerCase() == "y") {
-                if (opsi == "izinkanTambahMember") {
+                if (opsi == "lanjutJikaAda+") {
                     console.log("\n")
 
                     if (this.tambahMember(false)) {
-                        hasil = "ada"
+                        jadi = true
                         this.valid = true
                         this.member = this.daftarMember[this.tag]
                     } else {
-                        ulangi = true
                         console.log("\n")
                     }
                 } else {
                     console.log("\n\n==Input tidak valid, silakan coba lagi==\n")
-                    ulangi = true
                 }
             } else if (typeof this.daftarMember[this.tag] == "undefined") {
-                hasil = "tiada"
-
-                if (kondisiUlangi == "jikaTiada") {
-                    ulangi = true
+                if (opsi == "lanjutJikaAda" || opsi == "lanjutJikaAda+") {
                     console.log("\n\n==Kode member tidak ditemukan, coba lagi==\n")
+                } else {
+                    jadi = true
                 }
             } else {
-                hasil = "ada"
-
-                if (opsi != "cekSaja") {
+                if (opsi == "lanjutJikaTiada") {
+                    console.log("\n\n==Kode member sudah digunakan, silakan coba lagi==\n")
+                } else {
+                    jadi = true
                     this.valid = true
                     this.member = this.daftarMember[this.tag]
                 }
-
-                if (kondisiUlangi == "jikaAda") {
-                    ulangi = true
-                    console.log("\n\n==Kode member sudah digunakan, silakan coba lagi==\n")
-                }
             }
-        } while (ulangi)
+        } while (!jadi && this.tag.toLowerCase() != "x")
 
-        return hasil
+        return jadi
     }
 
     nonaktifkan(hapusDaftarMember = false) {
@@ -128,27 +139,28 @@ export class Sesi {
 
     ubahKodeMember() {
         if (!this.valid) {
-            this.aktifkanCek("jikaTiada")
+            this.aktifkanCek("lanjutJikaAda")
         }
 
         if (this.valid) {
             let kodeLama = this.member.kode
-            let status = this.aktifkanCek("jikaAda", "Ubah kode member", "cekSaja", "Kode member baru (besar kecil huruf berpengaruh): ")
+            let jadi = this.aktifkanCek("lanjutJikaTiada", "Ubah kode member", "Kode member baru (besar kecil huruf berpengaruh): ")
 
-            if (status == "tiada") {
+            clear()
+
+            if (jadi) {
                 this.member.kode = this.tag
                 this.daftarMember[this.tag] = this.member
                 delete this.daftarMember[kodeLama]
-            }
 
-            clear()
-            console.log("===Kode member berhasil diubah===\n\n")
+                console.log("===Kode member berhasil diubah===\n\n")
+            }
         }
     }
 
     ubahNamaMember() {
         if (!this.valid) {
-            this.aktifkanCek("jikaTiada")
+            this.aktifkanCek("lanjutJikaAda")
         }
 
         if (this.valid) {
@@ -162,7 +174,7 @@ export class Sesi {
 
     ubahNoWAMember() {
         if (!this.valid) {
-            this.aktifkanCek("jikaTiada")
+            this.aktifkanCek("lanjutJikaAda")
         }
 
         if (this.valid) {
@@ -174,11 +186,10 @@ export class Sesi {
         }
     }
 
-    tambahMember(bersihkanJikaBatal=true) {
+    tambahMember(bersihkanJikaBatal = true) {
         let berhasil = false
-        let status = this.aktifkanCek("jikaAda", "Tambah member", "cekSaja")
 
-        if (status == "tiada") {
+        if (this.aktifkanCek("lanjutJikaTiada", "Tambah member")) {
             let nama = input.question("Nama: ")
 
             if (nama.toLowerCase() != "x") {
@@ -202,7 +213,7 @@ export class Sesi {
 
     hapusMember() {
         if (!this.valid) {
-            this.aktifkanCek("jikaTiada")
+            this.aktifkanCek("lanjutJikaAda")
         }
 
         if (this.valid) {
@@ -335,7 +346,7 @@ export class Transaksi {
         if (tampilkanItemBelumDibeli) {
             console.log("---------Item2 belum dibeli-----------")
             for (const kode in this.jualan.daftarJualan) {
-                if ((typeof kode != "undefined") && (typeof this.daftarItem[kode] == "undefined")) {
+                if (typeof kode != "undefined" && typeof this.daftarItem[kode] == "undefined") {
                     this.hitungTotalDiskonHarga(this.jualan.daftarJualan[kode], 0, i)
                     iAsli[i] = kode
                     i++
@@ -429,12 +440,12 @@ export class Transaksi {
 
         if (menu == 0) {
             clear()
-        } else if ((typeof itemJualan != "undefined") && (typeof this.daftarItem[kodeItem] != "undefined")) {
+        } else if (typeof itemJualan != "undefined" && typeof this.daftarItem[kodeItem] != "undefined") {
             let item = this.daftarItem[kodeItem]
             banyak = parseInt(input.question("Banyaknya yang dikurangi: "))
             clear()
 
-            if ((banyak > 0) && (banyak < item.banyak)) {
+            if (banyak > 0 && banyak < item.banyak) {
                 console.log("--------------Dari----------------")
                 let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak, -1)
                 this.hitungTotalDiskonHarga(itemJualan, item.banyak)
