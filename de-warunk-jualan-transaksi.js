@@ -1,4 +1,4 @@
-/* de-warunk-data.js
+/* de-warunk-jualan-transaksi.js
  *
  * Copyright 2021 De Warunk Team <rivanfebrian123@gmail.com>
  *
@@ -17,217 +17,27 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-
 import input from 'readline-sync'
 import clear from 'console-clear'
 
-export function konfirmasi(judul = "") {
-    let lanjut
-    let jawaban = false
+import {
+    konfirmasi
+} from './de-warunk-lintas-bidang.js'
 
-    do {
-        if (judul != "") {
-            console.log("==========================")
-            console.log(judul)
-            console.log("==========================")
-        }
 
-        lanjut = input.question("Lanjutkan (YA/BATAL): ").toLowerCase()
-        console.log("")
-    } while (lanjut != "ya" && lanjut != "batal")
-
-    if (lanjut == "ya") {
-        jawaban = true
-    }
-
-    return jawaban
-}
-
-export class Member {
+export class Promo {
     kode
-    nama
-    noWA
-    poin
-    riwayatTransaksi = []
+    poinDiharapkan
+    hadiah
+    batasAkhir
+    syaratTambahan
 
-    constructor(kode, nama, noWA, poin) {
+    constructor(kode, poinDiharapkan, hadiah, batasAkhir, syaratTambahan = "-") {
         this.kode = kode
-        this.nama = nama
-        this.noWA = noWA
-        this.poin = poin
-    }
-}
-
-
-export class Sesi {
-    daftarMember
-    valid
-    member
-    tag
-
-    constructor(daftarMember) {
-        this.daftarMember = daftarMember
-        this.valid = false
-        this.tag = ""
-    }
-
-    aktifkanCek(opsi = "lanjutJikaAda", judul = "", pertanyaan = "Kode member (besar kecil huruf berpengaruh): ") {
-        let jadi
-
-        do {
-            jadi = false
-
-            if (judul != "") {
-                console.log("==========================")
-                console.log(judul)
-                console.log("==========================")
-            }
-
-            if (opsi == "lanjutJikaAda+") {
-                console.log("Y. Tambah member")
-            }
-
-            console.log("X. Batal")
-            console.log("------------------------------")
-            this.tag = input.question(pertanyaan)
-
-            if (this.tag.toLowerCase() == "x") {
-                console.log("")
-            } else if (this.tag.toLowerCase() == "y") {
-                if (opsi == "lanjutJikaAda+") {
-                    console.log("\n")
-
-                    if (this.tambahMember(false)) {
-                        jadi = true
-                        this.valid = true
-                        this.member = this.daftarMember[this.tag]
-                    } else {
-                        console.log("\n")
-                    }
-                } else {
-                    console.log("\n\n==Input tidak valid, silakan coba lagi==\n")
-                }
-            } else if (typeof this.daftarMember[this.tag] == "undefined") {
-                if (opsi == "lanjutJikaAda" || opsi == "lanjutJikaAda+") {
-                    console.log("\n\n==Kode member tidak ditemukan, coba lagi==\n")
-                } else {
-                    jadi = true
-                }
-            } else {
-                if (opsi == "lanjutJikaTiada") {
-                    console.log("\n\n==Kode member sudah digunakan, silakan coba lagi==\n")
-                } else {
-                    jadi = true
-                    this.valid = true
-                    this.member = this.daftarMember[this.tag]
-                }
-            }
-        } while (!jadi && this.tag.toLowerCase() != "x")
-
-        return jadi
-    }
-
-    nonaktifkan(hapusDaftarMember = false) {
-        if (hapusDaftarMember) {
-            this.daftarMember = false
-        }
-
-        this.member = false
-        this.tag = ""
-        this.valid = false
-    }
-
-    ubahKodeMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
-
-        if (this.valid) {
-            let kodeLama = this.member.kode
-            let jadi = this.aktifkanCek("lanjutJikaTiada", "Ubah kode member", "Kode member baru (besar kecil huruf berpengaruh): ")
-
-            clear()
-
-            if (jadi) {
-                this.member.kode = this.tag
-                this.daftarMember[this.tag] = this.member
-                delete this.daftarMember[kodeLama]
-
-                console.log("===Kode member berhasil diubah===\n\n")
-            }
-        }
-    }
-
-    ubahNamaMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
-
-        if (this.valid) {
-            console.log("===Ubah nama===")
-            this.member.nama = input.question("Nama baru: ")
-
-            clear()
-            console.log("===Nama berhasil diubah===\n\n")
-        }
-    }
-
-    ubahNoWAMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
-
-        if (this.valid) {
-            console.log("===Ubah no. WA===")
-            this.member.noWA = input.question("No. WA baru: ")
-
-            clear()
-            console.log("===No. WA berhasil diubah===\n\n")
-        }
-    }
-
-    tambahMember(bersihkanJikaBatal = true) {
-        let berhasil = false
-
-        if (this.aktifkanCek("lanjutJikaTiada", "Tambah member")) {
-            let nama = input.question("Nama: ")
-
-            if (nama.toLowerCase() != "x") {
-                let noWA = input.question("No. WA: ")
-
-                if (noWA.toLowerCase() != "x") {
-                    this.daftarMember[this.tag] = new Member(this.tag, nama, noWA, 0)
-                    berhasil = true
-                    clear()
-                    console.log("====Member berhasil ditambah====\n\n")
-                }
-            }
-        }
-
-        if (!berhasil && bersihkanJikaBatal) {
-            clear()
-        }
-
-        return berhasil
-    }
-
-    hapusMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
-
-        if (this.valid) {
-            if (konfirmasi("Hapus member")) {
-                let notif = `===Member "${this.member.nama}" (${this.member.kode}) berhasil dihapus===\n\n`
-                delete this.daftarMember[this.member.kode]
-                this.nonaktifkan()
-
-                clear()
-                console.log(notif)
-            } else {
-                clear()
-            }
-        }
+        this.poinDiharapkan = poinDiharapkan
+        this.hadiah = hadiah
+        this.batasAkhir = batasAkhir
+        this.syaratTambahan = syaratTambahan
     }
 }
 
@@ -251,15 +61,6 @@ export class ItemJualan {
 }
 
 
-export class Promo {
-    poinDiharapkan
-    hadiah
-    mulai
-    sampai
-    syaratTambahan
-}
-
-
 export class Jualan {
     daftarJualan = []
     daftarPromo = []
@@ -273,6 +74,16 @@ export class Jualan {
 
         for (const [i, item] of this.daftarJualan.entries()) {
             console.log(`${i}\t\t${item.kode}\t\t${item.nama}\t\t${item.biayaProduksi}\t\t${item.lamaProduksi}\t\t${item.hargaJual}\t\t${item.persenDiskon}`)
+        }
+    }
+
+    bersihkanPromoLama() {
+        let waktu = new Date()
+
+        for (const kode in this.daftarPromo) {
+            if (this.daftarPromo[kode].batasAkhir < waktu) {
+                delete this.daftarPromo[kode]
+            }
         }
     }
 
@@ -300,12 +111,12 @@ export class ItemTransaksi {
 export class Transaksi {
     // istilah "item" di sini adalah item dari kelas ini, sedangkan "itemJualan"
     // adalah item dari kelas Jualan
-    waktu
-    daftarItem = []
     jualan
     sesi
+    waktu
+    daftarItem = []
     totalBelanja = 0
-    poin
+    totalPoin = 0
 
     constructor(jualan, sesi) {
         this.waktu = new Date()
@@ -338,15 +149,15 @@ export class Transaksi {
         return [totalDiskon, totalHarga]
     }
 
-    tampilkan(tampilkanItemBelumDibeli) {
+    tampilkanPerbarui(tampilkanItemBelumDibeli) {
         let i = 1
         let iAsli = [""]
-        let totalBelanja = 0
+        this.totalBelanja = 0
 
         if (tampilkanItemBelumDibeli) {
             console.log("---------Item2 belum dibeli-----------")
             for (const kode in this.jualan.daftarJualan) {
-                if (typeof kode != "undefined" && typeof this.daftarItem[kode] == "undefined") {
+                if (typeof this.daftarItem[kode] == "undefined") {
                     this.hitungTotalDiskonHarga(this.jualan.daftarJualan[kode], 0, i)
                     iAsli[i] = kode
                     i++
@@ -356,24 +167,22 @@ export class Transaksi {
 
         console.log("---------Item2 sudah dibeli-----------")
         for (const kode in this.daftarItem) {
-            if (typeof kode != "undefined") {
-                let item = this.daftarItem[kode]
+            let item = this.daftarItem[kode]
 
-                let totalDiskonHarga = this.hitungTotalDiskonHarga(item.itemJualan, item.banyak, i)
-                item.totalDiskon = totalDiskonHarga[0]
-                item.totalHarga = totalDiskonHarga[1]
+            let totalDiskonHarga = this.hitungTotalDiskonHarga(item.itemJualan, item.banyak, i)
+            this.totalBelanja += totalDiskonHarga[1]
 
-                totalBelanja += item.totalHarga
-                iAsli[i] = item.itemJualan.kode
-                i++
-            }
+            iAsli[i] = kode
+            i++
         }
+
+        this.totalPoin = parseInt(this.totalBelanja / 1000 / 2)
 
         console.log("--------------------------------------")
         console.log("0. Kembali")
         console.log("--------------------------------------")
-        console.log(`===Total belanja kamu: Rp.${totalBelanja}===`)
-        console.log(`===Poin belanja kamu: ${parseInt(totalBelanja/1000/2)}===\n`)
+        console.log(`===Total belanja kamu: Rp.${this.totalBelanja}===`)
+        console.log(`===Poin belanja kamu: ${this.totalPoin}===\n`)
 
         return iAsli
     }
@@ -382,7 +191,7 @@ export class Transaksi {
         console.log("======================================")
         console.log("Tambah item")
         console.log("======================================")
-        let iAsli = this.tampilkan(true)
+        let iAsli = this.tampilkanPerbarui(true)
 
         let banyak
         let menu = parseInt(input.question("Pilih item: "))
@@ -396,17 +205,15 @@ export class Transaksi {
             clear()
 
             if (banyak > 0) {
-                let totalDiskonHarga
-
                 if (typeof this.daftarItem[kodeItem] == "undefined") {
                     console.log("-------------Item baru------------")
-                    totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak)
+                    let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak)
                     this.daftarItem[kodeItem] = new ItemTransaksi(itemJualan, banyak, totalDiskonHarga[0], totalDiskonHarga[1])
                 } else {
                     let item = this.daftarItem[kodeItem]
 
                     console.log("--------------Dari----------------")
-                    totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak, -1)
+                    let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak, -1)
                     this.hitungTotalDiskonHarga(itemJualan, item.banyak)
 
                     item.banyak += banyak
@@ -431,7 +238,7 @@ export class Transaksi {
         console.log("=====================")
         console.log("Kurangi item")
         console.log("=====================")
-        let iAsli = this.tampilkan(false)
+        let iAsli = this.tampilkanPerbarui(false)
 
         let banyak
         let menu = parseInt(input.question("Pilih item: "))
@@ -475,10 +282,13 @@ export class Transaksi {
         console.log("==========================")
         console.log("Proses dan cetak transaksi")
         console.log("==========================")
-        this.tampilkan(false)
+        this.sesi.member.bersihkanRiwayatTransaksiLama()
+        this.tampilkanPerbarui(false)
 
         if (konfirmasi()) {
+            this.sesi.member.poin += this.totalPoin
             this.sesi.member.riwayatTransaksi.push(this)
+
             this.sesi.nonaktifkan()
 
             clear()

@@ -17,54 +17,24 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-
 import input from 'readline-sync'
 import clear from 'console-clear'
+
 import {
-    Member,
-    Sesi,
     Jualan,
+    Promo,
     ItemJualan,
     Transaksi
-} from './de-warunk-data.js'
+} from './de-warunk-jualan-transaksi.js'
 
+import {
+    Sesi,
+    Member,
+} from './de-warunk-sesi-member.js'
 
-var namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
-    "Agustus", "September", "Oktober", "November", "Desember"
-]
-
-function cekPoinPromoMember(member, jualan) {
-    let waktu = new Date()
-    console.log("============================================")
-    console.log(`Cek poin dan promo ${namaBulan[waktu.getMonth()]} ${waktu.getFullYear()}`)
-    console.log("============================================")
-    console.log(`Hai ${member.nama}, poin kamu adalah ${member.poin}`)
-    console.log("Ayo tambah poinmu untuk menangkan:")
-
-
-    for (const kode in jualan.daftarPromo) {
-        if (typeof kode != "undefined") {
-            let item = jualan.daftarPromo[kode]
-
-            console.log(`| ${item.hadiah}`)
-            console.log(`| Poin diharapkan: ${item.poinDiharapkan}`)
-
-            if (member.poin > item.poinDiharapkan) {
-                console.log("| ---POIN TERPENUHI, boleh klaim---")
-            }
-
-            console.log(`| Batas waktu akhir: ${item.sampai}`)
-            console.log(`| Syarat tambahan: ${item.syaratTambahan}`)
-            console.log("-   -   -   -   -   -   -   -   -   -   -\n")
-        }
-    }
-
-    input.keyInPause("Lanjutkan... (tekan tombol selain enter) ", {
-        guide: false
-    })
-}
-
-
+import {
+    klaimPromo
+} from './de-warunk-lintas-bidang.js'
 
 class DWTransaksi {
     sesi
@@ -93,8 +63,8 @@ class DWTransaksi {
             console.log("=====================")
             console.log("1. Tambah item")
             console.log("2. Kurangi item")
-            console.log("3. Proses dan cetak transaksi")
-            console.log("4. Cek poin dan promo")
+            console.log("3. Proses dan cetak transaksi") //TODO hanya izinkan jika ada item
+            console.log("4. Klaim promo")
             console.log("X. Batalkan transaksi")
 
             let menu = input.question("Pilih menu: ")
@@ -112,7 +82,7 @@ class DWTransaksi {
                 this.transaksi.prosesCetak()
                 break
             case "4":
-                console.log("====Fitur belum tersedia=====\n\n")
+                klaimPromo(this.sesi.member, this.jualan)
                 break
             case "X":
             case "x":
@@ -126,7 +96,6 @@ class DWTransaksi {
         }
     }
 }
-
 
 class DWMember {
     sesi
@@ -143,7 +112,7 @@ class DWMember {
         console.log("===================")
         console.log("1. Tambah member")
         console.log("2. Edit / hapus member")
-        console.log("3. Cek poin dan promo member")
+        console.log("3. Klaim promo member")
         console.log("4. Cek riwayat transaksi member")
         console.log("5. Lihat semua daftar member")
         console.log("0. Kembali")
@@ -160,15 +129,12 @@ class DWMember {
             this.editHapusMember()
             break
         case "3":
-            console.log("====Cek poin member====")
-
-            if (this.sesi.aktifkanCek("lanjutJikaAda")) {
-                console.log("")
-                cekPoinPromoMember(this.sesi.member, this.jualan)
+            if (this.sesi.aktifkanCek("lanjutJikaAda", "Klaim promo")) {
+                clear()
+                klaimPromo(this.sesi.member, this.jualan)
             }
 
             this.sesi.nonaktifkan()
-            clear()
             break
         case "4":
             console.log("====Fitur belum tersedia=====\n\n")
@@ -229,7 +195,6 @@ class DWMember {
     }
 }
 
-
 class DWJualan {
     jualan
 
@@ -279,7 +244,6 @@ class DWJualan {
     }
 }
 
-
 class DeWarunk {
     dwTransaksi
     dwMember
@@ -290,7 +254,8 @@ class DeWarunk {
     sesi
 
     constructor() {
-        this.daftarMember["RV"] = new Member("RV", "Rivan", "087767777733", 30)
+        this.daftarMember["RV"] = new Member("RV", "Rivan", "087767777733", 60)
+        this.daftarMember["RV"].daftarPromoDiklaim["MW"] = new Promo("MW", 120, "Mouse Wireless", new Date(2021, 4, 20))
 
         this.sesi = new Sesi(this.daftarMember)
         this.sesi.nonaktifkan()
@@ -308,6 +273,10 @@ class DeWarunk {
             "WB", "Wedang Bajigur", 35000, 3, 5000, 10)
         this.jualan.daftarJualan["MS"] = new ItemJualan(
             "MS", "Milkshake", 40000, 3, 10000, 10)
+
+        this.jualan.daftarPromo["HB"] = new Promo("HB", 300, "Headset Bluetooth", new Date(2021, 5, 20))
+        this.jualan.daftarPromo["PL"] = new Promo("PL", 50, "Payung Lipat", new Date(2021, 4, 5))
+        this.jualan.daftarPromo["LS"] = new Promo("LS", 1000, "Laptop Spek Tinggi", new Date(2021, 5, 17), "Ajak temen2mu mampir ke sini, minimal 5 orang")
 
         this.dwTransaksi = new DWTransaksi(this.sesi, this.jualan)
         this.dwMember = new DWMember(this.sesi, this.jualan)
@@ -344,7 +313,7 @@ class DeWarunk {
     }
 }
 
-
+console.log("\n\nMemulai DeWarunk...")
 const apl = new DeWarunk()
 clear()
 apl.mulai()
