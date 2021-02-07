@@ -24,7 +24,6 @@ import {
     konfirmasi
 } from './de-warunk-lintas-bidang.js'
 
-
 export class Promo {
     kode
     poinDiharapkan
@@ -40,7 +39,6 @@ export class Promo {
         this.syaratTambahan = syaratTambahan
     }
 }
-
 
 export class ItemJualan {
     kode
@@ -59,7 +57,6 @@ export class ItemJualan {
         this.persenDiskon = persenDiskon
     }
 }
-
 
 export class Jualan {
     daftarJualan = []
@@ -92,7 +89,6 @@ export class Jualan {
     }
 }
 
-
 export class ItemTransaksi {
     itemJualan
     banyak
@@ -107,21 +103,22 @@ export class ItemTransaksi {
     }
 }
 
-
 export class Transaksi {
-    // istilah "item" di sini adalah item dari kelas ini, sedangkan "itemJualan"
-    // adalah item dari kelas Jualan
+    //istilah "item" di sini adalah item dari kelas ini, sedangkan "itemJualan"
+    //adalah item dari kelas Jualan
     jualan
     sesi
     waktu
     daftarItem = []
-    totalBelanja = 0
-    totalPoin = 0
+    totalBelanja
+    totalPoin
 
     constructor(jualan, sesi) {
-        this.waktu = new Date()
         this.jualan = jualan
         this.sesi = sesi
+        this.waktu = new Date()
+        this.totalBelanja = 0
+        this.totalPoin = 0
     }
 
     hitungTotalDiskonHarga(itemJualan, banyak, i = 0) {
@@ -149,7 +146,7 @@ export class Transaksi {
         return [totalDiskon, totalHarga]
     }
 
-    tampilkanPerbarui(tampilkanItemBelumDibeli) {
+    tampilkanPerbarui(tampilkanItemBelumDibeli = true, tampilkanMenuKembali = true) {
         let i = 1
         let iAsli = [""]
         this.totalBelanja = 0
@@ -178,8 +175,11 @@ export class Transaksi {
 
         this.totalPoin = parseInt(this.totalBelanja / 1000 / 2)
 
-        console.log("--------------------------------------")
-        console.log("0. Kembali")
+        if (tampilkanMenuKembali) {
+            console.log("--------------------------------------")
+            console.log("0. Kembali")
+        }
+
         console.log("--------------------------------------")
         console.log(`===Total belanja kamu: Rp.${this.totalBelanja}===`)
         console.log(`===Poin belanja kamu: ${this.totalPoin}===\n`)
@@ -191,7 +191,7 @@ export class Transaksi {
         console.log("======================================")
         console.log("Tambah item")
         console.log("======================================")
-        let iAsli = this.tampilkanPerbarui(true)
+        let iAsli = this.tampilkanPerbarui()
 
         let banyak
         let menu = parseInt(input.question("Pilih item: "))
@@ -283,7 +283,7 @@ export class Transaksi {
         console.log("Proses dan cetak transaksi")
         console.log("==========================")
         this.sesi.member.bersihkanRiwayatTransaksiLama()
-        this.tampilkanPerbarui(false)
+        this.tampilkanPerbarui(false, false)
 
         if (konfirmasi()) {
             this.sesi.member.poin += this.totalPoin

@@ -48,7 +48,7 @@ class DWTransaksi {
 
     mulai() {
         if (!this.sesi.valid) {
-            if (this.sesi.aktifkanCek("lanjutJikaAda+", "Transaksi baru")) {
+            if (this.sesi.aktifkanCek("lanjutJikaAda+", "Transaksi baru", null, true)) {
                 this.transaksi = new Transaksi(this.jualan, this.sesi)
             }
 
@@ -61,14 +61,13 @@ class DWTransaksi {
             console.log("=====================")
             console.log("Transaksi baru")
             console.log("=====================")
-            console.log("1. Tambah item")
+            console.log("1. Tambah item") //TODO tampilkan "(kosong)" jika tiada
             console.log("2. Kurangi item")
             console.log("3. Proses dan cetak transaksi") //TODO hanya izinkan jika ada item
-            console.log("4. Klaim promo")
+            console.log("4. Klaim promo") //TODO tampilkan "(kosong)" jika tiada
             console.log("X. Batalkan transaksi")
 
             let menu = input.question("Pilih menu: ")
-            let jadiBatalkan = false
             clear()
 
             switch (menu) {
@@ -86,13 +85,11 @@ class DWTransaksi {
                 break
             case "X":
             case "x":
-                jadiBatalkan = this.transaksi.batalkan()
+                this.transaksi.batalkan()
                 break
             }
 
-            if (!jadiBatalkan) {
-                this.mulai()
-            }
+            this.mulai()
         }
     }
 }
@@ -113,7 +110,7 @@ class DWMember {
         console.log("1. Tambah member")
         console.log("2. Edit / hapus member")
         console.log("3. Klaim promo member")
-        console.log("4. Cek riwayat transaksi member")
+        console.log("4. Lihat riwayat transaksi member") //TODO tampilkan "(kosong)" jika tiada
         console.log("5. Lihat semua daftar member")
         console.log("0. Kembali")
 
@@ -125,24 +122,32 @@ class DWMember {
             this.sesi.tambahMember()
             break
         case "2":
-            this.sesi.nonaktifkan()
             this.editHapusMember()
             break
         case "3":
             if (this.sesi.aktifkanCek("lanjutJikaAda", "Klaim promo")) {
                 clear()
                 klaimPromo(this.sesi.member, this.jualan)
+            } else {
+                clear()
             }
 
-            this.sesi.nonaktifkan()
             break
         case "4":
-            console.log("====Fitur belum tersedia=====\n\n")
+            if (this.sesi.aktifkanCek("lanjutJikaAda", "Lihat riwayat transaksi")) {
+                clear()
+                this.sesi.member.lihatRiwayatTransaksi()
+            } else {
+                clear()
+            }
+
             break
         case "5":
             console.log("====Fitur belum tersedia=====\n\n")
             break
         }
+
+        this.sesi.nonaktifkan()
 
         if (menu != "0") {
             this.mulai()
@@ -151,7 +156,7 @@ class DWMember {
 
     editHapusMember() {
         if (!this.sesi.valid) {
-            this.sesi.aktifkanCek("lanjutJikaAda", "Edit / hapus member")
+            this.sesi.aktifkanCek("lanjutJikaAda", "Edit / hapus member", null, true)
             clear()
         }
 
@@ -165,25 +170,23 @@ class DWMember {
             console.log(`4. Hapus member (${this.sesi.member.nama} [${this.sesi.member.kode}])`)
             console.log("0. Kembali")
 
-            let notif = ""
             let menu = input.question("Pilih menu: ")
             console.log("")
 
             switch (menu) {
             case "1":
-                this.sesi.ubahKodeMember()
+                this.sesi.ubahKodeMember(this.sesi.member.kode)
                 break
             case "2":
-                this.sesi.ubahNamaMember()
+                this.sesi.member.ubahNama()
                 break
             case "3":
-                this.sesi.ubahNoWAMember()
+                this.sesi.member.ubahNoWA()
                 break
             case "4":
-                this.sesi.hapusMember()
+                this.sesi.hapusMember(this.sesi.member.kode)
                 break
             case "0":
-                this.sesi.nonaktifkan()
                 clear()
                 break
             }
@@ -249,16 +252,13 @@ class DeWarunk {
     dwMember
     dwJualan
 
-    daftarMember = []
     jualan
     sesi
 
     constructor() {
-        this.daftarMember["RV"] = new Member("RV", "Rivan", "087767777733", 60)
-        this.daftarMember["RV"].daftarPromoDiklaim["MW"] = new Promo("MW", 120, "Mouse Wireless", new Date(2021, 4, 20))
-
-        this.sesi = new Sesi(this.daftarMember)
-        this.sesi.nonaktifkan()
+        this.sesi = new Sesi()
+        this.sesi.daftarMember["RV"] = new Member("RV", "Rivan", "087767777733", 70)
+        this.sesi.daftarMember["RV"].daftarPromoDiklaim["MW"] = new Promo("MW", 120, "Mouse Wireless", new Date(2021, 4, 20))
 
         this.jualan = new Jualan()
         this.jualan.daftarJualan["KJ"] = new ItemJualan(
@@ -294,6 +294,7 @@ class DeWarunk {
 
         let menu = input.question("Pilih menu: ")
         clear()
+        this.sesi.nonaktifkan()
 
         switch (menu) {
         case "1":

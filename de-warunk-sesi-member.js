@@ -24,7 +24,6 @@ import {
     konfirmasi
 } from './de-warunk-lintas-bidang.js'
 
-
 export class Member {
     kode
     nama
@@ -54,36 +53,81 @@ export class Member {
         let banyak = this.riwayatTransaksi.length
         let sisa
 
-        if (banyak > 100) {
-            sisa = banyak - 100
+        if (banyak > 25) {
+            sisa = banyak - 25
 
             for (let i = 1; i <= sisa; i++) {
                 this.riwayatTransaksi.shift()
             }
         }
     }
+
+    lihatRiwayatTransaksi() {
+        this.bersihkanRiwayatTransaksiLama()
+
+        for (const i in this.riwayatTransaksi) {
+            this.riwayatTransaksi[i].tampilkanPerbarui(false, false)
+            console.log("")
+        }
+
+        input.question("Tekan enter untuk lanjutkan...", {
+            hideEchoBack: true,
+            mask: ""
+        })
+        clear()
+    }
+
+    ubahNama() {
+        console.log("===Ubah nama===")
+        console.log("X. Batal")
+        let nama = input.question("Nama baru: ")
+        clear()
+
+        if (nama.toLowerCase() != "x") {
+            this.nama = nama
+            console.log("===Nama berhasil diubah===\n\n")
+        }
+    }
+
+    ubahNoWA() {
+        console.log("===Ubah no. WA===")
+        console.log("X. Batal")
+        let noWA = input.question("No. WA baru: ")
+        clear()
+
+        if (noWA.toLowerCase() != "x") {
+            this.noWA = noWA
+            console.log("===No. WA berhasil diubah===\n\n")
+        }
+    }
 }
 
-
 export class Sesi {
-    daftarMember
+    daftarMember = []
     valid
     member
     tag
 
-    constructor(daftarMember) {
-        this.daftarMember = daftarMember
+    constructor() {
         this.valid = false
         this.tag = ""
     }
 
-    aktifkanCek(opsi = "lanjutJikaAda", judul = "", pertanyaan = "Kode member (besar kecil huruf berpengaruh): ") {
+    aktifkanCek(opsi = "lanjutJikaAda", judul = null, pertanyaan = null, validasiUlang = false) {
         let jadi
 
         do {
             jadi = false
 
-            if (judul != "") {
+            if (validasiUlang) {
+                this.valid = false
+            }
+
+            if (!pertanyaan) {
+                pertanyaan = "Kode member (besar kecil huruf berpengaruh): "
+            }
+
+            if (judul) {
                 console.log("==========================")
                 console.log(judul)
                 console.log("==========================")
@@ -105,9 +149,9 @@ export class Sesi {
                 if (opsi == "lanjutJikaAda+") {
                     console.log("\n")
 
-                    if (this.tambahMember(false)) {
+                    if (this.tambahMember(false)) { //mempengaruhi this.tag
                         jadi = true
-                        this.valid = true
+                        this.valid = true //paksa, karena fungsi itu tidak memvalidasi
                         this.member = this.daftarMember[this.tag]
                     } else {
                         console.log("\n")
@@ -146,58 +190,26 @@ export class Sesi {
         this.valid = false
     }
 
-    ubahKodeMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
+    ubahKodeMember(kodeLama) {
+        //fungsi ini bersifat mengaktifkan sesi tapi tanpa validasi
+        if (this.aktifkanCek("lanjutJikaTiada", "Ubah kode member", "Kode member baru (besar kecil huruf berpengaruh): ")) {
+            this.daftarMember[this.tag] = this.daftarMember[kodeLama]
+            this.member = this.daftarMember[this.tag]
+            this.member.kode = this.tag
 
-        if (this.valid) {
-            let kodeLama = this.member.kode
-            let jadi = this.aktifkanCek("lanjutJikaTiada", "Ubah kode member", "Kode member baru (besar kecil huruf berpengaruh): ")
-
+            delete this.daftarMember[kodeLama]
             clear()
 
-            if (jadi) {
-                this.member.kode = this.tag
-                this.daftarMember[this.tag] = this.member
-                delete this.daftarMember[kodeLama]
-
-                console.log("===Kode member berhasil diubah===\n\n")
-            }
-        }
-    }
-
-    ubahNamaMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
-
-        if (this.valid) {
-            console.log("===Ubah nama===")
-            this.member.nama = input.question("Nama baru: ")
-
+            console.log("===Kode member berhasil diubah===\n\n")
+        } else {
             clear()
-            console.log("===Nama berhasil diubah===\n\n")
-        }
-    }
-
-    ubahNoWAMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
-
-        if (this.valid) {
-            console.log("===Ubah no. WA===")
-            this.member.noWA = input.question("No. WA baru: ")
-
-            clear()
-            console.log("===No. WA berhasil diubah===\n\n")
         }
     }
 
     tambahMember(bersihkanJikaBatal = true) {
-        // fungsi ini juga digunakan di this.aktifkanCek()
-        let berhasil = false
+        //fungsi ini bersifat mengaktifkan sesi, mengubah tag, dan juga
+        //digunakan di this.aktifkanCek()
+        let jadi = false
 
         if (this.aktifkanCek("lanjutJikaTiada", "Tambah member")) {
             let nama = input.question("Nama: ")
@@ -207,36 +219,32 @@ export class Sesi {
 
                 if (noWA.toLowerCase() != "x") {
                     this.daftarMember[this.tag] = new Member(this.tag, nama, noWA, 0)
-                    berhasil = true
+                    jadi = true
                     clear()
                     console.log("====Member berhasil ditambah====\n\n")
                 }
             }
         }
 
-        if (!berhasil && bersihkanJikaBatal) {
+        if (!jadi && bersihkanJikaBatal) {
             clear()
         }
 
-        return berhasil
+        return jadi
     }
 
-    hapusMember() {
-        if (!this.valid) {
-            this.aktifkanCek("lanjutJikaAda")
-        }
+    hapusMember(kodeLama) {
+        if (konfirmasi("Hapus member")) {
+            this.member = this.daftarMember[kodeLama]
+            let notif = `===Member "${this.member.nama}" (${this.member.kode}) berhasil dihapus===\n\n`
 
-        if (this.valid) {
-            if (konfirmasi("Hapus member")) {
-                let notif = `===Member "${this.member.nama}" (${this.member.kode}) berhasil dihapus===\n\n`
-                delete this.daftarMember[this.member.kode]
-                this.nonaktifkan()
+            delete this.daftarMember[kodeLama]
+            this.nonaktifkan()
 
-                clear()
-                console.log(notif)
-            } else {
-                clear()
-            }
+            clear()
+            console.log(notif)
+        } else {
+            clear()
         }
     }
 }

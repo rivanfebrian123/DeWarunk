@@ -24,13 +24,12 @@ var namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
     "Agustus", "September", "Oktober", "November", "Desember"
 ]
 
-
-export function konfirmasi(judul = "", pertanyaan = "Lanjutkan") {
+export function konfirmasi(judul = null, pertanyaan = "Lanjutkan") {
     let lanjut
     let jawaban = false
 
     do {
-        if (judul != "") {
+        if (judul) {
             console.log("==========================================")
             console.log(judul)
             console.log("==========================================")
@@ -46,7 +45,6 @@ export function konfirmasi(judul = "", pertanyaan = "Lanjutkan") {
 
     return jawaban
 }
-
 
 export function klaimPromo(member, jualan) {
     let waktu = new Date()
