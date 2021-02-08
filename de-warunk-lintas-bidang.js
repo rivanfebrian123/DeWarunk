@@ -24,26 +24,89 @@ var namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
     "Agustus", "September", "Oktober", "November", "Desember"
 ]
 
-export function konfirmasi(judul = null, pertanyaan = "Lanjutkan") {
-    let lanjut
-    let jawaban = false
-
-    do {
-        if (judul) {
-            console.log("==========================================")
-            console.log(judul)
-            console.log("==========================================")
+export function tampilkanJudul(judul, dekorasi = "»", dekorasiSpasi = "·", padding = true, lebarMinimal = 50) {
+    if (judul) {
+        if (padding) {
+            judul = `  ${judul}  `
         }
 
+        let lebarDekorasi = judul.length
+        let teksDekorasi = ""
+        let teksDekorasiSpasi = ""
+
+        if (lebarDekorasi < lebarMinimal) {
+            lebarDekorasi = lebarMinimal
+        }
+
+        for (let i = 1; i <= lebarDekorasi; i++) {
+            teksDekorasi += dekorasi
+        }
+
+        if (dekorasi) {
+            console.log(teksDekorasi)
+        }
+
+        if (dekorasiSpasi) {
+            let lebarSpasi = parseInt((lebarDekorasi - judul.length) / 2)
+
+            for (let i = 1; i <= lebarSpasi; i++) {
+                teksDekorasiSpasi += dekorasiSpasi
+            }
+
+            if (!dekorasi && lebarSpasi == 0) {
+                judul = `${dekorasiSpasi}${judul}${dekorasiSpasi}`
+            }
+        }
+
+        console.log(`${teksDekorasiSpasi}${judul}${teksDekorasiSpasi}`)
+
+        if (dekorasi) {
+            console.log(teksDekorasi)
+        }
+    }
+}
+
+export function konfirmasi(judul = null, pertanyaan = "Lanjutkan") {
+    let lanjut
+    let jadi = false
+
+    do {
+        tampilkanJudul(judul)
         lanjut = input.question(`${pertanyaan} (YA/BATAL): `).toLowerCase()
         console.log("")
     } while (lanjut != "ya" && lanjut != "batal")
 
     if (lanjut == "ya") {
-        jawaban = true
+        jadi = true
     }
 
-    return jawaban
+    return jadi
+}
+
+export function jeda() {
+    input.question("Tekan enter untuk lanjutkan...", {
+        hideEchoBack: true,
+        mask: ""
+    })
+    clear()
+}
+
+export function inputKonfirmasi(inputLama, namaData) {
+    tampilkanJudul(`Ubah ${namaData[0].toLowerCase()}${namaData.slice(1)}`)
+    console.log("X. Batal")
+    tampilkanJudul("-", null, "-", false)
+
+    let jadi = false
+    let hasil = input.question(`${namaData} baru: `)
+    clear()
+
+    if (hasil.toLowerCase() == "x") {
+        hasil = inputLama
+    } else {
+        console.log(`${namaData} berhasil diubah \n\n`)
+    }
+
+    return hasil
 }
 
 export function klaimPromo(member, jualan) {
@@ -51,16 +114,14 @@ export function klaimPromo(member, jualan) {
     let i = 1
     let iAsli = [""]
 
-    console.log("============================================")
-    console.log(`Klaim promo ${namaBulan[waktu.getMonth()]} ${waktu.getFullYear()}`)
-    console.log("============================================")
+    tampilkanJudul(`Klaim promo ${namaBulan[waktu.getMonth()]} ${waktu.getFullYear()}`)
     console.log(`Hai ${member.nama}, poin kamu adalah ${member.poin}`)
     console.log("Ayo tambah poinmu untuk menangkan:\n")
 
     jualan.bersihkanPromoLama()
     member.bersihkanKlaimPromoLama()
+    tampilkanJudul("Promo-promo belum diklaim", null, "-")
 
-    console.log("---------Promo2 belum diklaim-----------")
     for (const kode in jualan.daftarPromo) {
         if (typeof member.daftarPromoDiklaim[kode] == "undefined") {
             let item = jualan.daftarPromo[kode]
@@ -74,7 +135,7 @@ export function klaimPromo(member, jualan) {
 
             console.log(`|   Batas waktu akhir: ${item.batasAkhir.toLocaleString("id-ID")}`)
 
-            if (item.syaratTambahan != "-") {
+            if (item.syaratTambahan) {
                 console.log(`|   Syarat tambahan: ${item.syaratTambahan}`)
             }
 
@@ -85,23 +146,21 @@ export function klaimPromo(member, jualan) {
         }
     }
 
-    console.log("---------Promo2 sudah diklaim-----------")
+    tampilkanJudul("Promo-promo sudah diklaim", null, "-")
     for (const kode in member.daftarPromoDiklaim) {
         let item = member.daftarPromoDiklaim[kode]
 
         console.log(`| ${item.hadiah}`)
         console.log(`| Poin diharapkan: ${item.poinDiharapkan}`)
 
-        if (item.syaratTambahan != "-") {
+        if (item.syaratTambahan) {
             console.log(`| Syarat tambahan: ${item.syaratTambahan}`)
         }
 
         console.log("")
     }
 
-    console.log("----------------------------------------")
-    console.log("0. Kembali")
-    console.log("----------------------------------------")
+    tampilkanJudul("0. Kembali", "-", null, false)
 
     let menu = parseInt(input.question("Pilih promo untuk diklaim: "))
     let kodeItem = iAsli[menu]
@@ -120,14 +179,15 @@ export function klaimPromo(member, jualan) {
                 member.poin -= itemPromo.poinDiharapkan
 
                 clear()
-                console.log(`===Selamat, ${member.nama}. Kamu berhasil memenangkan ${itemPromo.hadiah}===`)
-                console.log(`===Poin kamu sekarang adalah ${member.poin} (${poinLama} - ${itemPromo.poinDiharapkan})===\n\n`)
+                tampilkanJudul(`Selamat, ${member.nama}. Kamu berhasil memenangkan ${itemPromo.hadiah}`, null, "=")
+                tampilkanJudul(`Poin kamu sekarang adalah ${member.poin} (${poinLama} - ${itemPromo.poinDiharapkan})`, null, "=")
+                console.log("\n")
             } else {
                 clear()
             }
         } else {
             clear()
-            console.log(`Oops! Poin kamu tidak cukup. Kamu perlu ${itemPromo.poinDiharapkan - member.poin} poin lagi untuk memenangkan ${itemPromo.hadiah}\n\n`)
+            tampilkanJudul(`Oops! Poin kamu tidak cukup. Kamu perlu ${itemPromo.poinDiharapkan - member.poin} poin lagi untuk memenangkan ${itemPromo.hadiah}`, null, "=")
         }
     } else {
         clear()
@@ -136,4 +196,29 @@ export function klaimPromo(member, jualan) {
     if (menu != 0) {
         klaimPromo(member, jualan)
     }
+}
+
+export function hitungTotalDiskonHarga(itemJualan, banyak, i = 0) {
+    let totalDiskon = itemJualan.hargaJual * itemJualan.persenDiskon / 100
+    let totalHarga = (itemJualan.hargaJual - totalDiskon) * banyak
+
+    if (i != -1) {
+        let notif = `${itemJualan.nama}`
+
+        if (i >= 1) {
+            notif = `${i}. ` + notif
+
+            if (notif.length < 8) {
+                notif += "\t\t"
+            } else if (notif.length < 16) {
+                notif += "\t"
+            }
+        }
+
+        notif += `\tRp.${itemJualan.hargaJual} (diskon Rp.${totalDiskon}) x ${banyak} = Rp.${totalHarga}`
+
+        console.log(notif)
+    }
+
+    return [totalDiskon, totalHarga]
 }

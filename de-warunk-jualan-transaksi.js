@@ -21,7 +21,10 @@ import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
-    konfirmasi
+    konfirmasi,
+    jeda,
+    hitungTotalDiskonHarga,
+    tampilkanJudul
 } from './de-warunk-lintas-bidang.js'
 
 export class Promo {
@@ -31,7 +34,7 @@ export class Promo {
     batasAkhir
     syaratTambahan
 
-    constructor(kode, poinDiharapkan, hadiah, batasAkhir, syaratTambahan = "-") {
+    constructor(kode, poinDiharapkan, hadiah, batasAkhir, syaratTambahan = null) {
         this.kode = kode
         this.poinDiharapkan = poinDiharapkan
         this.hadiah = hadiah
@@ -62,16 +65,34 @@ export class Jualan {
     daftarJualan = []
     daftarPromo = []
 
-    tampilkan() {
-        console.log("==========================")
-        console.log("Jualanku")
-        console.log("==========================")
-        console.log("No\t\tKode\t\tNama\t\tBiaya produksi\t\tLama produksi\t\tHarga jual\t\tPersen diskon")
-        console.log("------------------------------------------------------------------------------------------")
+    tampilkanDaftarJualan() {
+        for (const kode in this.daftarJualan) {
+            let item = this.daftarJualan[kode]
 
-        for (const [i, item] of this.daftarJualan.entries()) {
-            console.log(`${i}\t\t${item.kode}\t\t${item.nama}\t\t${item.biayaProduksi}\t\t${item.lamaProduksi}\t\t${item.hargaJual}\t\t${item.persenDiskon}`)
+            console.log(`| ${item.kode}  -  ${item.nama}`)
+            console.log(`| Harga jual: Rp.${item.hargaJual}    Diskon: ${item.persenDiskon}% (Rp.${item.hargaJual * item.persenDiskon / 100})`)
+            console.log(`| Biaya produksi: Rp.${item.biayaProduksi}/hari    Lama produksi: ${item.lamaProduksi} jam/hari\n`)
         }
+
+        jeda()
+    }
+
+    tampilkanDaftarPromo() {
+        for (const kode in this.daftarPromo) {
+            let item = this.daftarPromo[kode]
+
+            console.log(`| ${item.kode}  -  ${item.hadiah}`)
+            console.log(`| Poin diharapkan: ${item.poinDiharapkan}`)
+            console.log(`| Batas waktu akhir: ${item.batasAkhir.toLocaleString("id-ID")}`)
+
+            if (item.syaratTambahan) {
+                console.log(`| Syarat tambahan: ${item.syaratTambahan}`)
+            }
+
+            console.log("")
+        }
+
+        jeda()
     }
 
     bersihkanPromoLama() {
@@ -121,52 +142,27 @@ export class Transaksi {
         this.totalPoin = 0
     }
 
-    hitungTotalDiskonHarga(itemJualan, banyak, i = 0) {
-        let totalDiskon = itemJualan.hargaJual * itemJualan.persenDiskon / 100
-        let totalHarga = (itemJualan.hargaJual - totalDiskon) * banyak
-
-        if (i != -1) {
-            let notif = `${itemJualan.nama}`
-
-            if (i >= 1) {
-                notif = `${i}. ` + notif
-
-                if (notif.length < 8) {
-                    notif += "\t\t"
-                } else if (notif.length < 16) {
-                    notif += "\t"
-                }
-            }
-
-            notif += `\tRp.${itemJualan.hargaJual} (diskon Rp.${totalDiskon}) x ${banyak} = Rp.${totalHarga}`
-
-            console.log(notif)
-        }
-
-        return [totalDiskon, totalHarga]
-    }
-
     tampilkanPerbarui(tampilkanItemBelumDibeli = true, tampilkanMenuKembali = true) {
         let i = 1
         let iAsli = [""]
         this.totalBelanja = 0
 
         if (tampilkanItemBelumDibeli) {
-            console.log("---------Item2 belum dibeli-----------")
+            tampilkanJudul("Item-item belum dibeli", null, "-")
             for (const kode in this.jualan.daftarJualan) {
                 if (typeof this.daftarItem[kode] == "undefined") {
-                    this.hitungTotalDiskonHarga(this.jualan.daftarJualan[kode], 0, i)
+                    hitungTotalDiskonHarga(this.jualan.daftarJualan[kode], 0, i)
                     iAsli[i] = kode
                     i++
                 }
             }
         }
 
-        console.log("---------Item2 sudah dibeli-----------")
+        tampilkanJudul("Item-item sudah dibeli", null, "-")
         for (const kode in this.daftarItem) {
             let item = this.daftarItem[kode]
 
-            let totalDiskonHarga = this.hitungTotalDiskonHarga(item.itemJualan, item.banyak, i)
+            let totalDiskonHarga = hitungTotalDiskonHarga(item.itemJualan, item.banyak, i)
             this.totalBelanja += totalDiskonHarga[1]
 
             iAsli[i] = kode
@@ -176,21 +172,20 @@ export class Transaksi {
         this.totalPoin = parseInt(this.totalBelanja / 1000 / 2)
 
         if (tampilkanMenuKembali) {
-            console.log("--------------------------------------")
-            console.log("0. Kembali")
+            tampilkanJudul("0. Kembali", "-", null, false)
+        } else {
+            tampilkanJudul("-", null, "-", false)
         }
 
-        console.log("--------------------------------------")
-        console.log(`===Total belanja kamu: Rp.${this.totalBelanja}===`)
-        console.log(`===Poin belanja kamu: ${this.totalPoin}===\n`)
+        tampilkanJudul(`Total belanja kamu: Rp.${this.totalBelanja}`, null, "+")
+        tampilkanJudul(`Poin belanja kamu: ${this.totalPoin}`, null, "+")
+        console.log("")
 
         return iAsli
     }
 
     tambahItem() {
-        console.log("======================================")
-        console.log("Tambah item")
-        console.log("======================================")
+        tampilkanJudul("Tambah item")
         let iAsli = this.tampilkanPerbarui()
 
         let banyak
@@ -206,25 +201,26 @@ export class Transaksi {
 
             if (banyak > 0) {
                 if (typeof this.daftarItem[kodeItem] == "undefined") {
-                    console.log("-------------Item baru------------")
-                    let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak)
+                    tampilkanJudul("Item baru", null, "=")
+                    let totalDiskonHarga = hitungTotalDiskonHarga(itemJualan, banyak)
                     this.daftarItem[kodeItem] = new ItemTransaksi(itemJualan, banyak, totalDiskonHarga[0], totalDiskonHarga[1])
                 } else {
                     let item = this.daftarItem[kodeItem]
 
-                    console.log("--------------Dari----------------")
-                    let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak, -1)
-                    this.hitungTotalDiskonHarga(itemJualan, item.banyak)
+                    tampilkanJudul("Dari", null, "=")
+                    let totalDiskonHarga = hitungTotalDiskonHarga(itemJualan, banyak, -1)
+                    hitungTotalDiskonHarga(itemJualan, item.banyak)
 
                     item.banyak += banyak
                     item.totalDiskon += totalDiskonHarga[0]
                     item.totalHarga += totalDiskonHarga[1]
 
-                    console.log("-------------Menjadi--------------")
-                    this.hitungTotalDiskonHarga(itemJualan, item.banyak)
+                    tampilkanJudul("Menjadi", null, "=")
+                    hitungTotalDiskonHarga(itemJualan, item.banyak)
                 }
 
-                console.log("====Item berhasil ditambahkan====\n\n")
+                tampilkanJudul("Item berhasil ditambahkan", null, "=")
+                console.log("\n")
             }
 
             this.tambahItem()
@@ -235,9 +231,7 @@ export class Transaksi {
     }
 
     kurangiItem() {
-        console.log("=====================")
-        console.log("Kurangi item")
-        console.log("=====================")
+        tampilkanJudul("Kurangi item")
         let iAsli = this.tampilkanPerbarui(false)
 
         let banyak
@@ -253,20 +247,22 @@ export class Transaksi {
             clear()
 
             if (banyak > 0 && banyak < item.banyak) {
-                console.log("--------------Dari----------------")
-                let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak, -1)
-                this.hitungTotalDiskonHarga(itemJualan, item.banyak)
+                tampilkanJudul("Dari", null, "=")
+                let totalDiskonHarga = hitungTotalDiskonHarga(itemJualan, banyak, -1)
+                hitungTotalDiskonHarga(itemJualan, item.banyak)
 
                 item.banyak -= banyak
                 item.totalDiskon -= totalDiskonHarga[0]
                 item.totalHarga -= totalDiskonHarga[1]
 
-                console.log("-------------Menjadi--------------")
-                this.hitungTotalDiskonHarga(itemJualan, item.banyak)
-                console.log("====Item berhasil dikurangi====\n\n")
+                tampilkanJudul("Menjadi", null, "=")
+                hitungTotalDiskonHarga(itemJualan, item.banyak)
+                tampilkanJudul("Item berhasil dikurangi", null, "=")
+                console.log("\n")
             } else if (banyak >= item.banyak) {
                 delete this.daftarItem[kodeItem]
-                console.log(`====Item ${itemJualan.nama} (${itemJualan.kode}) berhasil dihapus====\n\n`)
+                tampilkanJudul(`Item ${itemJualan.nama} (${itemJualan.kode}) berhasil dihapus`, null, "=")
+                console.log("\n")
             }
 
             this.kurangiItem()
@@ -279,9 +275,7 @@ export class Transaksi {
     prosesCetak() {
         let lanjut
 
-        console.log("==========================")
-        console.log("Proses dan cetak transaksi")
-        console.log("==========================")
+        tampilkanJudul("Proses dan cetak transaksi")
         this.sesi.member.bersihkanRiwayatTransaksiLama()
         this.tampilkanPerbarui(false, false)
 
@@ -292,7 +286,8 @@ export class Transaksi {
             this.sesi.nonaktifkan()
 
             clear()
-            console.log("====Transaksi berhasil diproses====\n\n")
+            tampilkanJudul("Transaksi berhasil diproses", null, "=")
+            console.log("\n")
         } else {
             clear()
         }
@@ -307,7 +302,8 @@ export class Transaksi {
             this.sesi.nonaktifkan()
 
             clear()
-            console.log("====Transaksi dibatalkan====\n\n")
+            tampilkanJudul("Transaksi dibatalkan", null, "=")
+            console.log("\n")
         } else {
             clear()
         }

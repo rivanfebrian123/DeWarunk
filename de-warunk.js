@@ -33,7 +33,8 @@ import {
 } from './de-warunk-sesi-member.js'
 
 import {
-    klaimPromo
+    klaimPromo,
+    tampilkanJudul
 } from './de-warunk-lintas-bidang.js'
 
 class DWTransaksi {
@@ -56,11 +57,9 @@ class DWTransaksi {
         }
 
         if (this.sesi.valid) {
-            console.log(`==Kuy sapa si ${this.sesi.member.nama}!==`)
-            console.log(`==${this.transaksi.waktu.toLocaleString("id-ID")}==`)
-            console.log("=====================")
-            console.log("Transaksi baru")
-            console.log("=====================")
+            tampilkanJudul(`Kuy sapa si ${this.sesi.member.nama}`, null, "=")
+            tampilkanJudul(`${this.transaksi.waktu.toLocaleString("id-ID")}`, null, "=")
+            tampilkanJudul("Transaksi baru")
             console.log("1. Tambah item") //TODO tampilkan "(kosong)" jika tiada
             console.log("2. Kurangi item")
             console.log("3. Proses dan cetak transaksi") //TODO hanya izinkan jika ada item
@@ -104,9 +103,7 @@ class DWMember {
     }
 
     mulai() {
-        console.log("===================")
-        console.log("Member")
-        console.log("===================")
+        tampilkanJudul("Member")
         console.log("1. Tambah member")
         console.log("2. Edit / hapus member")
         console.log("3. Klaim promo member")
@@ -136,14 +133,14 @@ class DWMember {
         case "4":
             if (this.sesi.aktifkanCek("lanjutJikaAda", "Lihat riwayat transaksi")) {
                 clear()
-                this.sesi.member.lihatRiwayatTransaksi()
+                this.sesi.member.tampilkanRiwayatTransaksi()
             } else {
                 clear()
             }
 
             break
         case "5":
-            console.log("====Fitur belum tersedia=====\n\n")
+            this.sesi.tampilkanDaftarMember()
             break
         }
 
@@ -161,9 +158,7 @@ class DWMember {
         }
 
         if (this.sesi.valid) {
-            console.log("=====================")
-            console.log("Edit / hapus member")
-            console.log("=====================")
+            tampilkanJudul("Edit / hapus member")
             console.log(`1. Ubah kode member (${this.sesi.member.kode})`)
             console.log(`2. Ubah nama (${this.sesi.member.nama})`)
             console.log(`3. Ubah no. WA (${this.sesi.member.noWA})`)
@@ -206,9 +201,7 @@ class DWJualan {
     }
 
     mulai() {
-        console.log("=====================")
-        console.log("Jualan")
-        console.log("=====================")
+        tampilkanJudul("Jualan")
         console.log("1. Tambah jualan")
         console.log("2. Edit / hapus jualan")
         console.log("3. Tambah promo")
@@ -222,22 +215,26 @@ class DWJualan {
 
         switch (menu) {
         case "1":
-            console.log("====Fitur belum tersedia=====\n\n")
+            tampilkanJudul("Fitur belum tersedia", null, "=")
+            console.log("\n")
             break
         case "2":
-            console.log("====Fitur belum tersedia=====\n\n")
+            tampilkanJudul("Fitur belum tersedia", null, "=")
+            console.log("\n")
             break
         case "3":
-            console.log("====Fitur belum tersedia=====\n\n")
+            tampilkanJudul("Fitur belum tersedia", null, "=")
+            console.log("\n")
             break
         case "4":
-            console.log("====Fitur belum tersedia=====\n\n")
+            tampilkanJudul("Fitur belum tersedia", null, "=")
+            console.log("\n")
             break
         case "5":
-            console.log("====Fitur belum tersedia=====\n\n")
+            this.jualan.tampilkanDaftarJualan()
             break
         case "6":
-            console.log("====Fitur belum tersedia=====\n\n")
+            this.jualan.tampilkanDaftarPromo()
             break
         }
 
@@ -284,9 +281,7 @@ class DeWarunk {
     }
 
     mulai() {
-        console.log("=====================")
-        console.log("DeWarunk - Kafe Gen-Z")
-        console.log("=====================")
+        tampilkanJudul("DeWarunk - Kafe Gen-Z")
         console.log("1. Transaksi")
         console.log("2. Member")
         console.log("3. Jualan")
@@ -314,7 +309,7 @@ class DeWarunk {
     }
 }
 
-console.log("\n\nMemulai DeWarunk...")
+tampilkanJudul("Memulai DeWarunk...")
 const apl = new DeWarunk()
 clear()
 apl.mulai()

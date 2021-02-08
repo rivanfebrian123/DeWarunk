@@ -21,7 +21,10 @@ import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
-    konfirmasi
+    konfirmasi,
+    inputKonfirmasi,
+    jeda,
+    tampilkanJudul
 } from './de-warunk-lintas-bidang.js'
 
 export class Member {
@@ -62,7 +65,7 @@ export class Member {
         }
     }
 
-    lihatRiwayatTransaksi() {
+    tampilkanRiwayatTransaksi() {
         this.bersihkanRiwayatTransaksiLama()
 
         for (const i in this.riwayatTransaksi) {
@@ -70,35 +73,15 @@ export class Member {
             console.log("")
         }
 
-        input.question("Tekan enter untuk lanjutkan...", {
-            hideEchoBack: true,
-            mask: ""
-        })
-        clear()
+        jeda()
     }
 
     ubahNama() {
-        console.log("===Ubah nama===")
-        console.log("X. Batal")
-        let nama = input.question("Nama baru: ")
-        clear()
-
-        if (nama.toLowerCase() != "x") {
-            this.nama = nama
-            console.log("===Nama berhasil diubah===\n\n")
-        }
+        this.nama = inputKonfirmasi(this.nama, "Nama member")
     }
 
     ubahNoWA() {
-        console.log("===Ubah no. WA===")
-        console.log("X. Batal")
-        let noWA = input.question("No. WA baru: ")
-        clear()
-
-        if (noWA.toLowerCase() != "x") {
-            this.noWA = noWA
-            console.log("===No. WA berhasil diubah===\n\n")
-        }
+        this.noWA = inputKonfirmasi(this.noWA, "No. WA member")
     }
 }
 
@@ -115,22 +98,20 @@ export class Sesi {
 
     aktifkanCek(opsi = "lanjutJikaAda", judul = null, pertanyaan = null, validasiUlang = false) {
         let jadi
+        let notif
 
         do {
             jadi = false
+            notif = null
 
             if (validasiUlang) {
                 this.valid = false
             }
 
+            tampilkanJudul(judul)
+
             if (!pertanyaan) {
                 pertanyaan = "Kode member (besar kecil huruf berpengaruh): "
-            }
-
-            if (judul) {
-                console.log("==========================")
-                console.log(judul)
-                console.log("==========================")
             }
 
             if (opsi == "lanjutJikaAda+") {
@@ -138,13 +119,13 @@ export class Sesi {
             }
 
             console.log("X. Batal")
-            console.log("------------------------------")
+            tampilkanJudul("-", null, "-", false)
             this.tag = input.question(pertanyaan)
 
-            if (this.tag == "0") {
-                console.log("\n\n==Input tidak valid, silakan coba lagi==\n")
-            } else if (this.tag.toLowerCase() == "x") {
-                console.log("")
+            if (this.tag.toLowerCase() == "x") {
+                // biarkan saja
+            } else if (this.tag == "0") {
+                notif = "Input tidak valid, coba lagi"
             } else if (this.tag.toLowerCase() == "y") {
                 if (opsi == "lanjutJikaAda+") {
                     console.log("\n")
@@ -158,23 +139,30 @@ export class Sesi {
                         this.tag = "" //agar perulangan tidak berhenti jika "x"
                     }
                 } else {
-                    console.log("\n\n==Input tidak valid, silakan coba lagi==\n")
+                    notif = "Input tidak valid, coba lagi"
                 }
             } else if (typeof this.daftarMember[this.tag] == "undefined") {
                 if (opsi == "lanjutJikaAda" || opsi == "lanjutJikaAda+") {
-                    console.log("\n\n==Kode member tidak ditemukan, coba lagi==\n")
+                    notif = "Kode member tidak ditemukan, coba lagi"
                 } else {
                     jadi = true
                 }
             } else {
                 if (opsi == "lanjutJikaTiada") {
-                    console.log("\n\n==Kode member sudah digunakan, silakan coba lagi==\n")
+                    notif = "Kode member sudah digunakan, coba lagi"
                 } else {
                     jadi = true
                     this.valid = true
                     this.member = this.daftarMember[this.tag]
                 }
             }
+
+            if (notif) {
+                console.log("\n")
+                tampilkanJudul(notif, null, "=")
+                console.log("")
+            }
+
         } while (!jadi && this.tag.toLowerCase() != "x")
 
         return jadi
@@ -200,7 +188,8 @@ export class Sesi {
             delete this.daftarMember[kodeLama]
             clear()
 
-            console.log("===Kode member berhasil diubah===\n\n")
+            tampilkanJudul("Kode member berhasil diubah", null, "=")
+            console.log("\n")
         } else {
             clear()
         }
@@ -221,7 +210,8 @@ export class Sesi {
                     this.daftarMember[this.tag] = new Member(this.tag, nama, noWA, 0)
                     jadi = true
                     clear()
-                    console.log("====Member berhasil ditambah====\n\n")
+                    tampilkanJudul("Member berhasil ditambah", null, "=")
+                    console.log("\n")
                 }
             }
         }
@@ -236,15 +226,28 @@ export class Sesi {
     hapusMember(kodeLama) {
         if (konfirmasi("Hapus member")) {
             this.member = this.daftarMember[kodeLama]
-            let notif = `===Member "${this.member.nama}" (${this.member.kode}) berhasil dihapus===\n\n`
+            let notif = `Member "${this.member.nama}" (${this.member.kode}) berhasil dihapus`
 
             delete this.daftarMember[kodeLama]
             this.nonaktifkan()
 
             clear()
-            console.log(notif)
+            tampilkanJudul(notif, null, "=")
+            console.log("\n")
         } else {
             clear()
         }
+    }
+
+    tampilkanDaftarMember() {
+        let item
+
+        for (const i in this.daftarMember) {
+            item = this.daftarMember[i]
+            console.log(`| ${item.kode}  -  ${item.nama}  -  ${item.poin} poin`)
+            console.log(`| No. WA: ${item.noWA}\n`)
+        }
+
+        jeda()
     }
 }
