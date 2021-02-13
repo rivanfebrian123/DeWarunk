@@ -21,43 +21,44 @@ import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
-    Jualan,
-    Promo,
-    ItemJualan,
     Transaksi
-} from './de-warunk-jualan-transaksi.js'
+} from './transaksi.js'
 
 import {
-    Sesi,
+    Manajemen
+} from './manajemen.js'
+
+import {
     Member,
-} from './de-warunk-sesi-member.js'
+    Jualan,
+    Promo
+} from './manajemen-data.js'
 
 import {
-    klaimPromo,
     tampilkanJudul
-} from './de-warunk-lintas-bidang.js'
+} from './utilitas.js'
 
 class DWTransaksi {
+    // "sesi" di sini adalah sesi member
     sesi
-    jualan
     transaksi
 
-    constructor(sesi, jualan) {
-        this.sesi = sesi
-        this.jualan = jualan
+    constructor(manajemen) {
+        this.manajemen = manajemen
+        this.sesi = manajemen.sesiMember
     }
 
     mulai() {
         if (!this.sesi.valid) {
             if (this.sesi.aktifkanCek("lanjutJikaAda+", "Transaksi baru", null, true)) {
-                this.transaksi = new Transaksi(this.jualan, this.sesi)
+                this.transaksi = new Transaksi(this.manajemen)
             }
 
             clear()
         }
 
         if (this.sesi.valid) {
-            tampilkanJudul(`Kuy sapa si ${this.sesi.member.nama}`, null, "=")
+            tampilkanJudul(`Kuy sapa si ${this.sesi.item.nama}`, null, "=")
             tampilkanJudul(`${this.transaksi.waktu.toLocaleString("id-ID")}`, null, "=")
             tampilkanJudul("Transaksi baru")
             console.log("1. Tambah item") //TODO tampilkan "(kosong)" jika tiada
@@ -80,7 +81,7 @@ class DWTransaksi {
                 this.transaksi.prosesCetak()
                 break
             case "4":
-                klaimPromo(this.sesi.member, this.jualan)
+                this.manajemen.klaimPromo()
                 break
             case "X":
             case "x":
@@ -94,12 +95,13 @@ class DWTransaksi {
 }
 
 class DWMember {
+    // "sesi" di sini adalah sesi member
+    manajemen
     sesi
-    jualan
 
-    constructor(sesi, jualan) {
-        this.sesi = sesi
-        this.jualan = jualan
+    constructor(manajemen) {
+        this.manajemen = manajemen
+        this.sesi = manajemen.sesiMember
     }
 
     mulai() {
@@ -116,7 +118,7 @@ class DWMember {
 
         switch (menu) {
         case "1":
-            this.sesi.tambahMember()
+            this.sesi.tambahItem()
             break
         case "2":
             this.editHapusMember()
@@ -124,7 +126,7 @@ class DWMember {
         case "3":
             if (this.sesi.aktifkanCek("lanjutJikaAda", "Klaim promo")) {
                 clear()
-                klaimPromo(this.sesi.member, this.jualan)
+                this.manajemen.klaimPromo()
             } else {
                 clear()
             }
@@ -133,14 +135,14 @@ class DWMember {
         case "4":
             if (this.sesi.aktifkanCek("lanjutJikaAda", "Lihat riwayat transaksi")) {
                 clear()
-                this.sesi.member.tampilkanRiwayatTransaksi()
+                this.sesi.item.tampilkanRiwayatTransaksi()
             } else {
                 clear()
             }
 
             break
         case "5":
-            this.sesi.tampilkanDaftarMember()
+            this.sesi.tampilkanDaftarItem()
             break
         }
 
@@ -159,10 +161,10 @@ class DWMember {
 
         if (this.sesi.valid) {
             tampilkanJudul("Edit / hapus member")
-            console.log(`1. Ubah kode member (${this.sesi.member.kode})`)
-            console.log(`2. Ubah nama (${this.sesi.member.nama})`)
-            console.log(`3. Ubah no. WA (${this.sesi.member.noWA})`)
-            console.log(`4. Hapus member (${this.sesi.member.nama} [${this.sesi.member.kode}])`)
+            console.log(`1. Ubah kode member (${this.sesi.item.kode})`)
+            console.log(`2. Ubah nama (${this.sesi.item.nama})`)
+            console.log(`3. Ubah no. WA (${this.sesi.item.noWA})`)
+            console.log(`4. Hapus member (${this.sesi.item.nama} [${this.sesi.item.kode}])`)
             console.log("0. Kembali")
 
             let menu = input.question("Pilih menu: ")
@@ -170,16 +172,16 @@ class DWMember {
 
             switch (menu) {
             case "1":
-                this.sesi.ubahKodeMember(this.sesi.member.kode)
+                this.sesi.ubahKodeItem(this.sesi.item.kode)
                 break
             case "2":
-                this.sesi.member.ubahNama()
+                this.sesi.item.ubahNama()
                 break
             case "3":
-                this.sesi.member.ubahNoWA()
+                this.sesi.item.ubahNoWA()
                 break
             case "4":
-                this.sesi.hapusMember(this.sesi.member.kode)
+                this.sesi.hapusItem(this.sesi.item.kode)
                 break
             case "0":
                 clear()
@@ -194,10 +196,14 @@ class DWMember {
 }
 
 class DWJualan {
-    jualan
+    manajemen
+    sesiJualan
+    sesiPromo
 
-    constructor(jualan) {
-        this.jualan = jualan
+    constructor(manajemen) {
+        this.manajemen = manajemen
+        this.sesiJualan = manajemen.sesiJualan
+        this.sesiPromo = manajemen.sesiPromo
     }
 
     mulai() {
@@ -231,10 +237,10 @@ class DWJualan {
             console.log("\n")
             break
         case "5":
-            this.jualan.tampilkanDaftarJualan()
+            this.sesiJualan.tampilkanDaftarItem()
             break
         case "6":
-            this.jualan.tampilkanDaftarPromo()
+            this.sesiPromo.tampilkanDaftarItem()
             break
         }
 
@@ -248,36 +254,37 @@ class DeWarunk {
     dwTransaksi
     dwMember
     dwJualan
-
-    jualan
-    sesi
+    manajemen
 
     constructor() {
-        this.sesi = new Sesi()
-        this.sesi.daftarMember["RV"] = new Member("RV", "Rivan", "087767777733", 70)
-        this.sesi.daftarMember["RV"].daftarPromoDiklaim["MW"] = new Promo("MW", 120, "Mouse Wireless", new Date(2021, 4, 20))
+        this.manajemen = new Manajemen()
 
-        this.jualan = new Jualan()
-        this.jualan.daftarJualan["KJ"] = new ItemJualan(
-            "KJ", "Kopi Jahe", 50000, 2, 4000, 10)
-        this.jualan.daftarJualan["SB"] = new ItemJualan(
-            "SB", "Kopi Starbak", 70000, 2, 30000, 5)
-        this.jualan.daftarJualan["WJ"] = new ItemJualan(
-            "WJ", "Wedang Jahe", 30000, 2, 2000, 0)
-        this.jualan.daftarJualan["SJ"] = new ItemJualan(
-            "SJ", "Susu Jahe", 40000, 2, 5000, 0)
-        this.jualan.daftarJualan["WB"] = new ItemJualan(
-            "WB", "Wedang Bajigur", 35000, 3, 5000, 10)
-        this.jualan.daftarJualan["MS"] = new ItemJualan(
-            "MS", "Milkshake", 40000, 3, 10000, 10)
+        let daftarMember = this.manajemen.sesiMember.daftarItem
+        daftarMember["RV"] = new Member(["RV", "Rivan", "087767777733"])
+        daftarMember["RV"].daftarPromoDiklaim["MW"] = new Promo(["MW", "Mouse Wireless", 120, new Date(2021, 4, 20), null])
 
-        this.jualan.daftarPromo["HB"] = new Promo("HB", 300, "Headset Bluetooth", new Date(2021, 5, 20))
-        this.jualan.daftarPromo["PL"] = new Promo("PL", 50, "Payung Lipat", new Date(2021, 4, 5))
-        this.jualan.daftarPromo["LS"] = new Promo("LS", 1000, "Laptop Spek Tinggi", new Date(2021, 5, 17), "Ajak temen2mu mampir ke sini, minimal 5 orang")
+        let daftarJualan = this.manajemen.sesiJualan.daftarItem
+        daftarJualan["KJ"] = new Jualan(
+            ["KJ", "Kopi Jahe", 50000, 2, 4000, 10])
+        daftarJualan["SB"] = new Jualan(
+            ["SB", "Kopi Starbak", 70000, 2, 30000, 5])
+        daftarJualan["WJ"] = new Jualan(
+            ["WJ", "Wedang Jahe", 30000, 2, 2000, 0])
+        daftarJualan["SJ"] = new Jualan(
+            ["SJ", "Susu Jahe", 40000, 2, 5000, 0])
+        daftarJualan["WB"] = new Jualan(
+            ["WB", "Wedang Bajigur", 35000, 3, 5000, 10])
+        daftarJualan["MS"] = new Jualan(
+            ["MS", "Milkshake", 40000, 3, 10000, 10])
 
-        this.dwTransaksi = new DWTransaksi(this.sesi, this.jualan)
-        this.dwMember = new DWMember(this.sesi, this.jualan)
-        this.dwJualan = new DWJualan(this.jualan)
+        let daftarPromo = this.manajemen.sesiPromo.daftarItem
+        daftarPromo["HB"] = new Promo(["HB", "Headset Bluetooth", 300, new Date(2021, 5, 20)], null)
+        daftarPromo["PL"] = new Promo(["PL", "Payung Lipat", 50, new Date(2021, 4, 5)], null)
+        daftarPromo["LS"] = new Promo(["LS", "Laptop Spek Tinggi", 1000, new Date(2021, 5, 17), "Ajak temen2mu mampir ke sini, minimal 5 orang"])
+
+        this.dwTransaksi = new DWTransaksi(this.manajemen)
+        this.dwMember = new DWMember(this.manajemen)
+        this.dwJualan = new DWJualan(this.manajemen)
     }
 
     mulai() {
@@ -289,7 +296,10 @@ class DeWarunk {
 
         let menu = input.question("Pilih menu: ")
         clear()
-        this.sesi.nonaktifkan()
+
+        this.manajemen.sesiMember.nonaktifkan()
+        this.manajemen.sesiJualan.nonaktifkan()
+        this.manajemen.sesiPromo.nonaktifkan()
 
         switch (menu) {
         case "1":
