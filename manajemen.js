@@ -28,7 +28,10 @@ import {
 import {
     Member,
     Promo,
-    Jualan
+    Jualan,
+    daftarPertanyaanMember,
+    daftarPertanyaanPromo,
+    daftarPertanyaanJualan
 } from './manajemen-data.js'
 
 import {
@@ -43,10 +46,11 @@ export class Manajemen {
     sesiPromo
 
     constructor() {
-        this.sesiMember = new Sesi(Member, "Member", ["Nama member: ", "No. WA: "])
-        this.sesiPromo = new Sesi(Promo, "Promo", ["Nama promo/hadiah: ", "Poin diharapkan: ", "Batas akhir (tt/bb/hh): ", "Syarat tambahan: "])
-        this.sesiJualan = new Sesi(Jualan, "Jualan", ["Nama jualan: ", "Biaya produksi per hari: ", "Lama produksi per hari (jam): ", "Harga jual: ", "Persen diskon (%): "])
+        this.sesiMember = new Sesi(Member, "Member", daftarPertanyaanMember)
+        this.sesiPromo = new Sesi(Promo, "Promo", daftarPertanyaanPromo)
+        this.sesiJualan = new Sesi(Jualan, "Jualan", daftarPertanyaanJualan)
     }
+
     bersihkanPromoLama() {
         let waktu = new Date()
 
@@ -148,5 +152,11 @@ export class Manajemen {
         if (menu != 0) {
             this.klaimPromo()
         }
+    }
+
+    nonaktifkanSemuaSesi() {
+        this.sesiMember.nonaktifkan()
+        this.sesiPromo.nonaktifkan()
+        this.sesiJualan.nonaktifkan()
     }
 }

@@ -40,8 +40,8 @@ export class ItemTransaksi {
 }
 
 export class Transaksi {
-    //istilah "item" di sini adalah item dari kelas ini, sedangkan "itemJualan"
-    //adalah item dari kelas Jualan
+    // "item" di sini adalah ItemTransaksi, sedangkan "itemJualan"
+    // adalah item dari daftarJualan dari sesi Jualan, tentunya
     sesiJualan
     sesiMember
     waktu
@@ -50,7 +50,6 @@ export class Transaksi {
     totalPoin
 
     constructor(manajemen) {
-        this.manajemen = manajemen
         this.sesiJualan = manajemen.sesiJualan
         this.sesiMember = manajemen.sesiMember
         this.waktu = new Date()

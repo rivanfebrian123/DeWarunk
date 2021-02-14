@@ -19,30 +19,55 @@
  */
 
 // PERHATIAN:
-// setiap tipe/kelas di sini wajib memiliki:
-// * variabel "kode"
-// * variabel "nama"
-// * fungsi "tampilkanInfo()"
+// Setiap tipe/kelas di sini wajib mewarisi kelas "Data" dan
+// semua constructor itu wajib memiliki parameter "daftarData" yang berupa
+// list data hasil parse dari fungsi tanyaDataItem(kodePertanyaan) di fungsi
+// tambahItem() di kelas Sesi
+//
+// Jangan lupa juga untuk memanggil "super(daftarData)" dalam constructor2 itu.
+// Omong2, indeks dimulai dari 2 karena index 0 dan satu sudah dipakai untuk
+// "kode" dan "nama"
+//
+// Daftar pertanyaan berupa list dengan indeks sesuai dengan nama variabel
+// yang bersangkutan. Isi pertanyaan berformat: TIPE|Isi
+//
+// Setiap daftarPertanyaan di sini tidak perlu menanyakan kode, karena itu adalah
+// urusan Sesi
 
 import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
-    inputKonfirmasi,
-    jeda
+    jeda,
+    tampilkanJudul
 } from './utilitas.js'
 
-export class Member {
+class Data {
     kode
     nama
+
+    constructor(daftarData) {
+        this.kode = daftarData[0]
+        this.nama = daftarData[1]
+    }
+
+    tampilkanInfo() {
+        throw new Error("Fungsi 'tampilkanInfo()' harus diimplementasikan")
+    }
+}
+
+export let daftarPertanyaanMember = []
+daftarPertanyaanMember["nama"] = "STR|Nama member: "
+daftarPertanyaanMember["noWA"] = "STR|No. WA: "
+
+export class Member extends Data {
     noWA
     poin
     riwayatTransaksi = []
     daftarPromoDiklaim = []
 
     constructor(daftarData) {
-        this.kode = daftarData[0]
-        this.nama = daftarData[1]
+        super(daftarData)
         this.noWA = daftarData[2]
         this.poin = 0
     }
@@ -76,6 +101,9 @@ export class Member {
     }
 
     tampilkanRiwayatTransaksi() {
+        tampilkanJudul(`Riwayat transaksi si ${this.nama}`)
+        console.log("")
+
         this.bersihkanRiwayatTransaksiLama()
 
         for (const i in this.riwayatTransaksi) {
@@ -85,29 +113,29 @@ export class Member {
 
         jeda()
     }
-
-    ubahNama() {
-        this.nama = inputKonfirmasi(this.nama, "Nama member")
-    }
-
-    ubahNoWA() {
-        this.noWA = inputKonfirmasi(this.noWA, "No. WA member")
-    }
 }
 
-export class Promo {
-    kode
-    nama
+export let daftarPertanyaanPromo = []
+daftarPertanyaanPromo["nama"] = "STR|Nama promo/hadiah: "
+daftarPertanyaanPromo["poinDiharapkan"] = "INT|Poin diharapkan: "
+daftarPertanyaanPromo["batasAkhir"] = "DATE|Batas akhir (TTTT/BB/HH): "
+daftarPertanyaanPromo["syaratTambahan"] = "STR|Syarat tambahan (ketik '-' jika tiada): "
+
+export class Promo extends Data {
     poinDiharapkan
     batasAkhir
     syaratTambahan
 
     constructor(daftarData) {
-        this.kode = daftarData[0]
-        this.nama = daftarData[1]
+        super(daftarData)
         this.poinDiharapkan = daftarData[2]
         this.batasAkhir = daftarData[3]
-        this.syaratTambahan = daftarData[4]
+
+        if (daftarData[4] == "-") {
+            this.syaratTambahan = null
+        } else {
+            this.syaratTambahan = daftarData[4]
+        }
     }
 
     tampilkanInfo() {
@@ -121,17 +149,21 @@ export class Promo {
     }
 }
 
-export class Jualan {
-    kode
-    nama
+export let daftarPertanyaanJualan = []
+daftarPertanyaanJualan["nama"] = "STR|Nama jualan: "
+daftarPertanyaanJualan["biayaProduksi"] = "INT|Biaya produksi per hari (Rp.): "
+daftarPertanyaanJualan["lamaProduksi"] = "INT|Lama produksi per hari (jam): "
+daftarPertanyaanJualan["hargaJual"] = "INT|Harga jual satuan (Rp.): "
+daftarPertanyaanJualan["persenDiskon"] = "INT|Persen diskon (%): "
+
+export class Jualan extends Data {
     biayaProduksi
     lamaProduksi
     hargaJual
     persenDiskon
 
     constructor(daftarData) {
-        this.kode = daftarData[0]
-        this.nama = daftarData[1]
+        super(daftarData)
         this.biayaProduksi = daftarData[2]
         this.lamaProduksi = daftarData[3]
         this.hargaJual = daftarData[4]
@@ -140,7 +172,7 @@ export class Jualan {
 
     tampilkanInfo() {
         console.log(`| ${this.kode}  -  ${this.nama}`)
-        console.log(`| Harga jual: Rp.${this.hargaJual}    Diskon: ${this.persenDiskon}% (Rp.${this.hargaJual * this.persenDiskon / 100})`)
+        console.log(`| Harga jual satuan: Rp.${this.hargaJual}    Diskon: ${this.persenDiskon}% (Rp.${this.hargaJual * this.persenDiskon / 100})`)
         console.log(`| Biaya produksi: Rp.${this.biayaProduksi}/hari    Lama produksi: ${this.lamaProduksi} jam/hari`)
     }
 }

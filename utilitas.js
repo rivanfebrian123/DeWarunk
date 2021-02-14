@@ -90,22 +90,3 @@ export function jeda() {
     })
     clear()
 }
-
-export function inputKonfirmasi(inputLama, namaData) {
-    tampilkanJudul(`Ubah ${namaData.toLowerCase()}`)
-    console.log("X. Batal")
-    tampilkanJudul("-", null, "-", false)
-
-    let jadi = false
-    let hasil = input.question(`${namaData} baru: `)
-    clear()
-
-    if (hasil.toLowerCase() == "x") {
-        hasil = inputLama
-    } else {
-        tampilkanJudul(`${namaData} berhasil diubah`, null, "=")
-        console.log("\n")
-    }
-
-    return hasil
-}

@@ -65,6 +65,7 @@ class DWTransaksi {
             console.log("2. Kurangi item")
             console.log("3. Proses dan cetak transaksi") //TODO hanya izinkan jika ada item
             console.log("4. Klaim promo") //TODO tampilkan "(kosong)" jika tiada
+            console.log("5. Lihat riwayat transaksi")
             console.log("X. Batalkan transaksi")
 
             let menu = input.question("Pilih menu: ")
@@ -82,6 +83,9 @@ class DWTransaksi {
                 break
             case "4":
                 this.manajemen.klaimPromo()
+                break
+            case "5":
+                this.sesi.item.tampilkanRiwayatTransaksi()
                 break
             case "X":
             case "x":
@@ -146,7 +150,7 @@ class DWMember {
             break
         }
 
-        this.sesi.nonaktifkan()
+        this.manajemen.nonaktifkanSemuaSesi()
 
         if (menu != "0") {
             this.mulai()
@@ -160,11 +164,13 @@ class DWMember {
         }
 
         if (this.sesi.valid) {
+            let member = this.sesi.item
+
             tampilkanJudul("Edit / hapus member")
-            console.log(`1. Ubah kode member (${this.sesi.item.kode})`)
-            console.log(`2. Ubah nama (${this.sesi.item.nama})`)
-            console.log(`3. Ubah no. WA (${this.sesi.item.noWA})`)
-            console.log(`4. Hapus member (${this.sesi.item.nama} [${this.sesi.item.kode}])`)
+            console.log(`1. Ubah kode member (${member.kode})`)
+            console.log(`2. Ubah nama (${member.nama})`)
+            console.log(`3. Ubah no. WA (${member.noWA})`)
+            console.log(`4. Hapus member (${member.nama} [${member.kode}])`)
             console.log("0. Kembali")
 
             let menu = input.question("Pilih menu: ")
@@ -172,16 +178,16 @@ class DWMember {
 
             switch (menu) {
             case "1":
-                this.sesi.ubahKodeItem(this.sesi.item.kode)
+                this.sesi.ubahKodeItem(member.kode)
                 break
             case "2":
-                this.sesi.item.ubahNama()
+                member.nama = this.sesi.tanyaDataItem("nama", "Nama member", member.nama)
                 break
             case "3":
-                this.sesi.item.ubahNoWA()
+                member.noWA = this.sesi.tanyaDataItem("noWA", "No. WA member", member.noWA)
                 break
             case "4":
-                this.sesi.hapusItem(this.sesi.item.kode)
+                this.sesi.hapusItem(member.kode)
                 break
             case "0":
                 clear()
@@ -209,8 +215,8 @@ class DWJualan {
     mulai() {
         tampilkanJudul("Jualan")
         console.log("1. Tambah jualan")
-        console.log("2. Edit / hapus jualan")
-        console.log("3. Tambah promo")
+        console.log("2. Tambah promo")
+        console.log("3. Edit / hapus jualan")
         console.log("4. Edit / hapus promo")
         console.log("5. Lihat semua daftar jualan")
         console.log("6. Lihat semua daftar promo")
@@ -221,20 +227,16 @@ class DWJualan {
 
         switch (menu) {
         case "1":
-            tampilkanJudul("Fitur belum tersedia", null, "=")
-            console.log("\n")
+            this.sesiJualan.tambahItem()
             break
         case "2":
-            tampilkanJudul("Fitur belum tersedia", null, "=")
-            console.log("\n")
+            this.sesiPromo.tambahItem()
             break
         case "3":
-            tampilkanJudul("Fitur belum tersedia", null, "=")
-            console.log("\n")
+            this.editHapusJualan()
             break
         case "4":
-            tampilkanJudul("Fitur belum tersedia", null, "=")
-            console.log("\n")
+            this.editHapusPromo()
             break
         case "5":
             this.sesiJualan.tampilkanDaftarItem()
@@ -244,8 +246,117 @@ class DWJualan {
             break
         }
 
+        this.manajemen.nonaktifkanSemuaSesi()
+
         if (menu != "0") {
             this.mulai()
+        }
+    }
+
+    editHapusJualan() {
+        if (!this.sesiJualan.valid) {
+            this.sesiJualan.aktifkanCek("lanjutJikaAda", "Edit / hapus jualan", null, true)
+            clear()
+        }
+
+        if (this.sesiJualan.valid) {
+            let jualan = this.sesiJualan.item
+
+            tampilkanJudul("Edit / hapus jualan")
+            console.log(`1. Ubah kode jualan (${jualan.kode})`)
+            console.log(`2. Ubah nama jualan (${jualan.nama})`)
+            console.log(`3. Ubah biaya produksi (Rp. ${jualan.biayaProduksi} / hari)`)
+            console.log(`4. Ubah lama produksi (${jualan.lamaProduksi} jam/hari)`)
+            console.log(`5. Ubah harga jual (Rp. ${jualan.hargaJual})`)
+            console.log(`6. Ubah persen diskon (${jualan.persenDiskon}% [Rp.${jualan.hargaJual * jualan.persenDiskon / 100}])`)
+            console.log(`7. Hapus jualan (${jualan.nama} [${jualan.kode}])`)
+            console.log("0. Kembali")
+
+            let menu = input.question("Pilih menu: ")
+            console.log("")
+
+            switch (menu) {
+            case "1":
+                this.sesiJualan.ubahKodeItem(jualan.kode)
+                break
+            case "2":
+                jualan.nama = this.sesiJualan.tanyaDataItem("nama", "Nama jualan", jualan.nama)
+                break
+            case "3":
+                jualan.biayaProduksi = this.sesiJualan.tanyaDataItem("biayaProduksi", "Biaya produksi", jualan.biayaProduksi)
+                break
+            case "4":
+                jualan.lamaProduksi = this.sesiJualan.tanyaDataItem("lamaProduksi", "Lama produksi", jualan.lamaProduksi)
+                break
+            case "5":
+                jualan.hargaJual = this.sesiJualan.tanyaDataItem("hargaJual", "Harga jual", jualan.hargaJual)
+                break
+            case "6":
+                jualan.persenDiskon = this.sesiJualan.tanyaDataItem("persenDiskon", "Persen diskon", jualan.persenDiskon)
+                break
+            case "7":
+                this.sesiJualan.hapusItem(jualan.kode)
+                break
+            case "0":
+                clear()
+                break
+            }
+
+            if (menu != "0") {
+                this.editHapusJualan()
+            }
+        }
+    }
+
+    editHapusPromo() {
+        if (!this.sesiPromo.valid) {
+            this.sesiPromo.aktifkanCek("lanjutJikaAda", "Edit / hapus promo", null, true)
+            clear()
+        }
+
+        if (this.sesiPromo.valid) {
+            let promo = this.sesiPromo.item
+
+            tampilkanJudul("Edit / hapus promo")
+            console.log(`1. Ubah kode promo (${promo.kode})`)
+            console.log(`2. Ubah nama promo (${promo.nama})`)
+            console.log(`3. Ubah poin diharapkan (${promo.poinDiharapkan} poin)`)
+            console.log(`4. Ubah batas akhir (${promo.batasAkhir.toLocaleString()})`)
+            console.log(`5. Ubah syarat tambahan`)
+            console.log(`   (${promo.syaratTambahan})`)
+            console.log(`6. Hapus promo (${promo.nama} [${promo.kode}])`)
+            console.log("0. Kembali")
+
+            let menu = input.question("Pilih menu: ")
+            console.log("")
+
+            switch (menu) {
+            case "1":
+                this.sesiPromo.ubahKodeItem(promo.kode)
+                break
+            case "2":
+                promo.nama = this.sesiPromo.tanyaDataItem("nama", "Nama promo / hadiah", promo.nama)
+                break
+            case "3":
+                promo.poinDiharapkan = this.sesiPromo.tanyaDataItem("poinDiharapkan", "Poin diharapkan", promo.poinDiharapkan)
+                break
+            case "4":
+                promo.batasAkhir = this.sesiPromo.tanyaDataItem("batasAkhir", "Batas akhir", promo.batasAkhir)
+                break
+            case "5":
+                promo.syaratTambahan = this.sesiPromo.tanyaDataItem("syaratTambahan", "Syarat tambahan", promo.syaratTambahan)
+                break
+            case "6":
+                this.sesiPromo.hapusItem(promo.kode)
+                break
+            case "0":
+                clear()
+                break
+            }
+
+            if (menu != "0") {
+                this.editHapusPromo()
+            }
         }
     }
 }
@@ -261,7 +372,7 @@ class DeWarunk {
 
         let daftarMember = this.manajemen.sesiMember.daftarItem
         daftarMember["RV"] = new Member(["RV", "Rivan", "087767777733"])
-        daftarMember["RV"].daftarPromoDiklaim["MW"] = new Promo(["MW", "Mouse Wireless", 120, new Date(2021, 4, 20), null])
+        daftarMember["RV"].daftarPromoDiklaim["MW"] = new Promo(["MW", "Mouse Wireless", 120, "2021/4/20", ""])
 
         let daftarJualan = this.manajemen.sesiJualan.daftarItem
         daftarJualan["KJ"] = new Jualan(
@@ -278,9 +389,9 @@ class DeWarunk {
             ["MS", "Milkshake", 40000, 3, 10000, 10])
 
         let daftarPromo = this.manajemen.sesiPromo.daftarItem
-        daftarPromo["HB"] = new Promo(["HB", "Headset Bluetooth", 300, new Date(2021, 5, 20)], null)
-        daftarPromo["PL"] = new Promo(["PL", "Payung Lipat", 50, new Date(2021, 4, 5)], null)
-        daftarPromo["LS"] = new Promo(["LS", "Laptop Spek Tinggi", 1000, new Date(2021, 5, 17), "Ajak temen2mu mampir ke sini, minimal 5 orang"])
+        daftarPromo["HB"] = new Promo(["HB", "Headset Bluetooth", 300, "2021/5/20", ""])
+        daftarPromo["PL"] = new Promo(["PL", "Payung Lipat", 50, "2021/4/5", ""])
+        daftarPromo["LS"] = new Promo(["LS", "Laptop Spek Tinggi", 1000, "2021/5/17", "Ajak temen2mu mampir ke sini, minimal 5 orang"])
 
         this.dwTransaksi = new DWTransaksi(this.manajemen)
         this.dwMember = new DWMember(this.manajemen)
@@ -295,11 +406,8 @@ class DeWarunk {
         console.log("0. Keluar")
 
         let menu = input.question("Pilih menu: ")
+        this.manajemen.nonaktifkanSemuaSesi()
         clear()
-
-        this.manajemen.sesiMember.nonaktifkan()
-        this.manajemen.sesiJualan.nonaktifkan()
-        this.manajemen.sesiPromo.nonaktifkan()
 
         switch (menu) {
         case "1":

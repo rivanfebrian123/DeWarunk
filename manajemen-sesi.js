@@ -78,17 +78,19 @@ export class Sesi {
                 if (opsi == "lanjutJikaAda+") {
                     console.log("\n")
 
-                    if (this.tambahItem(false)) { //mempengaruhi this.tag
+                    if (this.tambahItem(false)) { // mempengaruhi this.tag
                         jadi = true
-                        this.valid = true //paksa, karena fungsi itu tidak memvalidasi
+                        this.valid = true // paksa, karena fungsi itu tidak memvalidasi
                         this.item = this.daftarItem[this.tag]
                     } else {
                         console.log("\n")
-                        this.tag = "" //agar perulangan tidak berhenti jika "x"
+                        this.tag = "" // agar perulangan tidak berhenti jika "x"
                     }
                 } else {
                     notif = "Input tidak valid, coba lagi"
                 }
+            } else if (!this.tag) {
+                notif = "Input tidak valid, coba lagi"
             } else if (typeof this.daftarItem[this.tag] == "undefined") {
                 if (opsi == "lanjutJikaAda" || opsi == "lanjutJikaAda+") {
                     notif = `Kode ${this.nama.toLowerCase()} tidak ditemukan, coba lagi`
@@ -123,7 +125,7 @@ export class Sesi {
     }
 
     ubahKodeItem(kodeLama) {
-        //fungsi ini bersifat mengaktifkan sesi tapi tanpa validasi
+        // fungsi ini bersifat mengaktifkan sesi tapi tanpa validasi
         if (this.aktifkanCek("lanjutJikaTiada", `Ubah kode ${this.nama.toLowerCase()}`, `Kode ${this.nama.toLowerCase()} baru (besar kecil huruf berpengaruh): `)) {
             this.daftarItem[this.tag] = this.daftarItem[kodeLama]
             this.item = this.daftarItem[this.tag]
@@ -133,35 +135,100 @@ export class Sesi {
             clear()
 
             tampilkanJudul(`Kode ${this.nama.toLowerCase()} berhasil diubah`, null, "=")
+            tampilkanJudul(`Dari "${kodeLama}" menjadi "${this.item.kode}"`, null, "=")
             console.log("\n")
         } else {
             clear()
         }
     }
 
+    tanyaDataItem(kodePertanyaan, namaJudul = null, nilaiAwal = null) {
+        let hasil
+
+        do {
+            if (namaJudul) {
+                tampilkanJudul(`Ubah ${namaJudul[0].toLowerCase()}${namaJudul.slice(1)}`)
+                console.log("X. Batal")
+                tampilkanJudul("-", null, "-", false)
+            }
+
+            let token = this.daftarPertanyaan[kodePertanyaan].split("|")
+            let jawaban = input.question(token[1])
+
+            if (jawaban.toLowerCase() == "x") {
+                hasil = false
+                break
+            } else if (!jawaban) {
+                hasil = null
+            } else {
+                if (token[0] == "STR") {
+                    hasil = jawaban
+                } else {
+                    let hasilParse
+
+                    if (token[0] == "INT") {
+                        hasilParse = parseInt(jawaban)
+                    } else if (token[0] == "DATE") {
+                        hasilParse = new Date(jawaban)
+                    }
+
+                    if (isNaN(hasilParse)) {
+                        hasil = null
+                    } else {
+                        hasil = hasilParse
+                    }
+                }
+            }
+
+            if (hasil === null && namaJudul) {
+                console.log("\n")
+                tampilkanJudul("Input tidak valid, coba lagi", null, "=")
+                console.log("")
+            }
+        } while (hasil === null)
+
+        if (namaJudul) {
+            clear()
+
+            if (hasil) {
+                tampilkanJudul(`${namaJudul} telah diubah`, null, "=")
+
+                if (nilaiAwal) {
+                    tampilkanJudul(`Dari "${nilaiAwal}" menjadi "${hasil}"`, null, "=")
+                }
+
+                console.log("\n")
+            }
+        }
+
+        if (nilaiAwal && !hasil) {
+            hasil = nilaiAwal
+        }
+
+        return hasil
+    }
+
     tambahItem(bersihkanJikaBatal = true) {
-        //fungsi ini bersifat mengaktifkan sesi, mengubah tag, dan juga
-        //digunakan di this.aktifkanCek()
+        // fungsi ini bersifat mengaktifkan sesi, mengubah tag, dan juga
+        // digunakan di this.aktifkanCek()
         let daftarData = []
-        let jadi = false
+        let jawaban
 
         if (this.aktifkanCek("lanjutJikaTiada", `Tambah ${this.nama.toLowerCase()}`)) {
             daftarData.push(this.tag)
 
             for (const kode in this.daftarPertanyaan) {
-                let jawaban = input.question(this.daftarPertanyaan[kode])
+                jawaban = this.tanyaDataItem(kode)
 
-                if (jawaban.toLowerCase() == "x") {
-                    jadi = false
-                    break
-                } else {
+                if (jawaban) {
                     daftarData.push(jawaban)
-                    jadi = true
+                } else {
+                    break
                 }
             }
         }
 
-        if (jadi) {
+        if (jawaban) {
             this.daftarItem[this.tag] = new this.Tipe(daftarData)
             let item = this.daftarItem[this.tag]
 
@@ -172,7 +239,7 @@ export class Sesi {
             clear()
         }
 
-        return jadi
+        return (jawaban != false) // supaya hasil selalu boolean
     }
 
     hapusItem(kodeLama) {
@@ -193,6 +260,9 @@ export class Sesi {
     }
 
     tampilkanDaftarItem() {
+        tampilkanJudul(`Daftar ${this.nama.toLowerCase()}`)
+        console.log("")
+
         for (const kode in this.daftarItem) {
             this.daftarItem[kode].tampilkanInfo()
             console.log("")
