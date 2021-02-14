@@ -17,12 +17,13 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
     tampilkanJudul,
-    konfirmasi
+    konfirmasi,
+    tanya,
+    jeda
 } from './utilitas.js'
 
 export class ItemTransaksi {
@@ -85,20 +86,32 @@ export class Transaksi {
     tampilkanPerbarui(tampilkanItemBelumDibeli = true, tampilkanMenuKembali = true) {
         let i = 1
         let iAsli = [""]
+        let n
         this.totalBelanja = 0
 
         if (tampilkanItemBelumDibeli) {
-            tampilkanJudul("Item-item belum dibeli", null, "-")
+            tampilkanJudul("Item-item belum dibeli", "kepala", null, "-")
+            n = 0
+
             for (const kode in this.sesiJualan.daftarItem) {
                 if (typeof this.daftarItem[kode] == "undefined") {
                     this.hitungTotalDiskonHarga(this.sesiJualan.daftarItem[kode], 0, i)
                     iAsli[i] = kode
                     i++
+                    n++
                 }
+            }
+
+            if (n == 0) {
+                console.log("")
+                tampilkanJudul("(Item sudah dibeli semua)", "pemberitahuanGagal", null, " ")
+                console.log("")
             }
         }
 
-        tampilkanJudul("Item-item sudah dibeli", null, "-")
+        tampilkanJudul("Item-item sudah dibeli", "kepala", null, "-")
+        n = 0
+
         for (const kode in this.daftarItem) {
             let item = this.daftarItem[kode]
 
@@ -107,18 +120,25 @@ export class Transaksi {
 
             iAsli[i] = kode
             i++
+            n++
+        }
+
+        if (n == 0) {
+            console.log("")
+            tampilkanJudul("(Belum ada item yang dibeli)", "pemberitahuanGagal", null, " ")
+            console.log("")
         }
 
         this.totalPoin = parseInt(this.totalBelanja / 1000 / 2)
 
         if (tampilkanMenuKembali) {
-            tampilkanJudul("0. Kembali", "-", null, false)
+            tampilkanJudul("0. Kembali 🔙️", "polos", "-", null, false)
         } else {
-            tampilkanJudul("-", null, "-", false)
+            tampilkanJudul("-", "kepala", null, "-", false)
         }
 
-        tampilkanJudul(`Total belanja kamu: Rp.${this.totalBelanja}`, null, "+")
-        tampilkanJudul(`Poin belanja kamu: ${this.totalPoin}`, null, "+")
+        tampilkanJudul(`Total belanja kamu: Rp.${this.totalBelanja}`, "kepala", null, "+")
+        tampilkanJudul(`Poin belanja kamu: ${this.totalPoin}`, "kepala", null, "+")
         console.log("")
 
         return iAsli
@@ -129,25 +149,25 @@ export class Transaksi {
         let iAsli = this.tampilkanPerbarui()
 
         let banyak
-        let menu = parseInt(input.question("Pilih item: "))
+        let menu = parseInt(tanya("👆️ Pilih item: "))
         let kodeItem = iAsli[menu]
         let itemJualan = this.sesiJualan.daftarItem[kodeItem]
 
         if (menu == 0) {
             clear()
         } else if (typeof itemJualan != "undefined") {
-            banyak = parseInt(input.question("Banyaknya yang ditambahkan: "))
+            banyak = parseInt(tanya("➡️ Banyaknya yang ditambahkan: "))
             clear()
 
             if (banyak > 0) {
                 if (typeof this.daftarItem[kodeItem] == "undefined") {
-                    tampilkanJudul("Item baru", null, "=")
+                    tampilkanJudul("Item baru", "pemberitahuanSukses", null, "=")
                     let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak)
-                    this.daftarItem[kodeItem] = new ItemTransaksi(itemJualan, banyak, totalDiskonHarga[0], totalDiskonHarga[1])
+                    this.daftarItem[kodeItem] = new ItemTransaksi(itemJualan.duplikat(), banyak, totalDiskonHarga[0], totalDiskonHarga[1])
                 } else {
                     let item = this.daftarItem[kodeItem]
 
-                    tampilkanJudul("Dari", null, "=")
+                    tampilkanJudul("Dari", "pemberitahuanSukses", null, "=")
                     let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak, -1)
                     this.hitungTotalDiskonHarga(itemJualan, item.banyak)
 
@@ -155,11 +175,11 @@ export class Transaksi {
                     item.totalDiskon += totalDiskonHarga[0]
                     item.totalHarga += totalDiskonHarga[1]
 
-                    tampilkanJudul("Menjadi", null, "=")
+                    tampilkanJudul("Menjadi", "pemberitahuanSukses", null, "=")
                     this.hitungTotalDiskonHarga(itemJualan, item.banyak)
                 }
 
-                tampilkanJudul("Item berhasil ditambahkan", null, "=")
+                tampilkanJudul("Item berhasil ditambahkan", "pemberitahuanSukses", null, "=")
                 console.log("\n")
             }
 
@@ -175,7 +195,7 @@ export class Transaksi {
         let iAsli = this.tampilkanPerbarui(false)
 
         let banyak
-        let menu = parseInt(input.question("Pilih item: "))
+        let menu = parseInt(tanya("👆️ Pilih item: "))
         let kodeItem = iAsli[menu]
         let itemJualan = this.sesiJualan.daftarItem[kodeItem]
 
@@ -183,11 +203,11 @@ export class Transaksi {
             clear()
         } else if (typeof itemJualan != "undefined" && typeof this.daftarItem[kodeItem] != "undefined") {
             let item = this.daftarItem[kodeItem]
-            banyak = parseInt(input.question("Banyaknya yang dikurangi: "))
+            banyak = parseInt(tanya("➡️ Banyaknya yang dikurangi: "))
             clear()
 
             if (banyak > 0 && banyak < item.banyak) {
-                tampilkanJudul("Dari", null, "=")
+                tampilkanJudul("Dari", "pemberitahuanSukses", null, "=")
                 let totalDiskonHarga = this.hitungTotalDiskonHarga(itemJualan, banyak, -1)
                 this.hitungTotalDiskonHarga(itemJualan, item.banyak)
 
@@ -195,13 +215,13 @@ export class Transaksi {
                 item.totalDiskon -= totalDiskonHarga[0]
                 item.totalHarga -= totalDiskonHarga[1]
 
-                tampilkanJudul("Menjadi", null, "=")
+                tampilkanJudul("Menjadi", "pemberitahuanSukses", null, "=")
                 this.hitungTotalDiskonHarga(itemJualan, item.banyak)
-                tampilkanJudul("Item berhasil dikurangi", null, "=")
+                tampilkanJudul("Item berhasil dikurangi", "pemberitahuanSukses", null, "=")
                 console.log("\n")
             } else if (banyak >= item.banyak) {
                 delete this.daftarItem[kodeItem]
-                tampilkanJudul(`Item ${itemJualan.nama} (${itemJualan.kode}) berhasil dihapus`, null, "=")
+                tampilkanJudul(`Item ${itemJualan.nama} (${itemJualan.kode}) berhasil dihapus`, "pemberitahuanSukses", null, "=")
                 console.log("\n")
             }
 
@@ -219,17 +239,24 @@ export class Transaksi {
         this.sesiMember.item.bersihkanRiwayatTransaksiLama()
         this.tampilkanPerbarui(false, false)
 
-        if (konfirmasi()) {
-            this.sesiMember.item.poin += this.totalPoin
-            this.sesiMember.item.riwayatTransaksi.push(this)
-
-            this.sesiMember.nonaktifkan()
-
+        if (this.totalBelanja == 0) {
+            tampilkanJudul("Tidak ada (item) transaksi untuk diproses", "pemberitahuanGagal", null, " ")
+            console.log("")
+            jeda()
             clear()
-            tampilkanJudul("Transaksi berhasil diproses", null, "=")
-            console.log("\n")
         } else {
-            clear()
+            if (konfirmasi()) {
+                this.sesiMember.item.poin += this.totalPoin
+                this.sesiMember.item.riwayatTransaksi.push(this)
+
+                this.sesiMember.nonaktifkan()
+
+                clear()
+                tampilkanJudul("Transaksi berhasil diproses", "pemberitahuanSukses", null, "=")
+                console.log("\n")
+            } else {
+                clear()
+            }
         }
     }
 
@@ -242,7 +269,7 @@ export class Transaksi {
             this.sesiMember.nonaktifkan()
 
             clear()
-            tampilkanJudul("Transaksi dibatalkan", null, "=")
+            tampilkanJudul("Transaksi dibatalkan", "pemberitahuanSukses", null, "=")
             console.log("\n")
         } else {
             clear()

@@ -17,8 +17,6 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-
-import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
@@ -37,7 +35,8 @@ import {
 import {
     konfirmasi,
     tampilkanJudul,
-    namaBulan
+    namaBulan,
+    tanya
 } from './utilitas.js'
 
 export class Manajemen {
@@ -61,21 +60,26 @@ export class Manajemen {
         }
     }
 
-    // TODO: aktifkanCek sesi
     klaimPromo() {
+        if (!this.sesiMember.valid) {
+            throw new Error("sesiMember harus aktif/valid")
+        }
+
         let waktu = new Date()
         let member = this.sesiMember.item
         let daftarPromo = this.sesiPromo.daftarItem
         let i = 1
         let iAsli = [""]
+        let n
 
         tampilkanJudul(`Klaim promo ${namaBulan[waktu.getMonth()]} ${waktu.getFullYear()}`)
-        console.log(`Hai ${member.nama}, poin kamu adalah ${member.poin}`)
-        console.log("Ayo tambah poinmu untuk menangkan:\n")
+        console.log(`👋️ Hai ${member.nama}, poin kamu adalah ${member.poin}`)
+        console.log("🎁️ Ayo tambah poinmu untuk menangkan:\n")
 
         this.bersihkanPromoLama()
         member.bersihkanKlaimPromoLama()
-        tampilkanJudul("Promo-promo belum diklaim", null, "-")
+        tampilkanJudul("Promo-promo belum diklaim", "kepala", null, "-")
+        n = 0
 
         for (const kode in daftarPromo) {
             if (typeof member.daftarPromoDiklaim[kode] == "undefined") {
@@ -85,7 +89,7 @@ export class Manajemen {
                 console.log(`|   Poin diharapkan: ${item.poinDiharapkan}`)
 
                 if (member.poin >= item.poinDiharapkan) {
-                    console.log("|   ---POIN TERPENUHI, boleh klaim---")
+                    console.log("|   ---☑️✅️ POIN TERPENUHI, boleh klaim ✅️☑️---")
                 }
 
                 console.log(`|   Batas waktu akhir: ${item.batasAkhir.toLocaleString("id-ID")}`)
@@ -98,10 +102,19 @@ export class Manajemen {
 
                 iAsli[i] = kode
                 i++
+                n++
             }
         }
 
-        tampilkanJudul("Promo-promo sudah diklaim", null, "-")
+        if (n == 0) {
+            console.log("")
+            tampilkanJudul("(Promo sudah diklaim semua)", "pemberitahuanGagal", null, " ")
+            console.log("")
+        }
+
+        tampilkanJudul("Promo-promo sudah diklaim", "kepala", null, "-")
+        n = 0
+
         for (const kode in member.daftarPromoDiklaim) {
             let item = member.daftarPromoDiklaim[kode]
 
@@ -113,11 +126,18 @@ export class Manajemen {
             }
 
             console.log("")
+            n++
         }
 
-        tampilkanJudul("0. Kembali", "-", null, false)
+        if (n == 0) {
+            console.log("")
+            tampilkanJudul("(Belum ada promo diklaim)", "pemberitahuanGagal", null, " ")
+            console.log("")
+        }
 
-        let menu = parseInt(input.question("Pilih promo untuk diklaim: "))
+        tampilkanJudul("0. Kembali 🔙️", "polos", "-", null, false)
+
+        let menu = parseInt(tanya("👆️ Pilih promo untuk diklaim: "))
         let kodeItem = iAsli[menu]
         let item = daftarPromo[kodeItem]
 
@@ -128,21 +148,21 @@ export class Manajemen {
 
             if (member.poin >= item.poinDiharapkan) {
                 if (konfirmasi(`Klaim promo ${item.nama} (${item.poinDiharapkan} poin)`)) {
-                    member.daftarPromoDiklaim[kodeItem] = item
+                    member.daftarPromoDiklaim[kodeItem] = item.duplikat()
                     let poinLama = member.poin
 
                     member.poin -= item.poinDiharapkan
 
                     clear()
-                    tampilkanJudul(`Selamat, ${member.nama}. Kamu berhasil memenangkan ${item.nama}`, null, "=")
-                    tampilkanJudul(`Poin kamu sekarang adalah ${member.poin} (${poinLama} - ${item.poinDiharapkan})`, null, "=")
+                    tampilkanJudul(`Selamat, ${member.nama}. Kamu berhasil memenangkan ${item.nama}`, "pemberitahuanSukses", null, "=")
+                    tampilkanJudul(`Poin kamu sekarang adalah ${member.poin} (${poinLama} - ${item.poinDiharapkan})`, "pemberitahuanSukses", null, "=")
                     console.log("\n")
                 } else {
                     clear()
                 }
             } else {
                 clear()
-                tampilkanJudul(`Oops! Poin kamu tidak cukup. Kamu perlu ${item.poinDiharapkan - member.poin} poin lagi untuk memenangkan ${item.nama}`, null, "=")
+                tampilkanJudul(`Oops! Poin kamu tidak cukup. Kamu perlu ${item.poinDiharapkan - member.poin} poin lagi untuk memenangkan ${item.nama}`, "pemberitahuanGagal", null, "=")
                 console.log("\n")
             }
         } else {

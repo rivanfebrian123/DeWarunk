@@ -17,14 +17,13 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-
-import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
     tampilkanJudul,
     jeda,
-    konfirmasi
+    konfirmasi,
+    tanya
 } from './utilitas.js'
 
 export class Sesi {
@@ -63,12 +62,12 @@ export class Sesi {
             }
 
             if (opsi == "lanjutJikaAda+") {
-                console.log(`Y. Tambah ${this.nama.toLowerCase()}`)
+                console.log(`Y. Tambah ${this.nama.toLowerCase()} ➕️`)
             }
 
-            console.log("X. Batal")
-            tampilkanJudul("-", null, "-", false)
-            this.tag = input.question(pertanyaan)
+            console.log("X. Batal ❌️")
+            tampilkanJudul("-", "kepala", null, "-", false)
+            this.tag = tanya(`✏️ ${pertanyaan}`)
 
             if (this.tag.toLowerCase() == "x") {
                 // biarkan saja
@@ -109,7 +108,7 @@ export class Sesi {
 
             if (notif) {
                 console.log("\n")
-                tampilkanJudul(notif, null, "=")
+                tampilkanJudul(notif, "pemberitahuanGagal", null, "=")
                 console.log("")
             }
 
@@ -134,8 +133,8 @@ export class Sesi {
             delete this.daftarItem[kodeLama]
             clear()
 
-            tampilkanJudul(`Kode ${this.nama.toLowerCase()} berhasil diubah`, null, "=")
-            tampilkanJudul(`Dari "${kodeLama}" menjadi "${this.item.kode}"`, null, "=")
+            tampilkanJudul(`Kode ${this.nama.toLowerCase()} berhasil diubah`, "pemberitahuanSukses", null, "=")
+            tampilkanJudul(`Dari "${kodeLama}" menjadi "${this.item.kode}"`, "pemberitahuanSukses", null, "=")
             console.log("\n")
         } else {
             clear()
@@ -148,12 +147,12 @@ export class Sesi {
         do {
             if (namaJudul) {
                 tampilkanJudul(`Ubah ${namaJudul[0].toLowerCase()}${namaJudul.slice(1)}`)
-                console.log("X. Batal")
-                tampilkanJudul("-", null, "-", false)
+                console.log("X. Batal ❌️")
+                tampilkanJudul("-", "kepala", null, "-", false)
             }
 
             let token = this.daftarPertanyaan[kodePertanyaan].split("|")
-            let jawaban = input.question(token[1])
+            let jawaban = tanya(`✏️ ${token[1]}`)
 
             if (jawaban.toLowerCase() == "x") {
                 hasil = false
@@ -182,7 +181,7 @@ export class Sesi {
 
             if (hasil === null && namaJudul) {
                 console.log("\n")
-                tampilkanJudul("Input tidak valid, coba lagi", null, "=")
+                tampilkanJudul("Input tidak valid, coba lagi", "pemberitahuanGagal", null, "=")
                 console.log("")
             }
         } while (hasil === null)
@@ -191,10 +190,10 @@ export class Sesi {
             clear()
 
             if (hasil) {
-                tampilkanJudul(`${namaJudul} telah diubah`, null, "=")
+                tampilkanJudul(`${namaJudul} telah diubah`, "pemberitahuanSukses", null, "=")
 
                 if (nilaiAwal) {
-                    tampilkanJudul(`Dari "${nilaiAwal}" menjadi "${hasil}"`, null, "=")
+                    tampilkanJudul(`Dari "${nilaiAwal}" menjadi "${hasil}"`, "pemberitahuanSukses", null, "=")
                 }
 
                 console.log("\n")
@@ -233,17 +232,20 @@ export class Sesi {
             let item = this.daftarItem[this.tag]
 
             clear()
-            tampilkanJudul(`${this.nama} "${item.nama}" (${item.kode}) berhasil ditambah`, null, "=")
+            tampilkanJudul(`${this.nama} "${item.nama}" (${item.kode}) berhasil ditambah`, "pemberitahuanSukses", null, "=")
             console.log("\n")
         } else if (bersihkanJikaBatal) {
             clear()
         }
 
-        return (jawaban != false) // supaya hasil selalu boolean
+        return (jawaban)
     }
 
     hapusItem(kodeLama) {
-        // wajib diaktivasi terlebih dahulu
+        if (!this.valid) {
+            throw new Error("Sesi harus diaktivasi dulu")
+        }
+
         if (konfirmasi(`Hapus ${this.nama.toLowerCase()}`)) {
             let item = this.daftarItem[kodeLama]
             let notif = `${this.nama} "${item.nama}" (${item.kode}) berhasil dihapus`
@@ -252,7 +254,7 @@ export class Sesi {
             this.nonaktifkan()
 
             clear()
-            tampilkanJudul(notif, null, "=")
+            tampilkanJudul(notif, "pemberitahuanSukses", null, "=")
             console.log("\n")
         } else {
             clear()

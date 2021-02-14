@@ -1,6 +1,7 @@
 {
     "type": "module",
     "dependencies": {
+        "chalk": "^4.1.0",
         "console-clear": "^1.1.1",
         "readline-sync": "^1.4.10"
     },

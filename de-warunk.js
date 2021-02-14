@@ -17,7 +17,6 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-import input from 'readline-sync'
 import clear from 'console-clear'
 
 import {
@@ -35,11 +34,13 @@ import {
 } from './manajemen-data.js'
 
 import {
-    tampilkanJudul
+    tampilkanJudul,
+    tanya
 } from './utilitas.js'
 
 class DWTransaksi {
     // "sesi" di sini adalah sesi member
+    manajemen
     sesi
     transaksi
 
@@ -58,17 +59,17 @@ class DWTransaksi {
         }
 
         if (this.sesi.valid) {
-            tampilkanJudul(`Kuy sapa si ${this.sesi.item.nama}`, null, "=")
-            tampilkanJudul(`${this.transaksi.waktu.toLocaleString("id-ID")}`, null, "=")
+            tampilkanJudul(`Kuy sapa si ${this.sesi.item.nama}`, "kepala", null, "=")
+            tampilkanJudul(`${this.transaksi.waktu.toLocaleString("id-ID")}`, "kepala", null, "=")
             tampilkanJudul("Transaksi baru")
-            console.log("1. Tambah item") //TODO tampilkan "(kosong)" jika tiada
-            console.log("2. Kurangi item")
-            console.log("3. Proses dan cetak transaksi") //TODO hanya izinkan jika ada item
-            console.log("4. Klaim promo") //TODO tampilkan "(kosong)" jika tiada
-            console.log("5. Lihat riwayat transaksi")
-            console.log("X. Batalkan transaksi")
+            console.log("1. Tambah item ➕️")
+            console.log("2. Kurangi item ➖️")
+            console.log("3. Proses dan cetak transaksi ✅️")
+            console.log("4. Klaim promo 🎁️")
+            console.log("5. Lihat riwayat transaksi 📑️")
+            console.log("X. Batalkan transaksi ❌️")
 
-            let menu = input.question("Pilih menu: ")
+            let menu = tanya("👆️ Pilih menu: ")
             clear()
 
             switch (menu) {
@@ -110,14 +111,14 @@ class DWMember {
 
     mulai() {
         tampilkanJudul("Member")
-        console.log("1. Tambah member")
-        console.log("2. Edit / hapus member")
-        console.log("3. Klaim promo member")
-        console.log("4. Lihat riwayat transaksi member") //TODO tampilkan "(kosong)" jika tiada
-        console.log("5. Lihat semua daftar member")
-        console.log("0. Kembali")
+        console.log("1. Tambah member ➕️")
+        console.log("2. Edit / hapus member ✏️")
+        console.log("3. Klaim promo member 🎁️")
+        console.log("4. Lihat riwayat transaksi member 📑️")
+        console.log("5. Lihat semua daftar member 📑️")
+        console.log("0. Kembali 🔙️")
 
-        let menu = input.question("Pilih menu: ")
+        let menu = tanya("👆️ Pilih menu: ")
         clear()
 
         switch (menu) {
@@ -167,13 +168,13 @@ class DWMember {
             let member = this.sesi.item
 
             tampilkanJudul("Edit / hapus member")
-            console.log(`1. Ubah kode member (${member.kode})`)
-            console.log(`2. Ubah nama (${member.nama})`)
-            console.log(`3. Ubah no. WA (${member.noWA})`)
-            console.log(`4. Hapus member (${member.nama} [${member.kode}])`)
-            console.log("0. Kembali")
+            console.log(`1. Ubah kode member (${member.kode}) 🔶️`)
+            console.log(`2. Ubah nama (${member.nama}) 🖐️`)
+            console.log(`3. Ubah no. WA (${member.noWA}) 📲️`)
+            console.log(`4. Hapus member (${member.nama} [${member.kode}]) ❌️`)
+            console.log("0. Kembali 🔙️")
 
-            let menu = input.question("Pilih menu: ")
+            let menu = tanya("👆️ Pilih menu: ")
             console.log("")
 
             switch (menu) {
@@ -189,7 +190,7 @@ class DWMember {
             case "4":
                 this.sesi.hapusItem(member.kode)
                 break
-            case "0":
+            default:
                 clear()
                 break
             }
@@ -214,15 +215,15 @@ class DWJualan {
 
     mulai() {
         tampilkanJudul("Jualan")
-        console.log("1. Tambah jualan")
-        console.log("2. Tambah promo")
-        console.log("3. Edit / hapus jualan")
-        console.log("4. Edit / hapus promo")
-        console.log("5. Lihat semua daftar jualan")
-        console.log("6. Lihat semua daftar promo")
-        console.log("0. Kembali")
+        console.log("1. Tambah jualan ➕️")
+        console.log("2. Tambah promo ➕️")
+        console.log("3. Edit / hapus jualan ✏️")
+        console.log("4. Edit / hapus promo ✏️")
+        console.log("5. Lihat semua daftar jualan 📑️")
+        console.log("6. Lihat semua daftar promo 📑️")
+        console.log("0. Kembali 🔙️")
 
-        let menu = input.question("Pilih menu: ")
+        let menu = tanya("👆️ Pilih menu: ")
         clear()
 
         switch (menu) {
@@ -263,16 +264,16 @@ class DWJualan {
             let jualan = this.sesiJualan.item
 
             tampilkanJudul("Edit / hapus jualan")
-            console.log(`1. Ubah kode jualan (${jualan.kode})`)
-            console.log(`2. Ubah nama jualan (${jualan.nama})`)
-            console.log(`3. Ubah biaya produksi (Rp. ${jualan.biayaProduksi} / hari)`)
-            console.log(`4. Ubah lama produksi (${jualan.lamaProduksi} jam/hari)`)
-            console.log(`5. Ubah harga jual (Rp. ${jualan.hargaJual})`)
-            console.log(`6. Ubah persen diskon (${jualan.persenDiskon}% [Rp.${jualan.hargaJual * jualan.persenDiskon / 100}])`)
-            console.log(`7. Hapus jualan (${jualan.nama} [${jualan.kode}])`)
-            console.log("0. Kembali")
+            console.log(`1. Ubah kode jualan (${jualan.kode}) 🔶️`)
+            console.log(`2. Ubah nama jualan (${jualan.nama}) 🍉️`)
+            console.log(`3. Ubah biaya produksi (Rp. ${jualan.biayaProduksi} / hari) 💰️`)
+            console.log(`4. Ubah lama produksi (${jualan.lamaProduksi} jam/hari) ⏲️`)
+            console.log(`5. Ubah harga jual (Rp. ${jualan.hargaJual}) 💸️`)
+            console.log(`6. Ubah persen diskon (${jualan.persenDiskon}% [Rp.${jualan.hargaJual * jualan.persenDiskon / 100}]) 💵️`)
+            console.log(`7. Hapus jualan (${jualan.nama} [${jualan.kode}]) ❌️`)
+            console.log("0. Kembali 🔙️")
 
-            let menu = input.question("Pilih menu: ")
+            let menu = tanya("👆️ Pilih menu: ")
             console.log("")
 
             switch (menu) {
@@ -297,7 +298,7 @@ class DWJualan {
             case "7":
                 this.sesiJualan.hapusItem(jualan.kode)
                 break
-            case "0":
+            default:
                 clear()
                 break
             }
@@ -318,16 +319,16 @@ class DWJualan {
             let promo = this.sesiPromo.item
 
             tampilkanJudul("Edit / hapus promo")
-            console.log(`1. Ubah kode promo (${promo.kode})`)
-            console.log(`2. Ubah nama promo (${promo.nama})`)
-            console.log(`3. Ubah poin diharapkan (${promo.poinDiharapkan} poin)`)
-            console.log(`4. Ubah batas akhir (${promo.batasAkhir.toLocaleString()})`)
-            console.log(`5. Ubah syarat tambahan`)
+            console.log(`1. Ubah kode promo (${promo.kode}) 🔶️`)
+            console.log(`2. Ubah nama promo (${promo.nama}) 🎁️`)
+            console.log(`3. Ubah poin diharapkan (${promo.poinDiharapkan} poin) 💯️`)
+            console.log(`4. Ubah batas akhir (${promo.batasAkhir.toLocaleString()}) 📅️`)
+            console.log(`5. Ubah syarat tambahan 👉️📑️`)
             console.log(`   (${promo.syaratTambahan})`)
-            console.log(`6. Hapus promo (${promo.nama} [${promo.kode}])`)
-            console.log("0. Kembali")
+            console.log(`6. Hapus promo (${promo.nama} [${promo.kode}]) ❌️`)
+            console.log("0. Kembali 🔙️")
 
-            let menu = input.question("Pilih menu: ")
+            let menu = tanya("👆️ Pilih menu: ")
             console.log("")
 
             switch (menu) {
@@ -344,12 +345,19 @@ class DWJualan {
                 promo.batasAkhir = this.sesiPromo.tanyaDataItem("batasAkhir", "Batas akhir", promo.batasAkhir)
                 break
             case "5":
-                promo.syaratTambahan = this.sesiPromo.tanyaDataItem("syaratTambahan", "Syarat tambahan", promo.syaratTambahan)
+                let jawaban = this.sesiPromo.tanyaDataItem("syaratTambahan", "Syarat tambahan", promo.syaratTambahan)
+
+                if (jawaban == "-") {
+                    promo.syaratTambahan = null
+                } else {
+                    promo.syaratTambahan = jawaban
+                }
+
                 break
             case "6":
                 this.sesiPromo.hapusItem(promo.kode)
                 break
-            case "0":
+            default:
                 clear()
                 break
             }
@@ -400,12 +408,12 @@ class DeWarunk {
 
     mulai() {
         tampilkanJudul("DeWarunk - Kafe Gen-Z")
-        console.log("1. Transaksi")
-        console.log("2. Member")
-        console.log("3. Jualan")
-        console.log("0. Keluar")
+        console.log("1. Transaksi 💸️")
+        console.log("2. Member 👋️")
+        console.log("3. Jualan 🥤️")
+        console.log("0. Keluar ❌️")
 
-        let menu = input.question("Pilih menu: ")
+        let menu = tanya("👆️ Pilih menu: ")
         this.manajemen.nonaktifkanSemuaSesi()
         clear()
 
@@ -427,7 +435,7 @@ class DeWarunk {
     }
 }
 
-tampilkanJudul("Memulai DeWarunk...")
+tampilkanJudul("Memulai DeWarunk...🍊️🍭️☕️")
 const apl = new DeWarunk()
 clear()
 apl.mulai()

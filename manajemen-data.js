@@ -33,8 +33,11 @@
 //
 // Setiap daftarPertanyaan di sini tidak perlu menanyakan kode, karena itu adalah
 // urusan Sesi
-
-import input from 'readline-sync'
+//
+// Kelas2 di sini menggunakan duplikasi data untuk transaksi karena kita
+// tidak menggunakan server SQL dan jika kita menggunakan referensi kelas aslinya
+// pada daftar item, nanti data akan ikut berubah pada riwayat item jika kita
+// mengubah aslinya
 import clear from 'console-clear'
 
 import {
@@ -45,14 +48,20 @@ import {
 class Data {
     kode
     nama
+    daftarData
 
     constructor(daftarData) {
+        this.daftarData = daftarData
         this.kode = daftarData[0]
         this.nama = daftarData[1]
     }
 
     tampilkanInfo() {
         throw new Error("Fungsi 'tampilkanInfo()' harus diimplementasikan")
+    }
+
+    duplikat() {
+        throw new Error("Fungsi 'duplikat()' harus diimplementasikan")
     }
 }
 
@@ -70,6 +79,10 @@ export class Member extends Data {
         super(daftarData)
         this.noWA = daftarData[2]
         this.poin = 0
+    }
+
+    duplikat() {
+        return new Member(this.daftarData)
     }
 
     tampilkanInfo() {
@@ -101,13 +114,22 @@ export class Member extends Data {
     }
 
     tampilkanRiwayatTransaksi() {
+        let n = 0
+
         tampilkanJudul(`Riwayat transaksi si ${this.nama}`)
         console.log("")
 
         this.bersihkanRiwayatTransaksiLama()
+        n = 0
 
         for (const i in this.riwayatTransaksi) {
             this.riwayatTransaksi[i].tampilkanPerbarui(false, false)
+            console.log("")
+            n++
+        }
+
+        if (n == 0) {
+            tampilkanJudul("(Belum ada riwayat transaksi)", "pemberitahuanGagal", null, " ")
             console.log("")
         }
 
@@ -131,11 +153,15 @@ export class Promo extends Data {
         this.poinDiharapkan = daftarData[2]
         this.batasAkhir = daftarData[3]
 
-        if (daftarData[4] == "-") {
+        if (!daftarData[4] || daftarData[4] == "-") {
             this.syaratTambahan = null
         } else {
             this.syaratTambahan = daftarData[4]
         }
+    }
+
+    duplikat() {
+        return new Promo(this.daftarData)
     }
 
     tampilkanInfo() {
@@ -168,6 +194,10 @@ export class Jualan extends Data {
         this.lamaProduksi = daftarData[3]
         this.hargaJual = daftarData[4]
         this.persenDiskon = daftarData[5]
+    }
+
+    duplikat() {
+        return new Jualan(this.daftarData)
     }
 
     tampilkanInfo() {

@@ -18,13 +18,48 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 import input from 'readline-sync'
+import chalk from 'chalk'
 import clear from 'console-clear'
 
 export const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
     "Agustus", "September", "Oktober", "November", "Desember"
 ]
 
-export function tampilkanJudul(judul, dekorasi = "»", dekorasiSpasi = "·", padding = true, lebarMinimal = 50) {
+export function jeda() {
+    input.question(chalk.blue.bold("👇️ Tekan enter untuk lanjutkan..."), {
+        hideEchoBack: true,
+        mask: ""
+    })
+    clear()
+}
+
+export function tanya(pertanyaan) {
+    return input.question(chalk.blue.bold(pertanyaan))
+}
+
+export function tampilkanJudul(judul, tipe = "kepala", dekorasi = "»", dekorasiSpasi = "·", padding = true, lebarMinimal = 50) {
+    let kapurDekorasi
+    let kapurIsi
+
+    switch (tipe) {
+    case "polos":
+        kapurDekorasi = chalk.blue
+        kapurIsi = chalk
+        break
+    case "kepala":
+        kapurDekorasi = chalk.blue
+        kapurIsi = chalk.blue.bold
+        break
+    case "pemberitahuanGagal":
+        kapurDekorasi = chalk.red
+        kapurIsi = chalk.red.bold
+        break
+    case "pemberitahuanSukses":
+        kapurDekorasi = chalk.green
+        kapurIsi = chalk.green.bold
+        break
+    }
+
     if (judul) {
         if (padding) {
             judul = `  ${judul}  `
@@ -43,7 +78,7 @@ export function tampilkanJudul(judul, dekorasi = "»", dekorasiSpasi = "·", pad
         }
 
         if (dekorasi) {
-            console.log(teksDekorasi)
+            console.log(kapurDekorasi(teksDekorasi))
         }
 
         if (dekorasiSpasi) {
@@ -58,10 +93,10 @@ export function tampilkanJudul(judul, dekorasi = "»", dekorasiSpasi = "·", pad
             }
         }
 
-        console.log(`${teksDekorasiSpasi}${judul}${teksDekorasiSpasi}`)
+        console.log(`${kapurDekorasi(teksDekorasiSpasi)}${kapurIsi(judul)}${kapurDekorasi(teksDekorasiSpasi)}`)
 
         if (dekorasi) {
-            console.log(teksDekorasi)
+            console.log(kapurDekorasi(teksDekorasi))
         }
     }
 }
@@ -72,21 +107,13 @@ export function konfirmasi(judul = null, pertanyaan = "Lanjutkan") {
 
     do {
         tampilkanJudul(judul)
-        lanjut = input.question(`${pertanyaan} (YA/BATAL): `).toLowerCase()
+        lanjut = tanya(`❓️ ${pertanyaan} (YA/KEMBALI): `).toLowerCase()
         console.log("")
-    } while (lanjut != "ya" && lanjut != "batal")
+    } while (lanjut != "ya" && lanjut != "kembali")
 
     if (lanjut == "ya") {
         jadi = true
     }
 
     return jadi
-}
-
-export function jeda() {
-    input.question("Tekan enter untuk lanjutkan...", {
-        hideEchoBack: true,
-        mask: ""
-    })
-    clear()
 }
