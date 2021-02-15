@@ -6,6 +6,10 @@
         "readline-sync": "^1.4.10"
     },
     "scripts": {
-        "start": "node de-warunk.js"
+        "start": "node de-warunk.js",
+        "mulai": "node de-warunk.js",
+        "rapikan": "js-beautify *.js -m 2 -j",
+        "bersihkan": "js-beautify *.js -m 2 -j",
+        "dokumentasi": "rm -r docs; jsdoc *.js -R DOCS.md -d docs"
     }
 }

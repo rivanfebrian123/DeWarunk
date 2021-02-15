@@ -1,6 +1,34 @@
-/* manajemen-sesi.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: manajemen-sesi.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: manajemen-sesi.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* manajemen-sesi.js
  *
- * Copyright 2021 De Warunk Team <rivanfebrian123@gmail.com>
+ * Copyright 2021 De Warunk Team &lt;rivanfebrian123@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,7 +41,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/>.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -36,7 +64,7 @@ import {
 
 /**
  * Kelas untuk mengaktivasi; menayai data; menambah, mengubah,
- * dan menghapus data; dan menonaktifkan data.<br><br>
+ * dan menghapus data; dan menonaktifkan data.&lt;br>&lt;br>
  *
  * Kelas ini digunakan di Manajemen dan dibuat menjadi tiga instansi,
  * yaitu sesiMember, sesiJualan, dan sesiData dengan basis kelas2
@@ -72,10 +100,10 @@ export class Sesi {
      * Mengecek apakah ada data atau tidak, lalu mengaktivasikannya agar bisa
      * digunakan untuk pengolahan data oleh kelas2/fungsi2 yang lain.
      *
-     * @param {String} opsi="lanjutJikaAda" - Opsi aktivasi:<br>
-     *    "lanjutJikaAda", melanjutkan proses jika item ditemukan<br>
+     * @param {String} opsi="lanjutJikaAda" - Opsi aktivasi:&lt;br>
+     *    "lanjutJikaAda", melanjutkan proses jika item ditemukan&lt;br>
      *    "lanjutJikaAda+", seperti opsi sebelumnya, cuma ini bisa menambah item
-     *    sekalian<br>
+     *    sekalian&lt;br>
      *    "lanjutJikaTiada", melanjutkan proses jika item tidak ditemukan
      * @param {String} judul=null - Untuk menampilkan judul sekalian
      * @param {String} pertanyaan=null - Teks penunjuk input, misal "Kode: "
@@ -151,7 +179,7 @@ export class Sesi {
                 console.log("")
             }
 
-        } while (!jadi && this.tag.toLowerCase() != "x")
+        } while (!jadi &amp;&amp; this.tag.toLowerCase() != "x")
 
         return jadi
     }
@@ -240,7 +268,7 @@ export class Sesi {
                 }
             }
 
-            if (hasil === null && namaJudul) {
+            if (hasil === null &amp;&amp; namaJudul) {
                 console.log("\n")
                 tampilkanJudul("Input tidak valid, coba lagi", "pemberitahuanGagal", null, "=")
                 console.log("")
@@ -261,7 +289,7 @@ export class Sesi {
             }
         }
 
-        if (nilaiAwal && !hasil) {
+        if (nilaiAwal &amp;&amp; !hasil) {
             hasil = nilaiAwal
         }
 
@@ -337,7 +365,7 @@ export class Sesi {
 
     /**
      * Tampilkan daftar item di Sesi ini, memanggil tampilkanInfo() dari setiap
-     * item. <br><br>
+     * item. &lt;br>&lt;br>
      *
      * Cek modul de-warunk/manajemen-data
      */
@@ -353,4 +381,26 @@ export class Sesi {
         console.log("")
         jeda()
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-de-warunk.html">de-warunk</a></li><li><a href="module-de-warunk_manajemen.html">de-warunk/manajemen</a></li><li><a href="module-de-warunk_manajemen-data.html">de-warunk/manajemen-data</a></li><li><a href="module-de-warunk_manajemen-sesi.html">de-warunk/manajemen-sesi</a></li><li><a href="module-de-warunk_transaksi.html">de-warunk/transaksi</a></li><li><a href="module-de-warunk_utilitas.html">de-warunk/utilitas</a></li></ul><h3>Classes</h3><ul><li><a href="module-de-warunk_manajemen.Manajemen.html">Manajemen</a></li><li><a href="module-de-warunk_manajemen-data.Jualan.html">Jualan</a></li><li><a href="module-de-warunk_manajemen-data.Member.html">Member</a></li><li><a href="module-de-warunk_manajemen-data.Promo.html">Promo</a></li><li><a href="module-de-warunk_manajemen-data-Data.html">Data</a></li><li><a href="module-de-warunk_manajemen-sesi.Sesi.html">Sesi</a></li><li><a href="module-de-warunk_transaksi.ItemTransaksi.html">ItemTransaksi</a></li><li><a href="module-de-warunk_transaksi.Transaksi.html">Transaksi</a></li><li><a href="module-de-warunk-DeWarunk.html">DeWarunk</a></li><li><a href="module-de-warunk-DWJualan.html">DWJualan</a></li><li><a href="module-de-warunk-DWMember.html">DWMember</a></li><li><a href="module-de-warunk-DWTransaksi.html">DWTransaksi</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Feb 15 2021 22:41:26 GMT+0700 (Western Indonesia Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

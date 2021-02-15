@@ -1,6 +1,34 @@
-/* manajemen-data.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: manajemen-data.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: manajemen-data.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* manajemen-data.js
  *
- * Copyright 2021 De Warunk Team <rivanfebrian123@gmail.com>
+ * Copyright 2021 De Warunk Team &lt;rivanfebrian123@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,30 +41,30 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see &lt;http://www.gnu.org/licenses/>.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 /**
  * Modul tentang "templat" kelas Data dan keturunan2nya yang digunakan di
- * kelas Manajemen/Sesi<br><br>
+ * kelas Manajemen/Sesi&lt;br>&lt;br>
  *
- * PERHATIAN:<br>
+ * PERHATIAN:&lt;br>
  * Setiap tipe/kelas di sini wajib mewarisi kelas "Data" dan
  * semua constructor itu wajib memiliki parameter "daftarData" yang berupa
  * list data hasil parse dari fungsi tanyaDataItem(kodePertanyaan) di fungsi
- * tambahItem() di kelas Sesi<br><br>
+ * tambahItem() di kelas Sesi&lt;br>&lt;br>
  *
  * Jangan lupa juga untuk memanggil "super(daftarData)" dalam constructor2 itu.
  * Omong2, indeks dimulai dari 2 karena index 0 dan satu sudah dipakai untuk
- * "kode" dan "nama"<br><br>
+ * "kode" dan "nama"&lt;br>&lt;br>
  *
  * Daftar pertanyaan berupa list dengan indeks sesuai dengan nama variabel
- * yang bersangkutan. Isi pertanyaan berformat: TIPE|Isi<br><br>
+ * yang bersangkutan. Isi pertanyaan berformat: TIPE|Isi&lt;br>&lt;br>
  *
  * Setiap daftarPertanyaan di sini tidak perlu menanyakan kode, karena itu adalah
- * urusan Sesi<br><br>
+ * urusan Sesi&lt;br>&lt;br>
  *
  * Kelas2 di sini menggunakan duplikasi data untuk transaksi karena kita
  * tidak menggunakan server SQL dan jika kita menggunakan referensi kelas aslinya
@@ -75,7 +103,7 @@ class Data {
     }
 
     /**
-     * "Templat" fungsi yang wajib ada untuk digunakan di suatu Sesi.<br>
+     * "Templat" fungsi yang wajib ada untuk digunakan di suatu Sesi.&lt;br>
      * Fungsi ini digunakan untuk menampilkan info suatu kelas keturunan kelas
      * ini, misal Member
      */
@@ -84,7 +112,7 @@ class Data {
     }
 
     /**
-     * "Templat" fungsi yang wajib ada untuk digunakan di suatu Sesi.<br>
+     * "Templat" fungsi yang wajib ada untuk digunakan di suatu Sesi.&lt;br>
      * Fungsi ini digunakan untuk membuat instansi baru dengan data yang sama.
      * Fungsi ini hanya digunakan pada keturunan2 kelas ini
      */
@@ -142,7 +170,7 @@ export class Member extends Data {
         let waktu = new Date()
 
         for (const kode in this.daftarPromoDiklaim) {
-            if (this.daftarPromoDiklaim[kode].batasAkhir < waktu) {
+            if (this.daftarPromoDiklaim[kode].batasAkhir &lt; waktu) {
                 delete this.daftarPromoDiklaim[kode]
             }
         }
@@ -159,7 +187,7 @@ export class Member extends Data {
         if (banyak > 25) {
             sisa = banyak - 25
 
-            for (let i = 1; i <= sisa; i++) {
+            for (let i = 1; i &lt;= sisa; i++) {
                 this.riwayatTransaksi.shift()
             }
         }
@@ -293,4 +321,26 @@ export class Jualan extends Data {
         console.log(`| Harga jual satuan: Rp.${this.hargaJual}    Diskon: ${this.persenDiskon}% (Rp.${this.hargaJual * this.persenDiskon / 100})`)
         console.log(`| Biaya produksi: Rp.${this.biayaProduksi}/hari    Lama produksi: ${this.lamaProduksi} jam/hari`)
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-de-warunk.html">de-warunk</a></li><li><a href="module-de-warunk_manajemen.html">de-warunk/manajemen</a></li><li><a href="module-de-warunk_manajemen-data.html">de-warunk/manajemen-data</a></li><li><a href="module-de-warunk_manajemen-sesi.html">de-warunk/manajemen-sesi</a></li><li><a href="module-de-warunk_transaksi.html">de-warunk/transaksi</a></li><li><a href="module-de-warunk_utilitas.html">de-warunk/utilitas</a></li></ul><h3>Classes</h3><ul><li><a href="module-de-warunk_manajemen.Manajemen.html">Manajemen</a></li><li><a href="module-de-warunk_manajemen-data.Jualan.html">Jualan</a></li><li><a href="module-de-warunk_manajemen-data.Member.html">Member</a></li><li><a href="module-de-warunk_manajemen-data.Promo.html">Promo</a></li><li><a href="module-de-warunk_manajemen-data-Data.html">Data</a></li><li><a href="module-de-warunk_manajemen-sesi.Sesi.html">Sesi</a></li><li><a href="module-de-warunk_transaksi.ItemTransaksi.html">ItemTransaksi</a></li><li><a href="module-de-warunk_transaksi.Transaksi.html">Transaksi</a></li><li><a href="module-de-warunk-DeWarunk.html">DeWarunk</a></li><li><a href="module-de-warunk-DWJualan.html">DWJualan</a></li><li><a href="module-de-warunk-DWMember.html">DWMember</a></li><li><a href="module-de-warunk-DWTransaksi.html">DWTransaksi</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Feb 15 2021 22:41:26 GMT+0700 (Western Indonesia Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
