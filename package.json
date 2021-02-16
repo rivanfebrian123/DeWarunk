@@ -10,6 +10,8 @@
         "mulai": "node de-warunk.js",
         "rapikan": "js-beautify *.js -m 2 -j",
         "bersihkan": "js-beautify *.js -m 2 -j",
-        "dokumentasi": "rm -r docs; jsdoc *.js -R DOCS.md -d docs"
+        "dokumentasi": "rm -r docs; jsdoc *.js -R DOCS.md -d docs",
+        "praproduksi": "cp aset/diagram.svg docs/diagram.svg; cp aset/diagram.html docs/diagram.html",
+        "produksi": "npm run rapikan; npm run dokumentasi; npm run praproduksi; git add *"
     }
 }

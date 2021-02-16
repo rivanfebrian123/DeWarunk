@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="365.84967mm" height="689.14191mm" version="1.1" viewBox="0 0 365.84967 689.14189" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="marker2786" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#b5835a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker27763" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#a6ba09" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker26702" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#a6ba09" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker25665" overflow="visible" orient="auto">
+   <path transform="matrix(.4 0 0 .4 -1.8 0)" d="m5.77 0-8.65 5v-10z" fill="#fff" fill-rule="evenodd" stroke="#00c6bc" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker24652" overflow="visible" orient="auto">
+   <path transform="matrix(.4 0 0 .4 -1.8 0)" d="m5.77 0-8.65 5v-10z" fill="#fff" fill-rule="evenodd" stroke="#00c6bc" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker23663" overflow="visible" orient="auto">
+   <path transform="matrix(.4 0 0 .4 -1.8 0)" d="m5.77 0-8.65 5v-10z" fill="#fff" fill-rule="evenodd" stroke="#00c6bc" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker22698" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#e5a50a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker21757" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#9141ac" fill-rule="evenodd" stroke="#9141ac" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker20840" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#9141ac" fill-rule="evenodd" stroke="#9141ac" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker14539" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#5e5c64" fill-rule="evenodd" stroke="#5e5c64" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker13682" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#5e5c64" fill-rule="evenodd" stroke="#5e5c64" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker12829" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#5e5c64" fill-rule="evenodd" stroke="#5e5c64" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker12000" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#33d17a" fill-rule="evenodd" stroke="#33d17a" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker11215" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#ed333b" fill-rule="evenodd" stroke="#ed333b" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker10454" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#ed333b" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9717" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#ed333b" fill-rule="evenodd" stroke="#ed333b" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker9004" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#ed333b" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8315" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#33d17a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7650" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#3584e4" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7009" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#3584e4" fill-rule="evenodd" stroke="#3584e4" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker6392" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#3584e4" fill-rule="evenodd" stroke="#3584e4" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker5799" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#3584e4" fill-rule="evenodd" stroke="#3584e4" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker5096" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4551" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker4030" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker3533" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker14646" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#a6ba09" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker14636" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#a6ba09" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13912" overflow="visible" orient="auto">
+   <path transform="matrix(.4 0 0 .4 -1.8 0)" d="m5.77 0-8.65 5v-10z" fill="#fff" fill-rule="evenodd" stroke="#00c6bc" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13902" overflow="visible" orient="auto">
+   <path transform="matrix(.4 0 0 .4 -1.8 0)" d="m5.77 0-8.65 5v-10z" fill="#fff" fill-rule="evenodd" stroke="#00c6bc" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13892" overflow="visible" orient="auto">
+   <path transform="matrix(.4 0 0 .4 -1.8 0)" d="m5.77 0-8.65 5v-10z" fill="#fff" fill-rule="evenodd" stroke="#00c6bc" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13704" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#e5a50a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker12540" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#9141ac" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker12530" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#9141ac" fill-rule="evenodd" stroke="#9141ac" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker12520" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#9141ac" fill-rule="evenodd" stroke="#9141ac" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker11944" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#b5835a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker11312" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#5e5c64" fill-rule="evenodd" stroke="#5e5c64" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker11302" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#5e5c64" fill-rule="evenodd" stroke="#5e5c64" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker11292" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#5e5c64" fill-rule="evenodd" stroke="#5e5c64" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker10376" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#3584e4" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker10366" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#3584e4" fill-rule="evenodd" stroke="#3584e4" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker10356" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#3584e4" fill-rule="evenodd" stroke="#3584e4" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker10346" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#3584e4" fill-rule="evenodd" stroke="#3584e4" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker9794" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#33d17a" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker9784" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#33d17a" fill-rule="evenodd" stroke="#33d17a" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker8486" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#ed333b" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8476" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#ed333b" fill-rule="evenodd" stroke="#ed333b" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker8466" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#ed333b" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker8456" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#ed333b" fill-rule="evenodd" stroke="#ed333b" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker7222" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7212" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7202" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker7192" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#ff7800" fill-rule="evenodd" stroke="#ff7800" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker15970" overflow="visible" orient="auto">
+   <path transform="matrix(.4 0 0 .4 -1.8 0)" d="m5.77 0-8.65 5v-10z" fill="#fff" fill-rule="evenodd" stroke="#77767b" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker15251" overflow="visible" orient="auto">
+   <path transform="scale(-.6)" d="m8.7185878 4.0337352-10.9258773-4.01772194 10.9258779-4.01772106c-1.7454984 2.3720609-1.7354408 5.6174519-6e-7 8.035443z" fill="#77767b" fill-rule="evenodd" stroke="#77767b" stroke-linejoin="round" stroke-width=".625"/>
+  </marker>
+  <marker id="marker14380" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#fff" fill-rule="evenodd" stroke="#77767b" stroke-width="1pt"/>
+  </marker>
+  <marker id="marker13577" overflow="visible" orient="auto">
+   <path transform="scale(.4)" d="M 0,-7.0710768 -7.0710894,0 0,7.0710589 7.0710462,0 Z" fill="#77767b" fill-rule="evenodd" stroke="#77767b" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <g transform="matrix(.4 0 0 .4 -1.125e-5 9.0624999e-6)">
+  <rect x="2.8125e-5" y="-2.265625e-5" width="914.62415" height="1722.8547" fill="#fff" stop-color="#000000"/>
+  <g transform="translate(-4560.6113,-4127.6343)">
+   <g transform="translate(5828.253,3750.607)">
+    <text transform="matrix(2.0494565,0,0,2.0494565,1118.0144,-383.30577)" x="-1095.1868" y="518.87054" dominant-baseline="auto" fill="#77767b" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width=".129099" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="-1095.1868" y="518.87054" dominant-baseline="auto" fill="#77767b" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width=".129099" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal">Simbol</tspan></text>
+    <g transform="translate(-30.969857,152.6075)">
+     <text x="-1029.4966" y="552.41528" fill="#77767b" font-family="Ubuntu" font-size="10.5833px" stroke-width=".264583" style="line-height:1.25" xml:space="preserve"><tspan x="-1029.4966" y="552.41528" fill="#77767b" font-family="Ubuntu" stroke-width=".264583">Komposisi</tspan></text>
+     <path d="m-1091.8954 549.49961h42.4227" fill="none" marker-end="url(#marker13577)" stop-color="#000000" stroke="#77767b" stroke-linecap="round" stroke-width="1.365" style="font-variation-settings:normal"/>
+    </g>
+    <g transform="translate(-30.969857,151.52025)">
+     <text x="-1029.4966" y="579.86926" fill="#77767b" font-family="Ubuntu" font-size="10.5833px" stroke-width=".264583" style="line-height:1.25" xml:space="preserve"><tspan x="-1029.4966" y="579.86926" fill="#77767b" font-family="Ubuntu" stroke-width=".264583">Agregasi</tspan></text>
+     <path d="m-1091.8954 576.96944h42.4227" fill="none" marker-end="url(#marker14380)" stop-color="#000000" stroke="#77767b" stroke-linecap="round" stroke-width="1.365" style="font-variation-settings:normal"/>
+    </g>
+    <g transform="translate(-30.969857,150.35206)">
+     <text x="-1029.4966" y="607.43597" fill="#77767b" font-family="Ubuntu" font-size="10.5833px" stroke-width=".264583" style="line-height:1.25" xml:space="preserve"><tspan x="-1029.4966" y="607.43597" fill="#77767b" font-family="Ubuntu" stroke-width=".264583">Asosiasi</tspan></text>
+     <path d="m-1090.7394 603.62324h42.4227" fill="none" marker-end="url(#marker15251)" stop-color="#000000" stroke="#77767b" stroke-linecap="round" stroke-width="1.365" style="font-variation-settings:normal"/>
+    </g>
+    <g transform="translate(-30.969857,149.26727)">
+     <text x="-1029.4966" y="633.0672" fill="#77767b" font-family="Ubuntu" font-size="10.5833px" stroke-width=".264583" style="line-height:1.25" xml:space="preserve"><tspan x="-1029.4966" y="633.0672" fill="#77767b" font-family="Ubuntu" stroke-width=".264583">Pewarisan</tspan></text>
+     <path d="m-1090.418 629.23607h42.4227" fill="none" marker-end="url(#marker15970)" stop-color="#000000" stroke="#77767b" stroke-linecap="round" stroke-width="1.365" style="font-variation-settings:normal"/>
+    </g>
+    <g transform="translate(-30.969857,152.60742)" font-family="Ubuntu" font-size="10.5833px">
+     <text transform="matrix(.5208204 0 0 .5208204 -380.52447 303.10583)" x="-1330.8965" y="671.75977" dominant-baseline="auto" fill="#3d3846" stop-color="#000000" stroke-width=".508012" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="-1330.8965" y="671.75977" dominant-baseline="auto" fill="#3d3846" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width=".508012" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal">x...x</tspan></text>
+     <text x="-1029.4966" y="654.68622" fill="#77767b" stroke-width=".264583" style="line-height:1.25" xml:space="preserve"><tspan x="-1029.4966" y="654.68622" fill="#77767b" font-family="Ubuntu" stroke-width=".264583">Rentang banyak variasi</tspan></text>
+    </g>
+   </g>
+   <g transform="translate(5828.253,3684.65)" fill="#77767b" font-family="Ubuntu" font-size="10.5833px">
+    <text transform="matrix(2.0494565,0,0,2.0494565,1118.0144,-553.44839)" x="-1095.1868" y="518.87054" dominant-baseline="auto" stop-color="#000000" stroke-width=".129099" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="-1095.1868" y="518.87054" dominant-baseline="auto" fill="#77767b" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width=".129099" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal">Diagram Kelas DeWarunk</tspan></text>
+    <text x="-1125.5681" y="534.60876" stroke-width=".264583" style="line-height:1.6" xml:space="preserve"><tspan x="-1125.5681" y="534.60876"><tspan x="-1125.5681" y="534.60876">Repositori: https://github.com/rivanfebrian123/DeWarunk</tspan></tspan><tspan x="-1125.5681" y="551.54205">Jangan lupa gulir ke bawah dan perbesar :D</tspan></text>
+   </g>
+   <g transform="matrix(3.0486106,0,0,3.0486106,4587.6624,4067.6676)">
+    <rect x="49.79813" y="60.70071" width="67.815956" height="45.57489" fill="#fff" stop-color="#000000" stroke-linecap="round" stroke-width=".677357" style="paint-order:markers stroke fill"/>
+    <g transform="translate(2.1560707,1.973262)" stroke-width=".328019">
+     <text x="57.580158" y="94.904106" fill="#000000" font-family="'Baloo Tammudu 2'" font-size="10.5833px" stroke-width=".0867881" style="line-height:1.25" xml:space="preserve"><tspan x="57.580158" y="94.904106" font-family="'Baloo Tammudu 2'" stroke-width=".0867881"><tspan fill="#77767b">De</tspan><tspan fill="#ff7800" font-family="'Baloo Tammudu 2'" font-weight="600">Warunk</tspan></tspan></text>
+     <path d="m72.888373 77.306014c-0.201589 0.138491-0.404218 0.275414-0.6079 0.410806-3.519717 2.345982-7.407577 4.429812-10.213567 5.95273-2.853613 1.548764-4.72211 2.614271-4.72211 2.614271s2.05945-0.615287 5.12603-1.70922c3.043063-1.085544 7.174586-2.70593 10.939192-5.134743 0.217688-0.14084 0.43363-0.284765 0.647649-0.431793 3.864759-2.655054 6.333774-5.478834 8.729904-8.213802l-1.775447-0.418904c0.744431 2.843577 1.534438 5.927287 4.59381 9.063284 0.14897 0.152701 0.302792 0.304995 0.461036 0.456795 2.80823 2.679323 6.194647 4.509387 8.72583 5.749034 2.545111 1.246467 4.287753 1.967591 4.287753 1.967591s-1.482293-1.169588-3.749083-2.852685c-2.248643-1.669622-5.268146-3.877446-7.834981-6.354142-0.142824-0.137007-0.280326-0.273184-0.412432-0.408599-2.630836-2.696727-3.329824-5.300681-4.074255-8.144258a774.87851 774.87851 0 0 1-0.491067-1.885448 5353.8528 5353.8528 0 0 1-1.28438 1.466544c-2.396131 2.734968-4.719313 5.381051-8.345982 7.872539z" fill="#ff7800"/>
+    </g>
+   </g>
+   <text x="5142.2505" y="4195.1836" fill="#ff7800" font-family="Ubuntu" font-size="10.5833px" stroke-width="1.3" style="line-height:1.25" xml:space="preserve"><tspan x="5142.2505" y="4195.1836" fill="#ff7800" font-family="Ubuntu" stroke-width="1.3">DeWarunk</tspan></text>
+   <g transform="translate(6505.665,3745.3951)" font-family="Ubuntu" font-size="10.5833px" stroke-width="1.3">
+    <text x="-1470.8081" y="518.67657" fill="#3584e4" style="line-height:1.25" xml:space="preserve"><tspan x="-1470.8081" y="518.67657" fill="#3584e4" font-family="Ubuntu" stroke-width="1.3">DWJualan</tspan></text>
+    <text x="-1374.1086" y="518.67657" fill="#2ec27e" style="line-height:1.25" xml:space="preserve"><tspan x="-1374.1086" y="518.67657" fill="#2ec27e" font-family="Ubuntu" stroke-width="1.3">DWMember</tspan></text>
+    <text x="-1266.9955" y="518.67657" fill="#ed333b" style="line-height:1.25" xml:space="preserve"><tspan x="-1266.9955" y="518.67657" fill="#ed333b" font-family="Ubuntu" stroke-width="1.3">DWTransaksi</tspan></text>
+   </g>
+   <g transform="translate(6519.5865,3758.2521)" font-family="Ubuntu" font-size="10.5833px" stroke-width="1.3">
+    <text x="-1487.7299" y="574.73895" fill="#5e5c64" style="line-height:1.25" xml:space="preserve"><tspan x="-1487.7299" y="574.73895" fill="#5e5c64" font-family="Ubuntu" stroke-width="1.3">Manajemen</tspan></text>
+    <text x="-1379.6272" y="574.73895" fill="#b5835a" style="line-height:1.25" xml:space="preserve"><tspan x="-1379.6272" y="574.73895" fill="#b5835a" font-family="Ubuntu" stroke-width="1.3">ItemTransaksi</tspan></text>
+    <text x="-1260.3168" y="574.73895" fill="#9141ac" style="line-height:1.25" xml:space="preserve"><tspan x="-1260.3168" y="574.73895" fill="#9141ac" font-family="Ubuntu" stroke-width="1.3">Transaksi</tspan></text>
+   </g>
+   <text x="5156.353" y="4471.4224" fill="#00c6bc" font-family="Ubuntu" font-size="10.5833px" stroke-width="1.3" style="line-height:1.25" xml:space="preserve"><tspan x="5156.353" y="4471.4224" fill="#00c6bc" font-family="Ubuntu" stroke-width="1.3">Data</tspan></text>
+   <text x="5158.4751" y="4403.3071" fill="#e5a50a" font-family="Ubuntu" font-size="10.5833px" stroke-width="1.3" style="line-height:1.25" xml:space="preserve"><tspan x="5158.4751" y="4403.3071" fill="#e5a50a" font-family="Ubuntu" stroke-width="1.3">Sesi</tspan></text>
+   <g transform="translate(6505.665,3745.3951)" font-family="Ubuntu" font-size="10.5833px" stroke-width="1.3">
+    <text x="-1447.2268" y="794.9046" fill="#5e5c64" style="line-height:1.25" xml:space="preserve"><tspan x="-1447.2268" y="794.9046" fill="#5e5c64" font-family="Ubuntu" stroke-width="1.3">Promo</tspan></text>
+    <text x="-1357.7365" y="794.9046" fill="#ff7800" style="line-height:1.25" xml:space="preserve"><tspan x="-1357.7365" y="794.9046" fill="#ff7800" font-family="Ubuntu" stroke-width="1.3">Jualan</tspan></text>
+    <text x="-1269.8547" y="794.9046" fill="#a6ba09" style="line-height:1.25" xml:space="preserve"><tspan x="-1269.8547" y="794.9046" fill="#a6ba09" font-family="Ubuntu" stroke-width="1.3">Member</tspan></text>
+   </g>
+   <path d="m5166.1288 4199.902c-5.468 5.221-10.9359 10.4417-28.798 13.9362-17.8622 3.4945-48.117 5.2624-63.551 10.6137-15.4341 5.3513-16.0453 14.2852-16.6565 23.2191" fill="none" marker-end="url(#marker3533)" stop-color="#000000" stroke="#ff7800" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5166.1288 4199.902c-0.9994 7.752-1.9988 15.5041-2.5275 23.4658s-0.5867 16.1325-0.6447 24.3032" fill="none" marker-end="url(#marker4551)" stop-color="#000000" stroke="#ff7800" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5166.1288 4199.902c3.4701 4.6576 6.9406 9.3156 24.1295 12.9367 17.1888 3.6211 48.0977 6.2064 63.5982 11.8395s15.5914 14.3125 15.6823 22.9928" fill="none" marker-end="url(#marker5096)" stop-color="#000000" stroke="#ff7800" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5166.1288 4199.902c-5.468 5.221-10.9359 10.4417-21.5656 15.1782-10.6297 4.7364-26.4206 8.9881-33.1769 18.5164-6.7562 9.5283-4.4774 24.3328-12.2784 33.5884-7.8011 9.2556-25.6824 12.963-34.9429 20.7721-9.2606 7.8092-9.9 19.7197-10.5393 31.6295" fill="none" marker-end="url(#marker4030)" stop-color="#000000" stroke="#ff7800" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5056.2419 4270.4183c-5.1927 7.4005-10.3858 14.8015-12.9348 22.3973-2.549 7.5957-2.4543 15.3867-2.3597 23.1776" fill="none" marker-end="url(#marker7650)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5157.5788 4270.008c-2.0875 4.6487-4.0139 8.9385-17.5142 13.0798s-39.0553 7.5226-50.2757 10.1744-16.8157 6.8171-19.2147 10.7047c-2.399 3.8877-2.4924 8.1604-2.5858 12.4329" fill="none" marker-end="url(#marker8315)" stop-color="#000000" stroke="#33d17a" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5267.6308 4270.008c-0.5576 6.7396-1.0722 12.959-30.45 18.2199s-89.4188 8.6288-114.1169 10.6804c-24.698 2.0516-32.9611 4.4699-36.584 7.3181-3.623 2.8483-3.9208 6.5109-4.2186 10.1734" fill="none" marker-end="url(#marker9004)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5267.6308 4270.008c-0.5576 6.7396-1.0722 12.959-14.2993 18.2199-13.227 5.2609-39.9192 8.6288-52.4633 10.6804-12.544 2.0516-20.8071 4.4699-24.43 7.9355-3.623 3.4656-3.9208 8.363-4.2186 13.2602" fill="none" marker-end="url(#marker9717)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5267.6308 4270.008c-0.5576 6.7396-1.0722 12.959 1.7744 17.9031 2.8466 4.9442 8.2378 7.1958 11.1321 11.6988 2.8944 4.5029 2.8408 11.0683 2.7873 17.6336" fill="none" marker-end="url(#marker10454)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5254.2802 4329.8073c-12.9559 0-25.9121 0.01-38.8685 0.01" fill="none" marker-end="url(#marker4727)" stop-color="#000000" stroke="#9141ac" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5056.3949 4338.7947c-0.1999 8.0156-0.3997 16.0308 3.4787 21.1462s11.8343 7.3307 25.8982 8.3625c14.0638 1.0317 34.234 0.8798 48.8171 1.2538s23.578 1.2739 28.2466 4.4666 5.0107 8.6775 5.3528 14.1626" fill="none" marker-end="url(#marker12829)" stop-color="#000000" stroke="#5e5c64" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5056.2419 4270.4183c-13.6752 7.416-27.3516 14.8327-37.5418 26.7513-10.1901 11.9187-16.8956 28.3411-15.1822 48.0816 1.7134 19.7406 11.845 42.8008 32.2669 55.4508s51.1324 14.8893 66.6972 29.988c15.5647 15.0986 15.9835 43.056 16.208 62.6411s0.2549 30.7963 4.3302 36.4358c4.0754 5.6395 12.1942 5.7063 20.3141 5.773" fill="none" marker-end="url(#marker6392)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5056.2419 4270.4183c-13.6752 7.416-27.3516 14.8327-34.9427 27.1077-7.5911 12.2751-9.098 29.4102-4.4581 46.6303s15.4265 34.5266 38.84 43.8378 59.4519 10.6267 95.4907 11.9423" fill="none" marker-end="url(#marker7009)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5168.0012 4409.4487c0 14.8961 0.01 29.7925 0.01 44.6893" fill="none" marker-end="url(#marker22698)" stop-color="#000000" stroke="#e5a50a" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5168.1372 4476.616c0.052 4.5403 0.1035 9.0802-9.0838 12.6041s-27.6126 6.0316-42.2359 8.7295c-14.6233 2.698-25.4425 5.5858-30.9621 10.5065s-5.7386 11.8735-5.9577 18.8262" fill="none" marker-end="url(#marker23663)" stop-color="#000000" stroke="#00c6bc" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5168.1372 4476.616c0.052 4.5403 0.1035 9.0802-0.5195 14.1007-0.6229 5.0204-1.9203 10.5209-2.3373 16.6591s0.046 12.9133 0.5098 19.6882" fill="none" marker-end="url(#marker24652)" stop-color="#000000" stroke="#00c6bc" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5282.8859 4339.4216c-0.5417 7.5807-1.0834 15.1613-1.3914 23.7919-0.308 8.6307-0.3822 18.3104-3.2957 27.7094-2.9134 9.399-8.6659 18.5166-11.6396 29.1244-2.9737 10.6079-3.1687 22.7061-3.3866 40.6727-0.2178 17.9666-0.4585 41.8006-0.6991 65.6351" fill="none" marker-end="url(#marker21757)" stop-color="#000000" stroke="#9141ac" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5168.1372 4476.616c0.052 4.5403 0.1035 9.0803 4.1978 13.1674 4.0944 4.0871 12.2309 7.7213 23.8067 10.096s26.5899 3.4899 34.2299 7.6893c7.6399 4.1994 7.9047 11.4822 8.1695 18.7649" fill="none" marker-end="url(#marker25665)" stop-color="#000000" stroke="#00c6bc" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5157.5788 4270.008c-1.5569 5.4649-3.1138 10.9296-11.1618 18.4685-8.0479 7.5388-22.5865 17.1516-30.2538 27.3819-7.6674 10.2303-8.4633 21.0771-4.3393 27.7409s13.167 9.1444 33.4328 10.5663 51.753 1.7852 70.9015 4.7941c19.1484 3.0089 25.9572 8.663 29.213 19.1024 3.2558 10.4395 2.9586 25.6633 3.2566 51.1733 0.298 25.5101 1.1911 61.3039 2.0842 97.0982" fill="none" marker-end="url(#marker12000)" stop-color="#000000" stroke="#33d17a" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5267.6308 4270.008c1.7996 5.2426 3.5991 10.485 13.0756 16.4197 9.4766 5.9347 26.6286 12.5612 34.4001 25.536 7.7715 12.9749 6.1619 32.297-2.0424 50.2041-8.2042 17.9071-23.0031 34.3996-30.4734 49.6995-7.4703 15.3-7.6119 29.4066-7.803 48.3775-0.1911 18.971-0.4318 42.8049-0.6724 66.6394" fill="none" marker-end="url(#marker11215)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5282.8859 4339.4216c-1.8502 8.3478-3.7004 16.6954-15.2815 22.667-11.5811 5.9715-32.8925 9.567-44.5982 15.7279-11.7057 6.1608-13.805 14.8864-14.8301 33.2565-1.0251 18.37-0.9761 46.3832-6.0573 63.8058s-15.2922 24.254-20.4282 31.263c-5.1361 7.009-5.1964 14.1945-5.2568 21.3799" fill="none" marker-end="url(#marker20840)" stop-color="#000000" stroke="#9141ac" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <text transform="matrix(.5208204 0 0 .5208204 5872.8735 4052.5201)" x="-1330.8965" y="671.75977" dominant-baseline="auto" fill="#3d3846" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width="2.49606" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="-1330.8965" y="671.75977" dominant-baseline="auto" fill="#3d3846" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width="2.49606" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal">3...3</tspan></text>
+   <path d="m5231.9891 4536.5869c-4.3459-0.2446-8.692-0.4892-11.4146-2.4066-2.7227-1.9174-3.8214-5.508-3.8378-17.0812-0.016-11.5732 1.0497-31.1287 1.5119-52.8221s0.3204-45.5226-4.5205-61.5121c-4.841-15.9895-14.3809-24.1374-19.4618-32.9537s-5.7019-18.3-6.3229-27.7842" fill="none" marker-end="url(#marker27763)" stop-color="#000000" stroke="#a6ba09" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5231.9891 4536.5869c-11.9945-0.1511-23.9893-0.3023-31.8376 2.6481-7.8482 2.9503-11.5492 9.0017-22.4525 11.9418-10.9032 2.9401-29.0073 2.7686-39.4791 0.2985-10.4719-2.4702-13.3096-7.2388-18.5008-9.8106-5.1913-2.5718-12.7357-2.946-20.2805-3.3203" fill="none" marker-end="url(#marker26702)" stop-color="#000000" stroke="#a6ba09" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5056.2419 4270.4183c-13.6752 7.416-27.3516 14.8327-37.5418 26.7513-10.1901 11.9187-16.8956 28.3411-15.1822 48.0816 1.7134 19.7406 11.845 42.8008 24.3666 59.0741 12.5217 16.2733 27.4323 25.7588 34.5968 45.058 7.1646 19.2992 6.5831 48.4116 6.0016 77.5242" fill="none" marker-end="url(#marker5799)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5056.3949 4338.7947c-0.9142 16.0881-1.8284 32.1756-5.2737 44.9567s-9.4216 22.2551-14.3855 31.0134c-4.964 8.7583-8.9161 16.8018-10.7286 31.9655-1.8126 15.1636-1.4854 37.4461-0.8853 53.9649s1.4731 27.2736 6.2059 32.3532c4.7327 5.0796 13.3239 4.4837 21.9157 3.8878" fill="none" marker-end="url(#marker13682)" stop-color="#000000" stroke="#5e5c64" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5056.3949 4338.7947c-0.9142 16.0881-1.8284 32.1756-5.2737 44.9567s-9.4216 22.2551-14.3855 31.0134c-4.964 8.7583-8.9161 16.8018-10.7286 31.9655-1.8126 15.1636-1.4729 38.2993-0.985 51.462 0.4878 13.1626 1.1854 18.3282 2.1465 25.3285 0.9612 7.0002 2.2073 15.9878 4.7718 21.8124s9.4312 14.0234 36.8785 16.8506c27.4474 2.8272 106.0693 3.3803 134.1624 3.5919 28.093 0.2115 40.6622 0.3394 46.5265-3.1397s5.9247-9.7986 5.9888-16.4967" fill="none" marker-end="url(#marker14539)" stop-color="#000000" stroke="#5e5c64" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+   <path d="m5165.0527 4339.0629c-12.0043 12.8312-24.0084 25.6621-29.1521 42.813-5.1438 17.1508-3.4269 38.6195 0.4101 57.5367s9.7935 35.2806 13.0242 48.8038c3.2306 13.5232 3.735 24.2049 4.2395 34.8866" fill="none" marker-end="url(#marker2786)" stop-color="#000000" stroke="#b5835a" stroke-linecap="round" stroke-width="1.3" style="font-variation-settings:normal"/>
+  </g>
+  <g transform="translate(-4554.412,-4127.6343)">
+   <g transform="matrix(.25 0 0 .25 4972.5158 4516.938)">
+    <path d="m65.774549 430.1325c-40.252102 0.0153-72.8747388 32.65041-72.8746108 72.90252v196.76008c-1.62e-4 12.95792 10.504193 23.46251 23.4621118 23.46264h211.96485c37.48009-2.7e-4 67.86356-30.38397 67.86356-67.86406v-196.29189c2e-4 -15.99918-12.9696-28.96921-28.96878-28.96929h-201.447151z" fill="#ff7800" stop-color="#000000"/>
+    <text x="147.86958" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="147.86958" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">DeWarunk</tspan></text>
+    <text x="17.952585" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="17.952585" y="532.53851">- dwTransaksi : DWTransaksi</tspan><tspan x="17.952585" y="559.55432">- dwMember : DWMember</tspan><tspan x="17.952585" y="586.57013">- dwJualan : DWJualan</tspan><tspan x="17.952585" y="613.58588">- manajemen : Manajemen</tspan><tspan x="17.952585" y="640.60168"/><tspan x="17.952585" y="667.61749">+ new DeWarunk()</tspan><tspan x="17.952585" y="694.6333">+ mulai()</tspan><tspan x="17.952585" y="721.64911"/></text>
+    <path d="m23.71661 495.05291h243.77386" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+    <path d="m19.483275 634.75301h245.890505" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+   </g>
+   <g transform="matrix(.25 0 0 .25 3754.0728 3919.4425)">
+    <g transform="translate(5313.6635,3129.4405)">
+     <path d="m538.85667 430.1325c-40.2521 0.0153-72.87474 32.65041-72.87461 72.90252v170.83092c-1.6e-4 12.95792 10.50419 23.46251 23.46211 23.46264h374.41902c37.48009-2.7e-4 67.86356-30.38397 67.86356-67.86406v-170.36273c2e-4 -15.99918-12.9696-28.96921-28.96878-28.96929h-363.90132z" fill="#ed333b" stop-color="#000000"/>
+     <text x="698.7395" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="698.7395" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">DWTransaksi</tspan></text>
+     <text x="491.0347" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="491.0347" y="532.53851">- manajemen : Manajemen</tspan><tspan x="491.0347" y="559.55432">- sesi : Sesi</tspan><tspan x="491.0347" y="586.57013">- transaksi : Transaksi</tspan><tspan x="491.0347" y="613.58588"/><tspan x="491.0347" y="640.60168">+ new DWTransaksi(manajemen : Manajemen)</tspan><tspan x="491.0347" y="667.61749">+ mulai()</tspan></text>
+     <path d="m494.1529 495.05291h409.40302" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m495.21123 608.29466h404.6405" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+    <g transform="translate(3788.5143,3129.4405)">
+     <path d="m1059.7509 430.1325c-40.2521 0.0153-72.87477 32.65041-72.87464 72.90252v170.83092c-1.6e-4 12.95792 10.50419 23.46251 23.46214 23.46264h364.8939c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-170.36273c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-354.3759z" fill="#33d17a" stop-color="#000000"/>
+     <text x="1210.1082" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="1210.1082" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">DWMember</tspan></text>
+     <text x="1011.9289" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="1011.9289" y="532.53851">- manajemen : Manajemen</tspan><tspan x="1011.9289" y="559.55432">- sesi : Sesi</tspan><tspan x="1011.9289" y="586.57013"/><tspan x="1011.9289" y="613.58588">+ new DWMember(manajemen : Manajemen)</tspan><tspan x="1011.9289" y="640.60168">+ editHapusMember()</tspan><tspan x="1011.9289" y="667.61749">+ mulai()</tspan></text>
+     <path d="m1015.0471 495.05291h394.0572" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m1016.1054 581.30714h395.6447" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+    <g transform="translate(3325.2618,3102.9339)">
+     <path d="m538.85667 430.1325c-40.2521 0.0153-72.87474 32.65041-72.87461 72.90252v223.84419c-1.6e-4 12.95792 10.50419 23.46251 23.46211 23.46264h344.78569c37.48009-2.7e-4 67.86356-30.38397 67.86356-67.86406v-223.376c2e-4 -15.99918-12.9696-28.96921-28.96878-28.96929h-334.26799z" fill="#3584e4" stop-color="#000000"/>
+     <text x="696.09363" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="696.09363" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">DWJualan</tspan></text>
+     <text x="491.0347" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="491.0347" y="532.53851">- manajemen : Manajemen</tspan><tspan x="491.0347" y="559.55432">- sesiJualan : Sesi</tspan><tspan x="491.0347" y="586.57013">- sesiPromo : Sesi</tspan><tspan x="491.0347" y="613.58588"/><tspan x="491.0347" y="640.60168">+ new DWJualan(manajemen : Manajemen)</tspan><tspan x="491.0347" y="667.61749">+ editHapusJualan()</tspan><tspan x="491.0347" y="694.6333">+ editHapusPromo()</tspan><tspan x="491.0347" y="721.64911">+ mulai()</tspan><tspan x="491.0347" y="748.66486"/></text>
+     <path d="m494.1529 495.05291h381.88635" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m495.21123 608.29466h377.12383" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+   </g>
+   <g transform="matrix(.25 0 0 .25 3754.0728 3945.0242)">
+    <g transform="translate(2026.0429,3823.7224)">
+     <path d="m1581.5255 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v222.16009c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h206.144c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-221.6919c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-195.626z" fill="#5e5c64" stop-color="#000000"/>
+     <text x="1658.8583" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="1658.8583" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">Manajemen</tspan></text>
+     <text x="1533.7035" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="1533.7035" y="532.53851">- sesiMember : Sesi</tspan><tspan x="1533.7035" y="559.55432">- sesiJualan : Sesi</tspan><tspan x="1533.7035" y="586.57013">- sesiPromo : Sesi</tspan><tspan x="1533.7035" y="613.58588"/><tspan x="1533.7035" y="640.60168">+ new Manajemen()</tspan><tspan x="1533.7035" y="667.61749">+ bersihkanPromoLama()</tspan><tspan x="1533.7035" y="694.6333">+ klaimPromo()</tspan><tspan x="1533.7035" y="721.64911">+ nonaktifkanSemuaSesi()</tspan><tspan x="1533.7035" y="748.66486"/><tspan x="1533.7035" y="775.68066"/></text>
+     <path d="m1536.8217 495.05291h240.5989" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m1537.88 608.29466h239.0114" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+    <g transform="translate(-563.47629,3848.064)">
+     <path d="m4925.3232 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v173.47675c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h747.9915c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-173.00856c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-737.4735z" fill="#b5835a" stop-color="#000000"/>
+     <text x="5283.6382" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="5283.6382" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">ItemTransaksi</tspan></text>
+     <text x="4877.5015" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="4877.5015" y="532.53851">- itemJualan :  Jualan</tspan><tspan x="4877.5015" y="559.55432">- banyak : int</tspan><tspan x="4877.5015" y="586.57013">- totalDiskon : int</tspan><tspan x="4877.5015" y="613.58588">- totalHarga : int</tspan><tspan x="4877.5015" y="640.60168"/><tspan x="4877.5015" y="667.61749">+ new ItemTransaksi(itemJualan : Jualan, banyak : int, totalDiskon : int, totalHarga : int)</tspan></text>
+     <path d="m4880.6194 495.05291h774.9927" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m4881.6777 634.75301h772.876" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+    <g transform="translate(-361.89123,3740.6432)">
+     <path d="m6019.8642 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v388.31842c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h825.5163c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-387.85023c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-814.9983z" fill="#9141ac" stop-color="#000000"/>
+     <text x="6409.9282" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="6409.9282" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">Transaksi</tspan></text>
+     <text x="5972.0425" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="5972.0425" y="532.53851">- sesiJualan : Sesi</tspan><tspan x="5972.0425" y="559.55432">- sesiMember : Sesi</tspan><tspan x="5972.0425" y="586.57013">- waktu : Date</tspan><tspan x="5972.0425" y="613.58588">- daftarItem[] : ItemTransaksi</tspan><tspan x="5972.0425" y="640.60168">- totalBelanja : int</tspan><tspan x="5972.0425" y="667.61749">- totalPoin : int</tspan><tspan x="5972.0425" y="694.6333"/><tspan x="5972.0425" y="721.64911">+ new Transaksi(manajemen : Manajemen)</tspan><tspan x="5972.0425" y="748.66486">+ batalkan()</tspan><tspan x="5972.0425" y="775.68066">+ hitungTotalDiskonHarga(itemJualan : Jualan, banyak : int, i : int) : int[]</tspan><tspan x="5972.0425" y="802.69647">+ kurangiItem()</tspan><tspan x="5972.0425" y="829.71228">+ prosesCetak()</tspan><tspan x="5972.0425" y="856.72803">+ tambahItem()</tspan><tspan x="5972.0425" y="883.74384">+ tampilkanPerbarui(tampilkanItemBelumDibeli : bool, tampilkanMenuKembali : bool) : String[]</tspan></text>
+     <path d="m5975.1604 495.05291h854.3677" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m5976.2187 687.66974h852.251" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+   </g>
+   <g transform="matrix(.25 0 0 .25 3964.4763 5106.3127)">
+    <path d="m3831.4968 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v443.35175c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h744.8358c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-442.88356c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-734.3178z" fill="#e5a50a" stop-color="#000000"/>
+    <text x="4186.1152" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="4186.1152" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">Sesi</tspan></text>
+    <text x="3783.675" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="3783.675" y="532.53851">- Tipe : ClassType</tspan><tspan x="3783.675" y="559.55432">- nama : String</tspan><tspan x="3783.675" y="586.57013">- valid : bool</tspan><tspan x="3783.675" y="613.58588">- item : Data</tspan><tspan x="3783.675" y="640.60168">- daftarItem[] : Data</tspan><tspan x="3783.675" y="667.61749">- daftarPertanyaan[] : String</tspan><tspan x="3783.675" y="694.6333">- tag : String</tspan><tspan x="3783.675" y="721.64911"/><tspan x="3783.675" y="748.66486">+ new Sesi(Tipe : ClassType, nama : String, daftarPertanyaan[] : String)</tspan><tspan x="3783.675" y="775.68066">+ aktifkanCek(opsi : String, judul : String, pertanyaan : String, validasiUlang : bool)</tspan><tspan x="3783.675" y="802.69647">+ hapusItem(kodeLama : String)</tspan><tspan x="3783.675" y="829.71228">+ nonaktifkan()</tspan><tspan x="3783.675" y="856.72803">+ tambahItem(bersihkanJikaBatal : bool) : void*</tspan><tspan x="3783.675" y="883.74384">+ tampilkanDaftarItem()</tspan><tspan x="3783.675" y="910.75964">+ tanyaDataItem(kodePertanyaan : String, namaJudul : String, nilaiAwal : void*) : void*</tspan><tspan x="3783.675" y="937.77545">+ ubahKodeItem(kodeLama : String)</tspan><tspan x="3783.675" y="964.79126"/></text>
+    <path d="m3786.793 495.05291h778.5124" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+    <path d="m3787.8513 716.77391h776.3957" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+   </g>
+   <g transform="matrix(.25 0 0 .25 4505.7664 5346.1987)">
+    <path d="m1915.8432 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v196.23092c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h245.8227c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-195.76273c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-235.3047z" fill="#00c6bc" stop-color="#000000"/>
+    <text x="2012.2258" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="2012.2258" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">Data</tspan></text>
+    <text x="1868.0214" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="1868.0214" y="532.53851">- kode : String</tspan><tspan x="1868.0214" y="559.55432">- nama : String</tspan><tspan x="1868.0214" y="586.57013">- daftarData[] : void*</tspan><tspan x="1868.0214" y="613.58588"/><tspan x="1868.0214" y="640.60168">+ new Data(daftarData[] : void*)</tspan><tspan x="1868.0214" y="667.61749">+ duplikat()</tspan><tspan x="1868.0214" y="694.6333">+ tampilkanInfo()</tspan><tspan x="1868.0214" y="721.64911"/></text>
+    <path d="m1871.1394 495.05291h280.8156" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+    <path d="m1872.1977 608.29466h279.7573" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+   </g>
+   <g transform="matrix(.25 0 0 .25 3754.0728 4082.0859)">
+    <g transform="translate(3556.6979,5768.8746)">
+     <path d="m2364.4532 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v305.76842c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h284.4607c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-305.30023c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-273.9427z" fill="#a6ba09" stop-color="#000000"/>
+     <text x="2482.0027" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="2482.0027" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">Member</tspan></text>
+     <text x="2316.6313" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="2316.6313" y="532.53851">- noWA : String</tspan><tspan x="2316.6313" y="559.55432">- poin : int</tspan><tspan x="2316.6313" y="586.57013">- riwayatTransaksi[] : Transaksi</tspan><tspan x="2316.6313" y="613.58588">- daftarPromoDiklaim[] : Promo</tspan><tspan x="2316.6313" y="640.60168"/><tspan x="2316.6313" y="667.61749">+ new Member(daftarData[] : void*)</tspan><tspan x="2316.6313" y="694.6333">+ bersihkanKlaimPromoLama()</tspan><tspan x="2316.6313" y="721.64911">+ bersihkanRiwayatTransaksiLama()</tspan><tspan x="2316.6313" y="748.66486">+ duplikat() : Member</tspan><tspan x="2316.6313" y="775.68066">+ tampilkanInfo()</tspan><tspan x="2316.6313" y="802.69647">+ tampilkanRiwayatTransaksi()</tspan><tspan x="2316.6313" y="829.71228"/></text>
+     <path d="m2319.7494 495.05291h314.6823" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m2320.8077 635.28218h312.5656" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+    <g transform="translate(1014.9993,5822.5851)">
+     <path d="m2870.4466 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v198.34759c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h268.0566c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-197.8794c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-257.5386z" fill="#5e5c64" stop-color="#000000"/>
+     <text x="2986.4089" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="2986.4089" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">Promo</tspan></text>
+     <text x="2822.6248" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="2822.6248" y="532.53851">- poinDiharapkan : int</tspan><tspan x="2822.6248" y="559.55432">- batasAkhir : Date</tspan><tspan x="2822.6248" y="586.57013">- syaratTambahan : String</tspan><tspan x="2822.6248" y="613.58588"/><tspan x="2822.6248" y="640.60168">+ new Promo(daftarData[] : void*)</tspan><tspan x="2822.6248" y="667.61749">+ duplikat() : Promo</tspan><tspan x="2822.6248" y="694.6333">+ tampilkanInfo()</tspan><tspan x="2822.6248" y="721.64911"/></text>
+     <path d="m2825.7428 495.05291h300.9239" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m2826.8011 608.29466h298.8072" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+    <g transform="translate(1587.9029,5809.3559)">
+     <path d="m3317.2477 430.1325c-40.2521 0.0153-72.8747 32.65041-72.8746 72.90252v224.80592c-2e-4 12.95792 10.5042 23.46251 23.4621 23.46264h264.3524c37.4801-2.7e-4 67.8636-30.38397 67.8636-67.86406v-224.33773c2e-4 -15.99918-12.9696-28.96921-28.9688-28.96929h-253.8344z" fill="#ff7800" stop-color="#000000"/>
+     <text x="3423.1582" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-size="25.2465px" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle" style="line-height:1.25" xml:space="preserve"><tspan x="3423.1582" y="472.27261" fill="#ffffff" font-family="Ubuntu" font-weight="500" stroke-width=".264583" text-align="center" text-anchor="middle">Jualan</tspan></text>
+     <text x="3269.426" y="532.53851" fill="#ffffff" font-family="Ubuntu" font-size="20.0117px" stroke-width=".264582" style="line-height:1.35" xml:space="preserve"><tspan x="3269.426" y="532.53851">- biayaProduksi : int</tspan><tspan x="3269.426" y="559.55432">- lamaProduksi : int</tspan><tspan x="3269.426" y="586.57013">- hargaJual : int</tspan><tspan x="3269.426" y="613.58588">- persenDiskon : int</tspan><tspan x="3269.426" y="640.60168"/><tspan x="3269.426" y="667.61749">+ new Jualan(daftarData[] : void*)</tspan><tspan x="3269.426" y="694.6333">+ duplikat() : Jualan</tspan><tspan x="3269.426" y="721.64911">+ tampilkanInfo()</tspan><tspan x="3269.426" y="748.66486"/><tspan x="3269.426" y="775.68066"/></text>
+     <path d="m3272.5439 495.05291h298.2781" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3.765"/>
+     <path d="m3273.6022 634.75301h296.1614" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.865"/>
+    </g>
+   </g>
+   <path d="m5006.1761 4696.3364c-12.4583 12.906-24.916 25.8116-66.684 33.7712-41.768 7.9597-112.841 10.9727-148.3794 20.9895-35.5385 10.0169-35.5351 27.0363-35.5318 44.0556" fill="none" marker-end="url(#marker7222)" stroke="#ff7800" stroke-linecap="round" stroke-width="1.75"/>
+   <path d="m5006.1761 4696.3364c-1.0648 19.0773-2.1296 38.1537-1.9958 55.7351 0.1339 17.5815 1.4664 33.6651 2.7989 49.7485" fill="none" marker-end="url(#marker7212)" stroke="#ff7800" stroke-linecap="round" stroke-width="1.75"/>
+   <path d="m5006.1761 4696.3364c9.1696 11.5436 18.3402 23.0885 60.4801 31.3288 42.1398 8.2403 117.2504 13.1785 154.9505 25.0863s37.9812 30.7814 38.2623 49.6571" fill="none" marker-end="url(#marker7202)" stroke="#ff7800" stroke-linecap="round" stroke-width="1.75"/>
+   <path d="m5006.1761 4696.3364c-12.4583 12.906-24.916 25.8116-50.2506 37.4055-25.3345 11.594-63.5441 21.8754-78.0906 49.9456s-5.4287 73.9281-35.7402 101.0361c-30.3116 27.108-100.0536 35.4677-135.2744 51.9316-35.2208 16.464-35.9172 41.031-36.6135 65.5967" fill="none" marker-end="url(#marker7192)" stop-color="#000000" stroke="#ff7800" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5257.1215 4874.9278c-1.3492 16.2973-2.5943 31.3369-90.1436 44.731-87.5493 13.3942-266.8258 22.9267-340.9332 29.219-74.1073 6.2923-99.8384 14.561-110.8222 22.9828-10.9839 8.4218-11.3138 18.3111-11.6437 28.1999" fill="none" marker-end="url(#marker8486)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5257.1215 4874.9278c-1.3492 16.2973-2.5943 31.3369-53.2861 46.2672-50.6917 14.9304-153.8634 27.6351-196.9576 34.2315-43.0941 6.5964-59.211 12.3652-65.9472 20.8519-6.7362 8.4866-6.6559 20.6077-6.5757 32.7284" fill="none" marker-end="url(#marker8476)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5257.1215 4874.9278c3.9408 17.245 7.5775 33.159 9.6108 52.0528 2.0332 18.8937 1.8803 35.3521 1.7146 53.1871" fill="none" marker-end="url(#marker8466)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5257.1215 4874.9278c4.3544 12.6774 8.7087 25.3544 35.0333 38.1542 26.3245 12.7998 74.6133 25.7211 98.7713 61.7649s24.18 95.2054 6.0957 133.553c-18.0842 38.3477-54.2743 55.8803-73.4527 84.5354-19.1784 28.6552-21.3432 68.429-23.2043 142.5243-1.861 74.0953-3.4182 182.5045-4.9754 290.9161" fill="none" marker-end="url(#marker8456)" stop-color="#000000" stroke="#ed333b" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5006.9456 4873.9587c-5.0512 11.2413-9.7126 21.6149-61.0886 33.7274s-151.8441 24.6218-192.8601 32.5747-53.927 17.9112-59.498 27.6684-5.8562 20.8965-6.1414 32.0354" fill="none" marker-end="url(#marker9794)" stop-color="#000000" stroke="#33d17a" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5006.9456 4873.9588c-0.1273 24.0043-0.2545 48.008 11.6481 65.4404 11.9027 17.4325 35.836 28.2948 50.747 42.5844 14.9111 14.2896 20.7987 32.0043 23.9519 62.1693s3.5712 72.771 26.6475 99.5183c23.0762 26.7472 68.8073 37.6293 94.2732 61.2267s30.6645 59.9087 33.3707 132.0736c2.7062 72.1648 2.9199 180.1784 3.1335 288.1933" fill="none" marker-end="url(#marker9784)" stop-color="#000000" stroke="#33d17a" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4759.2538 4881.326c-34.4022 18.2221-68.8058 36.445-86.2744 56.2336-17.4686 19.7885-18.0024 41.1428-18.5363 62.4968" fill="none" marker-end="url(#marker10376)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4759.2538 4881.326c-53.9574 19.1599-107.9196 38.3215-134.8988 77.9423s-26.9792 99.7048-9.7712 155.0696c17.2079 55.3649 51.6234 106.0123 99.4321 152.9492 47.8086 46.9369 109.0044 90.1578 141.8961 145.9472 32.8917 55.7895 37.4766 124.1426 39.8061 171.8783s2.4033 74.845 12.2648 88.483c9.8615 13.6379 29.5068 13.7993 49.1548 13.9607" fill="none" marker-end="url(#marker10366)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4759.2538 4881.326c-53.9574 19.1599-107.9194 38.3214-134.8987 77.9424s-26.9793 99.7045 1.0583 156.6289 84.1118 110.6905 134.41 138.2115c50.2981 27.521 94.815 28.7941 139.3324 30.0672" fill="none" marker-end="url(#marker10356)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4759.2538 4881.326c-53.9574 19.1599-107.9196 38.3215-134.8988 77.9423s-26.9792 99.7048-18.1722 153.5231 26.4207 101.3723 50.49 152.4578 54.5905 105.6948 69.4722 168.5239c14.8817 62.8292 14.1222 133.874 13.3628 204.9195" fill="none" marker-end="url(#marker10346)" stop-color="#000000" stroke="#3584e4" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4672.8008 5085.7285c-0.4837 19.3832-0.9673 38.7652 8.4175 51.1351 9.3847 12.3699 28.6358 17.7268 65.3324 20.7006s90.8332 3.5642 137.3839 5.5801 85.5074 5.4568 104.9207 12.3245c19.4132 6.8676 19.279 17.1601 19.1448 27.4534" fill="none" marker-end="url(#marker11312)" stop-color="#000000" stroke="#5e5c64" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4672.8008 5085.7285c-2.2122 38.9038-4.4242 77.806-12.0774 108.7127-7.6532 30.9068-20.7468 53.8158-27.6653 74.9951-6.9184 21.1793-7.6619 40.6294-7.6379 97.8036s0.8155 152.0634 4.499 211.3453c3.6834 59.2818 10.258 82.9479 22.5564 94.8655 12.2983 11.9175 30.3169 12.083 48.3367 12.2485" fill="none" marker-end="url(#marker11302)" stop-color="#000000" stroke="#5e5c64" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4672.8008 5085.7285c-2.2122 38.9038-4.4242 77.806-12.0774 108.7127-7.6532 30.9068-20.7468 53.8158-27.6653 74.9951-6.9184 21.1793-7.6619 40.6294-7.6379 104.6389s0.8458 176.7217 5.1984 243.9989c4.3526 67.2771 12.2611 97.285 37.6722 121.1185 25.411 23.8336 66.5415 37.3767 141.6545 42.5943 75.1131 5.2177 257.3569 4.4099 323.4918 4.276 66.1349-0.1338 98.137 0.1753 113.0634-8.2377s15.0727-23.6945 15.2277-39.8916" fill="none" marker-end="url(#marker11292)" stop-color="#000000" stroke="#5e5c64" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m4908.8321 5078.4406c-0.6214 18.5264-1.2428 37.0526-8.1776 55.3524s-20.1828 36.3733-25.7297 76.8009c-5.547 40.4276-3.3928 103.2089 6.7835 158.1164 10.1764 54.9074 28.3746 101.9392 47.0707 132.6815 18.696 30.7423 36.9947 44.5205 47.4583 64.4233 10.4635 19.9028 11.2278 42.3844 12.0294 65.9652" fill="none" marker-end="url(#marker11944)" stop-color="#000000" stroke="#b5835a" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5152.8523 5052.9371c-19.5798-1.2049-39.16-2.4099-56.9274-2.7349-17.7675-0.3251-33.7219 0.2297-49.6766 0.7845" fill="none" marker-end="url(#marker12540)" stop-color="#000000" stroke="#9141ac" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5261.7382 5104.0361c-1.3108 18.3312-2.6215 36.6623-0.2772 52.368 2.3444 15.7057 8.3438 28.7859 11.565 69.042 3.2212 40.256 3.6642 107.6852 3.2961 178.9195-0.368 71.2343-1.5469 146.2671-2.7258 221.3014" fill="none" marker-end="url(#marker12530)" stop-color="#000000" stroke="#9141ac" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5261.7382 5104.0361c-4.477 20.1863-8.9538 40.3722-27.0549 54.8123-18.101 14.4401-49.8244 23.1343-68.2276 38.0324s-23.4827 35.997-25.0813 92.1053c-1.5986 56.1084 0.2839 147.2177-17.1184 201.0279-17.4023 53.8101-54.0866 70.3146-72.6882 88.0682-18.6017 17.7535-19.1161 36.7526-19.6305 55.7515" fill="none" marker-end="url(#marker12520)" stop-color="#000000" stroke="#9141ac" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5010.9884 5345.7522c0.1399 9.1927 0.2798 18.3858 0.1533 29.4568-0.1265 11.0711-0.5194 24.02-0.7699 36.1013-0.2506 12.0814-0.3588 23.294-0.467 34.5071" fill="none" marker-end="url(#marker13704)" stop-color="#000000" stroke="#e5a50a" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5009.551 5524.8824c0.1252 10.9792 0.2503 21.9576-24.4061 31.6972-24.6564 9.7397-74.0916 18.2402-114.4401 23.9702-40.3484 5.7299-71.6024 8.6881-87.2664 18.0861-15.6639 9.3981-15.7331 25.2344-15.8023 41.0703" fill="none" marker-end="url(#marker13912)" stop-color="#000000" stroke="#00c6bc" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5009.551 5524.8824c0.1252 10.9792 0.2503 21.9576 0.2118 34.4759-0.038 12.5183-0.2406 26.5745-0.3051 39.4467-0.065 12.8722 0.01 24.5571 0.081 36.2418" fill="none" marker-end="url(#marker13902)" stop-color="#000000" stroke="#00c6bc" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5009.551 5524.8824c0.1252 10.9792 0.2503 21.9578 15.487 30.9235 15.2366 8.9657 45.5818 15.9184 82.7603 21.254 37.1784 5.3355 81.182 9.0529 103.352 17.0398 22.1701 7.9868 22.4989 20.2411 22.8277 32.4953" fill="none" marker-end="url(#marker13892)" stop-color="#000000" stroke="#00c6bc" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5217.9346 5685.5435c-10.5158-0.5915-21.0322-1.183-27.6202-5.8197-6.5881-4.6366-9.2467-13.3189-9.1425-66.6599s2.9712-151.3231 3.6194-233.3294-0.9225-148.0144-38.6354-179.693c-37.7129-31.6785-111.5588-29.0173-148.4815-41.1628s-36.9167-39.0979-36.9107-66.0508" fill="none" marker-end="url(#marker14646)" stop-color="#000000" stroke="#a6ba09" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <path d="m5217.9346 5685.5435c-29.0233-0.3655-58.0474-0.7309-76.994 10.7462s-27.814 34.7955-68.674 46.4157-113.7065 11.5409-154.0311-0.5706-48.1183-36.2513-61.3217-48.1963c-13.2034-11.9449-31.8114-11.69-50.4222-11.4351" fill="none" marker-end="url(#marker14636)" stop-color="#000000" stroke="#a6ba09" stroke-linecap="round" stroke-width="1.75" style="font-variation-settings:normal"/>
+   <text transform="matrix(.72222982 0 0 .72222982 6053.7787 4875.8033)" x="-1330.8965" y="671.75977" dominant-baseline="auto" fill="#3d3846" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width=".508012" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal" xml:space="preserve"><tspan x="-1330.8965" y="671.75977" dominant-baseline="auto" fill="#3d3846" font-family="Ubuntu" font-size="10.5833px" stop-color="#000000" stroke-width=".508012" style="font-feature-settings:normal;font-variant-alternates:normal;font-variant-caps:normal;font-variant-east-asian:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-variant-position:normal;font-variation-settings:normal;inline-size:0;line-height:1.25;shape-margin:0;shape-padding:0;text-decoration-color:#000000;text-decoration-line:none;text-decoration-style:solid;text-indent:0;text-orientation:mixed;text-transform:none;white-space:normal">3...3</tspan></text>
+  </g>
+ </g>
+</svg>
