@@ -6,7 +6,7 @@ DeWarunk dibuat untuk memenuhi tubes PBO
 
 **[DOKUMENTASI 📗️📘️📙️ | Klik di sini! 👈️](https://rivanfebrian123.github.io/DeWarunk/)**
 
-**[DIAGRAM KELAS 🔁️🔀️🔽️| Klik di sini! 👈️](https://rivanfebrian123.github.io/DeWarunk/diagram.html)**
+**[DIAGRAM KELAS 🔁️🔀️🔽️ | Klik di sini! 👈️](https://rivanfebrian123.github.io/DeWarunk/diagram.html)**
 
 ### Kelompok:
 * Rivan 🍉️

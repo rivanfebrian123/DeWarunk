@@ -2,9 +2,9 @@
 ### Aplikasi manajemen warung andalan 💎️
 DeWarunk dibuat untuk memenuhi tubes PBO
 
-**[DIAGRAM KELAS 🔁️🔀️🔽️| Klik di sini! 👈️](https://rivanfebrian123.github.io/DeWarunk/diagram.html)**
+**[DIAGRAM KELAS 🔁️🔀️🔽️ | Klik di sini! 👈️](https://rivanfebrian123.github.io/DeWarunk/diagram.html)**
 
-**[REPOSITORI 🔁️🔀️🔽️| Klik di sini! 👈️](https://github.com/rivanfebrian123/DeWarunk)**
+**[REPOSITORI 📦️📤️📥️ | Klik di sini! 👈️](https://github.com/rivanfebrian123/DeWarunk)**
 
 ### Kelompok:
 * Rivan 🍉️

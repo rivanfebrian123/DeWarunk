@@ -7,11 +7,17 @@
     },
     "scripts": {
         "start": "node de-warunk.js",
-        "mulai": "node de-warunk.js",
+        "mulai": "npm start",
         "rapikan": "js-beautify *.js -m 2 -j",
-        "bersihkan": "js-beautify *.js -m 2 -j",
+        "bersihkan": "npm run rapikan",
         "dokumentasi": "rm -r docs; jsdoc *.js -R DOCS.md -d docs",
-        "praproduksi": "cp aset/diagram.svg docs/diagram.svg; cp aset/diagram.html docs/diagram.html",
-        "produksi": "npm run rapikan; npm run dokumentasi; npm run praproduksi; git add *"
+        "pascaDokumentasi": "cp aset/diagram.svg docs/diagram.svg; cp aset/diagram.html docs/diagram.html",
+        "abaikanFileAsing": "git clean -xdf",
+        "bersihkanFileBaru": "npm run abaikanFileAsing",
+        "bersihkanFileAsing": "npm run abaikanFileAsing",
+        "siapkanGit": "git add .; npm run abaikanFileAsing",
+        "siapkanFile": "npm run siapkanGit",
+        "produksi": "npm run rapikan; npm run dokumentasi; npm run pascaDokumentasi; npm run siapkanGit",
+        "produksiTanpaDokumentasi": "npm run rapikan; npm run siapkanGit"
     }
 }
